@@ -220,7 +220,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none text-primary-foreground flex items-center gap-2">
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+            <span className="transition-opacity">
                 <ChevronDown className="h-4 w-4 -rotate-90" />
             </span>
             <span>{title}</span>
