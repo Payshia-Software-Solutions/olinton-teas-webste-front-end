@@ -31,7 +31,7 @@ export default function BulkPackagingSection() {
                         <div className="relative aspect-square">
                             {bulkImage && (
                                 <Image
-                                    src="https://www.olinton.lk/wp-content/uploads/2024/01/vithanakanda-katalu-1.jpg"
+                                    src="https://content-provider.payshia.com/olinton/bulk-packaging.webp"
                                     alt="Bulk tea packaging"
                                     fill
                                     className="object-cover rounded-lg"
@@ -54,7 +54,7 @@ export default function BulkPackagingSection() {
                         <div className="relative aspect-square">
                             {privateLabelImage && (
                                 <Image
-                                    src="https://www.olinton.lk/wp-content/uploads/2023/12/3-scaled.jpg"
+                                    src="https://content-provider.payshia.com/olinton/private-labellng.webp"
                                     alt="Private labeling process"
                                     fill
                                     className="object-cover rounded-lg"
