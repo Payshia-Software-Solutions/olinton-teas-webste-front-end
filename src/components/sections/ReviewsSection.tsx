@@ -35,7 +35,7 @@ export default function ReviewsSection() {
     <section id="reviews" className="py-20 md:py-28 bg-card">
       <div className="container">
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">From Our Customers</h2>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary uppercase">From Our Customers</h2>
           <p className="mt-4 text-lg text-muted-foreground">
             See what tea lovers are saying about their Ceylon Delights experience.
           </p>

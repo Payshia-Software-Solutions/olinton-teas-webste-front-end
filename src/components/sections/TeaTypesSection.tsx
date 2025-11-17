@@ -42,7 +42,7 @@ export default function TeaTypesSection() {
       <div className="container">
         <AnimateOnScroll>
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">A range of Finest Ceylon tea</h2>
+            <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary uppercase">A range of Finest Ceylon tea</h2>
           </div>
         </AnimateOnScroll>
         
