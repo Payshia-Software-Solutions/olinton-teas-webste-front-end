@@ -1,23 +1,17 @@
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Link from 'next/link';
 
 export default function HeroSection() {
-  const heroImage = PlaceHolderImages.find(img => img.id === 'hero-plantation');
-
   return (
-    <section className="relative h-screen w-full">
-      {heroImage && (
-        <Image
-          src={heroImage.imageUrl}
-          alt={heroImage.description}
-          fill
-          className="object-cover"
-          priority
-          data-ai-hint={heroImage.imageHint}
-        />
-      )}
+    <section className="relative h-screen w-full overflow-hidden">
+      <video
+        src="https://www.olinton.lk/wp-content/uploads/2023/12/WhatsApp-Video-2023-12-28-at-16.01.19.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2"
+      />
       <div className="absolute inset-0 bg-primary/60" />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-primary-foreground px-4">
         <h1 className="font-headline text-5xl md:text-7xl font-bold leading-tight shadow-md">
