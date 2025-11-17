@@ -10,6 +10,12 @@ export default function BulkPackagingSection() {
     return (
         <section id="packaging" className="py-20 md:py-28 bg-white">
             <div className="container">
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Explore Our Services</h2>
+                    <p className="mt-4 text-lg text-muted-foreground">
+                        We offer a range of services to meet the diverse needs of our clients, from bulk tea exports to private labeling solutions.
+                    </p>
+                </div>
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
                     
                     {/* Bulk Packaging Column */}
