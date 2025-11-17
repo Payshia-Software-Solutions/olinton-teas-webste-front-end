@@ -4,7 +4,7 @@ import { Leaf } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden h-[calc(100vh-3.5rem)]">
+    <section className="relative w-full overflow-hidden h-[calc(100vh-6rem)]">
       <video
         src="https://www.olinton.lk/wp-content/uploads/2023/12/WhatsApp-Video-2023-12-28-at-16.01.19.mp4"
         autoPlay

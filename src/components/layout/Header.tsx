@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Search, User, ShoppingCart, Menu } from 'lucide-react';
+import { Search, User, ShoppingCart, Menu, Mail, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +15,21 @@ const navLinks = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white">
+      <div className="bg-primary text-primary-foreground">
+        <div className="container flex h-10 items-center justify-between text-sm">
+          <p className="hidden sm:block">Free Shipping On Orders Over $50</p>
+          <div className="flex gap-6">
+            <a href="mailto:contact@ceylondelights.com" className="flex items-center gap-2 hover:underline">
+              <Mail className="h-4 w-4" />
+              <span>contact@ceylondelights.com</span>
+            </a>
+            <a href="tel:+94812345678" className="hidden md:flex items-center gap-2 hover:underline">
+              <Phone className="h-4 w-4" />
+              <span>+94 81 234 5678</span>
+            </a>
+          </div>
+        </div>
+      </div>
       <div className="container flex h-14 items-center">
         <Link href="/" className="flex items-center gap-2 mr-auto">
           <span className="font-headline text-3xl font-bold text-primary">O'linton</span>
