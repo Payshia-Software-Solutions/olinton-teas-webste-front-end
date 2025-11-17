@@ -35,7 +35,6 @@ type Collection = {
 
 const shopTeaLinks = [
     { title: "Shop All Teas", href: "/shop" },
-    { title: "Advent Calender", href: "/shop/advent-calender" },
 ]
 
 const shopByTeaLinks = [
