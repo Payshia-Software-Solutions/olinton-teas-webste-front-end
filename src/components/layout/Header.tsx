@@ -20,13 +20,13 @@ export default function Header() {
         <div className="container flex h-10 items-center justify-between text-sm">
           <p className="hidden sm:block">Free Shipping On Orders Over $50</p>
           <div className="flex gap-6">
-            <a href="mailto:contact@ceylondelights.com" className="flex items-center gap-2 hover:underline">
+            <a href="mailto:sales@olinton.lk" className="flex items-center gap-2 hover:underline">
               <Mail className="h-4 w-4" />
-              <span>contact@ceylondelights.com</span>
+              <span>sales@olinton.lk</span>
             </a>
-            <a href="tel:+94812345678" className="hidden md:flex items-center gap-2 hover:underline">
+            <a href="tel:+94114822000" className="hidden md:flex items-center gap-2 hover:underline">
               <Phone className="h-4 w-4" />
-              <span>+94 81 234 5678</span>
+              <span>+94 11 482 2000</span>
             </a>
           </div>
         </div>
