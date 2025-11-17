@@ -8,7 +8,7 @@ import Image from 'next/image';
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/shop', label: 'Teas' },
+  { href: '/shop', label: 'Shop' },
   { href: '/blog', label: 'Blog' },
   { href: '#contact', label: 'Contact' },
 ];
@@ -51,7 +51,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`transition-colors hover:text-primary ${link.label === 'Teas' ? 'text-primary font-semibold' : 'text-foreground/60'}`}
+              className={`transition-colors hover:text-primary ${link.label === 'Shop' ? 'text-primary font-semibold' : 'text-foreground/60'}`}
             >
               {link.label}
             </Link>
