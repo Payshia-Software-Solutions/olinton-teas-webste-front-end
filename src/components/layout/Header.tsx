@@ -105,20 +105,20 @@ export default function Header() {
                         <NavigationMenuTrigger className="bg-transparent text-primary font-semibold text-lg">Shop</NavigationMenuTrigger>
                         <NavigationMenuContent>
                             <div className="bg-primary text-primary-foreground">
-                                <div className="grid grid-cols-2 gap-6 p-6 w-[400px]">
-                                    <div className="flex flex-col space-y-4">
+                                <ul className="grid grid-cols-2 gap-6 p-6 w-[400px] list-none">
+                                    <li className="flex flex-col space-y-4">
                                         <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop Tea</h3>
                                         {shopTeaLinks.map((link) => (
                                             <ListItem key={link.title} href={link.href} title={link.title} />
                                         ))}
-                                    </div>
-                                    <div className="flex flex-col space-y-4">
+                                    </li>
+                                    <li className="flex flex-col space-y-4">
                                         <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop by Tea</h3>
                                         {shopByTeaLinks.map((link) => (
                                             <ListItem key={link.title} href={link.href} title={link.title} />
                                         ))}
-                                    </div>
-                                </div>
+                                    </li>
+                                </ul>
                             </div>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
@@ -209,7 +209,7 @@ const ListItem = React.forwardRef<
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
   return (
-    <li>
+    <li className="list-none">
       <NavigationMenuLink asChild>
         <a
           ref={ref}
@@ -234,5 +234,7 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
+
+    
 
     
