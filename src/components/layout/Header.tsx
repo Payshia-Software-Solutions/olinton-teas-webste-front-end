@@ -104,30 +104,32 @@ export default function Header() {
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="bg-transparent text-primary font-semibold text-lg">Shop</NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <div className="grid w-[800px] grid-cols-4 gap-6 p-6 bg-primary text-primary-foreground">
-                                <div className="flex flex-col space-y-4">
-                                    <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop Tea</h3>
-                                    {shopTeaLinks.map((link) => (
-                                        <ListItem key={link.title} href={link.href} title={link.title} />
-                                    ))}
-                                </div>
-                                <div className="flex flex-col space-y-4">
-                                    <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop by Tea</h3>
-                                    {shopByTeaLinks.map((link) => (
-                                        <ListItem key={link.title} href={link.href} title={link.title} />
-                                    ))}
-                                </div>
-                                <div className="flex flex-col space-y-4">
-                                    <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Tea Format</h3>
-                                    {teaFormatLinks.map((link) => (
-                                        <ListItem key={link.title} href={link.href} title={link.title} />
-                                    ))}
-                                </div>
-                                <div className="flex flex-col space-y-4">
-                                    <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Tea Edits</h3>
-                                    {teaEditsLinks.map((link) => (
-                                        <ListItem key={link.title} href={link.href} title={link.title} />
-                                    ))}
+                            <div className="bg-primary text-primary-foreground w-screen">
+                                <div className="container mx-auto grid grid-cols-4 gap-6 p-6">
+                                    <div className="flex flex-col space-y-4">
+                                        <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop Tea</h3>
+                                        {shopTeaLinks.map((link) => (
+                                            <ListItem key={link.title} href={link.href} title={link.title} />
+                                        ))}
+                                    </div>
+                                    <div className="flex flex-col space-y-4">
+                                        <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop by Tea</h3>
+                                        {shopByTeaLinks.map((link) => (
+                                            <ListItem key={link.title} href={link.href} title={link.title} />
+                                        ))}
+                                    </div>
+                                    <div className="flex flex-col space-y-4">
+                                        <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Tea Format</h3>
+                                        {teaFormatLinks.map((link) => (
+                                            <ListItem key={link.title} href={link.href} title={link.title} />
+                                        ))}
+                                    </div>
+                                    <div className="flex flex-col space-y-4">
+                                        <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Tea Edits</h3>
+                                        {teaEditsLinks.map((link) => (
+                                            <ListItem key={link.title} href={link.href} title={link.title} />
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </NavigationMenuContent>
@@ -224,13 +226,13 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-sm",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 text-sm",
             className
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <div className="text-sm font-medium leading-none text-primary-foreground">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-primary-foreground/80">
             {children}
           </p>
         </a>
@@ -239,4 +241,5 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
+
 
