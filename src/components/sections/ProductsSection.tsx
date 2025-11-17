@@ -78,7 +78,7 @@ export default function ProductsSection() {
                             {products.map((product) => {
                                 const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
                                 return (
-                                    <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/4">
+                                    <CarouselItem key={product.id} className="basis-2/3 sm:basis-1/2 md:basis-[calc(100%/2.5)] lg:basis-[calc(100%/3.5)] xl:basis-[calc(100%/4.5)]">
                                         <div className="p-1">
                                             <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
                                                 <CardHeader className="p-0">
