@@ -29,9 +29,7 @@ export default function Home() {
           <ProductsSection />
         </AnimateOnScroll>
 
-        <AnimateOnScroll>
-          <TeaTypesSection />
-        </AnimateOnScroll>
+        <TeaTypesSection />
         
         <AnimateOnScroll>
           <ReviewsSection />
