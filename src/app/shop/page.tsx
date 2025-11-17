@@ -16,6 +16,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 
 const teaTypes = ['Black Tea', 'Green Tea', 'White Tea', 'Oolong'];
 const collections = ['Special Offers', 'Classic Teas', 'Flavored Teas', 'Exceptional Teas'];
@@ -163,30 +164,32 @@ export default function ShopPage() {
                     const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
                     return (
                       <AnimateOnScroll key={product.id} delay={index * 100}>
-                        <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
-                          <CardHeader className="p-0">
-                            {productImage && (
-                              <div className="aspect-[4/3] relative">
-                                <Image
-                                  src={productImage.imageUrl}
-                                  alt={product.name}
-                                  fill
-                                  className="object-cover"
-                                  data-ai-hint={productImage.imageHint}
-                                />
-                                {product.id === 'earl-grey-supreme' && <Badge variant="destructive" className="absolute top-2 right-2 bg-red-500 text-white">30% OFF</Badge>}
-                              </div>
-                            )}
-                          </CardHeader>
-                          <CardContent className="flex-grow p-6 text-left">
-                            <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
-                            <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
-                          </CardContent>
-                          <CardFooter className="flex justify-between items-center px-6 pb-6">
-                            <p className="text-xl font-bold text-accent">{product.price}</p>
-                            <Button className="bg-primary hover:bg-primary/90">Add to Cart</Button>
-                          </CardFooter>
-                        </Card>
+                        <Link href={`/shop/${product.id}`} className="block h-full">
+                          <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
+                            <CardHeader className="p-0">
+                              {productImage && (
+                                <div className="aspect-[4/3] relative">
+                                  <Image
+                                    src={productImage.imageUrl}
+                                    alt={product.name}
+                                    fill
+                                    className="object-cover"
+                                    data-ai-hint={productImage.imageHint}
+                                  />
+                                  {product.id === 'earl-grey-supreme' && <Badge variant="destructive" className="absolute top-2 right-2 bg-red-500 text-white">30% OFF</Badge>}
+                                </div>
+                              )}
+                            </CardHeader>
+                            <CardContent className="flex-grow p-6 text-left">
+                              <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
+                              <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
+                            </CardContent>
+                            <CardFooter className="flex justify-between items-center px-6 pb-6">
+                              <p className="text-xl font-bold text-accent">{product.price}</p>
+                              <Button className="bg-primary hover:bg-primary/90">Add to Cart</Button>
+                            </CardFooter>
+                          </Card>
+                        </Link>
                       </AnimateOnScroll>
                     );
                   })}
@@ -205,5 +208,3 @@ export default function ShopPage() {
     </div>
   );
 }
-
-    
