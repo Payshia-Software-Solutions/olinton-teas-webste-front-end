@@ -18,7 +18,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { useCart } from '@/hooks/use-cart';
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from '@/components/ui/skeleton';
 
 type Collection = {
   id: string;
@@ -39,9 +40,11 @@ export default function ShopPage() {
   const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
   const { toast } = useToast();
   const { addToCart } = useCart();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
         const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -49,25 +52,27 @@ export default function ShopPage() {
           console.error("Server URL is not defined in environment variables.");
           return;
         }
-        // Fetch Collections
-        const collectionsResponse = await fetch(`${serverUrl}/collections/company?company_id=${companyId}`);
-        const collectionsData = await collectionsResponse.json();
-        if (collectionsResponse.ok) {
+        
+        const collectionsPromise = fetch(`${serverUrl}/collections/company?company_id=${companyId}`).then(res => res.json());
+        const categoriesPromise = fetch(`${serverUrl}/master-categories/company?company_id=${companyId}`).then(res => res.json());
+
+        const [collectionsData, categoriesData] = await Promise.all([collectionsPromise, categoriesPromise]);
+
+        if (Array.isArray(collectionsData)) {
           setCollections(collectionsData);
         } else {
           console.error("Failed to fetch collections:", collectionsData);
         }
 
-        // Fetch Categories (Tea Types)
-        const categoriesResponse = await fetch(`${serverUrl}/master-categories/company?company_id=${companyId}`);
-        const categoriesData = await categoriesResponse.json();
-        if (categoriesResponse.ok) {
+        if (Array.isArray(categoriesData)) {
           setTeaTypes(categoriesData);
         } else {
           console.error("Failed to fetch tea types:", categoriesData);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -110,6 +115,23 @@ export default function ShopPage() {
     // Add logic for collections and availability if product data supports it
     return meetsPrice && meetsTeaType;
   });
+
+  const FilterSkeleton = () => (
+    <div className="space-y-3">
+        <div className="flex items-center space-x-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-4 w-32" />
+        </div>
+        <div className="flex items-center space-x-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-4 w-28" />
+        </div>
+        <div className="flex items-center space-x-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-4 w-24" />
+        </div>
+    </div>
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -166,31 +188,35 @@ export default function ShopPage() {
                   <AccordionItem value="tea-type">
                     <AccordionTrigger className="font-semibold">Tea Type</AccordionTrigger>
                     <AccordionContent>
-                      <div className="space-y-2">
-                        {teaTypes.map(type => (
-                           <div key={type.id} className="flex items-center space-x-2">
-                            <Checkbox id={type.name} onCheckedChange={() => handleTeaTypeChange(type.name)} />
-                            <label htmlFor={type.name} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                              {type.name}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
+                      {isLoading ? <FilterSkeleton /> : (
+                        <div className="space-y-2">
+                          {teaTypes.map(type => (
+                            <div key={type.id} className="flex items-center space-x-2">
+                              <Checkbox id={type.name} onCheckedChange={() => handleTeaTypeChange(type.name)} />
+                              <label htmlFor={type.name} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                {type.name}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="collections">
                     <AccordionTrigger className="font-semibold">Collections</AccordionTrigger>
                     <AccordionContent>
-                       <div className="space-y-2">
-                        {collections.map(collection => (
-                           <div key={collection.id} className="flex items-center space-x-2">
-                            <Checkbox id={collection.title} onCheckedChange={() => handleCollectionChange(collection.title)} />
-                            <label htmlFor={collection.title} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                              {collection.title}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
+                       {isLoading ? <FilterSkeleton /> : (
+                        <div className="space-y-2">
+                          {collections.map(collection => (
+                            <div key={collection.id} className="flex items-center space-x-2">
+                              <Checkbox id={collection.title} onCheckedChange={() => handleCollectionChange(collection.title)} />
+                              <label htmlFor={collection.title} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                {collection.title}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                       )}
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>

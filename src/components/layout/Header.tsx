@@ -27,6 +27,7 @@ import { cn } from '@/lib/utils';
 import React, { useState, useEffect } from 'react';
 import { useCart } from '@/hooks/use-cart';
 import CartSheet from '@/components/CartSheet';
+import { Skeleton } from '../ui/skeleton';
 
 type Collection = {
   id: string;
@@ -49,6 +50,7 @@ export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [collections, setCollections] = useState<Collection[]>([]);
   const [teaTypes, setTeaTypes] = useState<TeaType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
@@ -58,6 +60,7 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
         const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -67,18 +70,20 @@ export default function Header() {
         }
         
         // Fetch Collections
-        const collectionsResponse = await fetch(`${serverUrl}/collections/company?company_id=${companyId}`);
-        const collectionsData = await collectionsResponse.json();
-        if (collectionsResponse.ok) {
+        const collectionsPromise = fetch(`${serverUrl}/collections/company?company_id=${companyId}`).then(res => res.json());
+
+        // Fetch Categories
+        const categoriesPromise = fetch(`${serverUrl}/master-categories/company?company_id=${companyId}`).then(res => res.json());
+
+        const [collectionsData, categoriesData] = await Promise.all([collectionsPromise, categoriesPromise]);
+
+        if (Array.isArray(collectionsData)) {
           setCollections(collectionsData);
         } else {
           console.error("Failed to fetch collections:", collectionsData);
         }
 
-        // Fetch Categories
-        const categoriesResponse = await fetch(`${serverUrl}/master-categories/company?company_id=${companyId}`);
-        const categoriesData = await categoriesResponse.json();
-        if (categoriesResponse.ok) {
+        if (Array.isArray(categoriesData)) {
           setTeaTypes(categoriesData);
         } else {
           console.error("Failed to fetch categories:", categoriesData);
@@ -86,6 +91,8 @@ export default function Header() {
 
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -180,15 +187,31 @@ export default function Header() {
                                 </li>
                                 <li className="flex flex-col space-y-4">
                                     <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop by Tea</h3>
-                                    {teaTypes.map((type) => (
-                                        <ListItem key={type.id} href={`/shop/${formatUrl(type.name)}`} title={type.name} />
-                                    ))}
+                                    {isLoading ? (
+                                        <div className="space-y-3">
+                                          <Skeleton className="h-4 w-32" />
+                                          <Skeleton className="h-4 w-28" />
+                                          <Skeleton className="h-4 w-24" />
+                                        </div>
+                                    ) : (
+                                      teaTypes.map((type) => (
+                                          <ListItem key={type.id} href={`/shop/${formatUrl(type.name)}`} title={type.name} />
+                                      ))
+                                    )}
                                 </li>
                                 <li className="flex flex-col space-y-4">
                                     <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop by Collection</h3>
-                                    {collections.map((collection) => (
-                                        <ListItem key={collection.id} href={`/shop/collection/${formatUrl(collection.title)}`} title={collection.title} />
-                                    ))}
+                                    {isLoading ? (
+                                        <div className="space-y-3">
+                                          <Skeleton className="h-4 w-32" />
+                                          <Skeleton className="h-4 w-28" />
+                                          <Skeleton className="h-4 w-24" />
+                                        </div>
+                                    ) : (
+                                      collections.map((collection) => (
+                                          <ListItem key={collection.id} href={`/shop/collection/${formatUrl(collection.title)}`} title={collection.title} />
+                                      ))
+                                    )}
                                 </li>
                             </ul>
                         </NavigationMenuContent>
@@ -259,13 +282,29 @@ export default function Header() {
                            <Link key={link.href} href={link.href} className="text-foreground/80 hover:text-primary px-2 py-1">{link.title}</Link>
                         ))}
                         <h3 className="font-bold text-sm uppercase text-muted-foreground px-2 pt-4">Shop by Tea</h3>
-                        {teaTypes.map((type) => (
-                          <Link key={type.id} href={`/shop/${formatUrl(type.name)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{type.name}</Link>
-                        ))}
+                        {isLoading ? (
+                            <div className="space-y-3 px-2 py-1">
+                                <Skeleton className="h-4 w-32" />
+                                <Skeleton className="h-4 w-28" />
+                                <Skeleton className="h-4 w-24" />
+                            </div>
+                        ) : (
+                          teaTypes.map((type) => (
+                            <Link key={type.id} href={`/shop/${formatUrl(type.name)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{type.name}</Link>
+                          ))
+                        )}
                         <h3 className="font-bold text-sm uppercase text-muted-foreground px-2 pt-4">Shop by Collection</h3>
-                        {collections.map((collection) => (
-                           <Link key={collection.id} href={`/shop/collection/${formatUrl(collection.title)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{collection.title}</Link>
-                        ))}
+                        {isLoading ? (
+                           <div className="space-y-3 px-2 py-1">
+                                <Skeleton className="h-4 w-32" />
+                                <Skeleton className="h-4 w-28" />
+                                <Skeleton className="h-4 w-24" />
+                            </div>
+                        ) : (
+                          collections.map((collection) => (
+                             <Link key={collection.id} href={`/shop/collection/${formatUrl(collection.title)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{collection.title}</Link>
+                          ))
+                        )}
                       </div>
                     </AccordionContent>
                   </AccordionItem>
