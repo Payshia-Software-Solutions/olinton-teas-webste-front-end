@@ -21,6 +21,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const weights = ["250g", "500g", "1kg"];
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+const imageServerUrl = process.env.NEXT_PUBLIC_IMAGE_SERVER_URL;
 
 function RelatedProducts({ currentProductType, currentProductId, allProducts }: { currentProductType: string, currentProductId: string, allProducts: ApiProduct[] }) {
     const plugin = useRef(
@@ -47,7 +48,7 @@ function RelatedProducts({ currentProductType, currentProductId, allProducts }: 
                     <CarouselContent className="-ml-4">
                         {related.map(p => {
                             const product = p.product;
-                            const imageUrl = p.product_images.length > 0 ? `${serverUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
+                            const imageUrl = p.product_images.length > 0 ? `${imageServerUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
                             return (
                                 <CarouselItem key={product.id} className="basis-[66.66%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4 pb-8">
                                     <Link href={`/shop/${product.id}`} className="block h-full">
@@ -125,7 +126,7 @@ export default function ProductPage() {
 
     const galleryImages = useMemo(() => {
         if (!product) return [];
-        return product.product_images.map(img => `${serverUrl}${img.img_url}`);
+        return product.product_images.map(img => `${imageServerUrl}${img.img_url}`);
     }, [product]);
 
     const [mainImage, setMainImage] = useState<string | undefined>(undefined);
@@ -348,7 +349,3 @@ export default function ProductPage() {
         </div>
     );
 }
-
-    
-
-    

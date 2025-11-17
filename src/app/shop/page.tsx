@@ -31,6 +31,7 @@ type TeaType = {
 };
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+const imageServerUrl = process.env.NEXT_PUBLIC_IMAGE_SERVER_URL;
 
 const ProductCardSkeleton = () => (
     <Card className="flex flex-col h-full overflow-hidden shadow-lg rounded-2xl">
@@ -293,7 +294,7 @@ export default function ShopPage() {
                         [...Array(6)].map((_, i) => <ProductCardSkeleton key={i} />)
                   ) : filteredProducts.map((p, index) => {
                     const product = p.product;
-                    const imageUrl = p.product_images.length > 0 ? `${serverUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
+                    const imageUrl = p.product_images.length > 0 ? `${imageServerUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
                     return (
                       <AnimateOnScroll key={product.id} delay={index * 100}>
                         <Link href={`/shop/${product.id}`} className="block h-full">
@@ -336,5 +337,3 @@ export default function ShopPage() {
     </div>
   );
 }
-
-    

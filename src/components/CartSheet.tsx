@@ -21,7 +21,7 @@ interface CartSheetProps {
     onOpenChange: (open: boolean) => void;
 }
 
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+const imageServerUrl = process.env.NEXT_PUBLIC_IMAGE_SERVER_URL;
 
 export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
   const { cart, updateQuantity, removeFromCart, cartTotal, cartItemCount } = useCart();
@@ -49,7 +49,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
             <ScrollArea className="flex-grow -mx-6">
                 <div className="px-6">
                     {cart.map((item) => {
-                    const imageUrl = item.product.product_image_url ? `${serverUrl}${item.product.product_image_url}` : '/placeholder.jpg'
+                    const imageUrl = item.product.product_image_url ? `${imageServerUrl}${item.product.product_image_url}` : '/placeholder.jpg'
                     return (
                         <div key={item.product.id} className="flex items-center gap-4 py-4">
                         <div className="relative h-20 w-20 rounded-md overflow-hidden">

@@ -44,7 +44,7 @@ const formSchema = z.object({
   discountCode: z.string().optional(),
 })
 
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+const imageServerUrl = process.env.NEXT_PUBLIC_IMAGE_SERVER_URL;
 
 export default function CheckoutPage() {
   const { toast } = useToast()
@@ -166,6 +166,32 @@ export default function CheckoutPage() {
                     </RadioGroup>
                   )} />
                 </div>
+
+                 {/* Payment */}
+                <div className="space-y-4 pt-8">
+                  <h2 className="font-semibold text-lg">Payment</h2>
+                   <p className="text-sm text-muted-foreground">All transactions are secure and encrypted.</p>
+                   <FormField control={form.control} name="paymentMethod" render={({ field }) => (
+                    <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="space-y-3">
+                      <div className="border rounded-md has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5">
+                        <FormItem className="flex items-center space-x-3 space-y-0 p-4">
+                          <FormControl><RadioGroupItem value="payhere" /></FormControl>
+                          <FormLabel className="font-normal flex justify-between w-full items-center">
+                            <span>Bank Card / Bank Account - PayHere</span>
+                            <CreditCard className="h-5 w-5 text-muted-foreground" />
+                          </FormLabel>
+                        </FormItem>
+                         <div className="border-t p-4 text-sm text-muted-foreground">
+                          After clicking "Pay now", you will be redirected to Bank Card / Bank Account - PayHere to complete your purchase securely.
+                        </div>
+                      </div>
+                      <FormItem className="flex items-center space-x-3 space-y-0 p-4 border rounded-md has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5">
+                        <FormControl><RadioGroupItem value="cod" /></FormControl>
+                        <FormLabel className="font-normal">Cash On Delivery</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  )} />
+                </div>
               </div>
 
               {/* Right Column: Summary */}
@@ -174,7 +200,7 @@ export default function CheckoutPage() {
                   <h2 className="font-semibold text-lg mb-4">Order Summary</h2>
                   <div className="space-y-4">
                     {cart.map(item => {
-                        const imageUrl = item.product.product_image_url ? `${serverUrl}${item.product.product_image_url}` : '/placeholder.jpg'
+                        const imageUrl = item.product.product_image_url ? `${imageServerUrl}${item.product.product_image_url}` : '/placeholder.jpg'
                         return (
                             <div key={item.product.id} className="flex items-center gap-4">
                                 <div className="relative h-16 w-16 rounded-md overflow-hidden border">
@@ -213,31 +239,6 @@ export default function CheckoutPage() {
                       <p>Total</p>
                       <p>LKR {cartTotal.toFixed(2)}</p>
                   </div>
-                </div>
-
-                <div className="space-y-4">
-                  <h2 className="font-semibold text-lg">Payment</h2>
-                   <p className="text-sm text-muted-foreground">All transactions are secure and encrypted.</p>
-                   <FormField control={form.control} name="paymentMethod" render={({ field }) => (
-                    <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="space-y-3">
-                      <div className="border rounded-md has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5">
-                        <FormItem className="flex items-center space-x-3 space-y-0 p-4">
-                          <FormControl><RadioGroupItem value="payhere" /></FormControl>
-                          <FormLabel className="font-normal flex justify-between w-full items-center">
-                            <span>Bank Card / Bank Account - PayHere</span>
-                            <CreditCard className="h-5 w-5 text-muted-foreground" />
-                          </FormLabel>
-                        </FormItem>
-                         <div className="border-t p-4 text-sm text-muted-foreground">
-                          After clicking "Pay now", you will be redirected to Bank Card / Bank Account - PayHere to complete your purchase securely.
-                        </div>
-                      </div>
-                      <FormItem className="flex items-center space-x-3 space-y-0 p-4 border rounded-md has-[[data-state=checked]]:border-primary has-[[data-state=checked]]:bg-primary/5">
-                        <FormControl><RadioGroupItem value="cod" /></FormControl>
-                        <FormLabel className="font-normal">Cash On Delivery</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  )} />
                 </div>
                 
                 <Alert variant="destructive" className="bg-yellow-100 border-yellow-300 text-yellow-800">

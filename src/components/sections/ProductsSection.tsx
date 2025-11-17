@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast"
 import { Skeleton } from '../ui/skeleton';
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+const imageServerUrl = process.env.NEXT_PUBLIC_IMAGE_SERVER_URL;
 
 const ProductCardSkeleton = () => (
     <Card className="flex flex-col h-full overflow-hidden shadow-lg rounded-2xl">
@@ -106,7 +107,7 @@ export default function ProductsSection() {
                              ))
                         ) : products.map((p) => {
                             const product = p.product;
-                            const imageUrl = p.product_images.length > 0 ? `${serverUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
+                            const imageUrl = p.product_images.length > 0 ? `${imageServerUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
                             return (
                                 <CarouselItem key={product.id} className="basis-2/3 sm:basis-1/2 md:basis-[calc(100%/2.5)] lg:basis-[calc(100%/3.5)] xl:basis-[calc(100%/4.5)] pl-4 pb-8">
                                     <Link href={`/shop/${product.id}`} className="block h-full">
