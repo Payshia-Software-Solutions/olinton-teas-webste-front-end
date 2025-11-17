@@ -15,7 +15,7 @@
     {
       "id": "tea-health-benefits",
       "description": "An assortment of healthy tea ingredients like herbs, spices, and flowers.",
-      "imageUrl": "https://images.unsplash.com/photo-1478263593356-55a769d311d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxoZWFsdGh5JTIwdGVhfGVufDB8fHx8MTc2MzM5ODEwMXww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://content-provider.payshia.com/olinton/health.webp",
       "imageHint": "tea ingredients"
     },
     {
@@ -33,7 +33,7 @@
     {
       "id": "product-herbal-tea",
       "description": "A colorful mix of herbal tea ingredients including flowers and fruits.",
-      "imageUrl": "https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aGVyYmFsJTIwdGVhfGVufDB8fHx8MTc2MzM4MDY3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aGVyYmFsJTIwdGVhfGVufDB8fHx8MTc2MzM4MDY3MHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "herbal tea"
     },
     {
@@ -57,7 +57,7 @@
     {
       "id": "product-earl-grey-supreme",
       "description": "A bowl of Earl Grey Supreme tea leaves with tea boxes in the background.",
-      "imageUrl": "https://images.unsplash.com/photo-1744160252920-967ab9b733ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlYXJsJTIwZ3JleXxlbnwwfHx8fDE3NjMzODE1Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1744160252920-967ab9b733ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlYXJsJTIwZ3JleXxlbnwwfHx8fDE3NjMzODE1Njl8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "earl grey"
     },
     {
@@ -93,7 +93,7 @@
     {
       "id": "history-ceylon-tea",
       "description": "Vintage photograph of tea pickers in a Ceylon plantation.",
-      "imageUrl": "https://images.unsplash.com/photo-1588802271686-93116f157143?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx2aW50YWdlJTIwdGVhJTIwcGxhbnRhdGlvbnxlbnwwfHx8fDE3NjM0MDM1MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://content-provider.payshia.com/olinton/tea.webp",
       "imageHint": "vintage plantation"
     }
   ]
