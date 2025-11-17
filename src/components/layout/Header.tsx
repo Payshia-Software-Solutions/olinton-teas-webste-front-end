@@ -76,7 +76,7 @@ export default function Header() {
         }
 
         // Fetch Categories
-        const categoriesResponse = await fetch(`${serverUrl}/categories/company?company_id=${companyId}`);
+        const categoriesResponse = await fetch(`${serverUrl}/master-categories/company?company_id=${companyId}`);
         const categoriesData = await categoriesResponse.json();
         if (categoriesResponse.ok) {
           setTeaTypes(categoriesData);

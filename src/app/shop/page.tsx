@@ -59,7 +59,7 @@ export default function ShopPage() {
         }
 
         // Fetch Categories (Tea Types)
-        const categoriesResponse = await fetch(`${serverUrl}/categories/company?company_id=${companyId}`);
+        const categoriesResponse = await fetch(`${serverUrl}/master-categories/company?company_id=${companyId}`);
         const categoriesData = await categoriesResponse.json();
         if (categoriesResponse.ok) {
           setTeaTypes(categoriesData);
