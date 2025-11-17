@@ -14,7 +14,7 @@ const TeaItem = ({ name, id, description }: { name: string, id: string, descript
   const [first, second] = name.split(' ');
   
   return (
-    <div className="flex flex-col items-center gap-4 text-center border border-border/50 rounded-2xl p-8 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl">
+    <div className="flex flex-col items-center gap-4 text-center border border-border/50 rounded-2xl p-8 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl bg-card">
       <h3 className="font-headline font-bold text-primary uppercase tracking-wider flex flex-col items-center min-h-[80px]">
         <span className="text-4xl">{first}</span>
         <span className="text-2xl font-normal">{second}</span>
