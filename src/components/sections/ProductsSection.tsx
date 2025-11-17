@@ -55,7 +55,7 @@ export default function ProductsSection() {
         Autoplay({ delay: 2000, stopOnInteraction: true })
     )
     return (
-        <section id="products" className="py-20 md:py-28 bg-background">
+        <section id="products" className="py-20 md:py-28 bg-background overflow-hidden">
             <div className="container">
                 <div className="text-center max-w-2xl mx-auto">
                     <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">Our Finest Teas.</h2>
@@ -63,53 +63,51 @@ export default function ProductsSection() {
                         Discover our premium collection of Ceylon teas
                     </p>
                 </div>
-                <div className="mt-12">
-                    <Carousel
-                        plugins={[plugin.current]}
-                        className="w-full"
-                        onMouseEnter={plugin.current.stop}
-                        onMouseLeave={plugin.current.reset}
-                        opts={{
-                            align: "start",
-                            loop: true,
-                        }}
-                    >
-                        <CarouselContent>
-                            {products.map((product) => {
-                                const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
-                                return (
-                                    <CarouselItem key={product.id} className="basis-2/3 sm:basis-1/2 md:basis-[calc(100%/2.5)] lg:basis-[calc(100%/3.5)] xl:basis-[calc(100%/4.5)]">
-                                        <div className="p-1">
-                                            <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
-                                                <CardHeader className="p-0">
-                                                    {productImage && (
-                                                        <div className="aspect-[4/3] relative">
-                                                            <Image
-                                                                src={productImage.imageUrl}
-                                                                alt={product.name}
-                                                                fill
-                                                                className="object-cover"
-                                                                data-ai-hint={productImage.imageHint}
-                                                            />
-                                                        </div>
-                                                    )}
-                                                </CardHeader>
-                                                <CardContent className="flex-grow p-6 text-left">
-                                                    <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
-                                                    <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
-                                                </CardContent>
-                                                <CardFooter className="flex justify-between items-center px-6 pb-6">
-                                                    <p className="text-xl font-bold text-accent">{product.price}</p>
-                                                    <Button className="bg-primary hover:bg-primary/90">Add to Cart</Button>
-                                                </CardFooter>
-                                            </Card>
-                                        </div>
-                                    </CarouselItem>
-                                );
-                            })}
-                        </CarouselContent>
-                    </Carousel>
-                </div>
+            </div>
+            <div className="mt-12 pl-8 pr-0 sm:pl-16 md:pl-20 lg:pl-32">
+                <Carousel
+                    plugins={[plugin.current]}
+                    className="w-full"
+                    onMouseEnter={plugin.current.stop}
+                    onMouseLeave={plugin.current.reset}
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                >
+                    <CarouselContent className="-ml-4">
+                        {products.map((product) => {
+                            const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
+                            return (
+                                <CarouselItem key={product.id} className="basis-2/3 sm:basis-1/2 md:basis-[calc(100%/2.5)] lg:basis-[calc(100%/3.5)] xl:basis-[calc(100%/4.5)] pl-4">
+                                    <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
+                                        <CardHeader className="p-0">
+                                            {productImage && (
+                                                <div className="aspect-[4/3] relative">
+                                                    <Image
+                                                        src={productImage.imageUrl}
+                                                        alt={product.name}
+                                                        fill
+                                                        className="object-cover"
+                                                        data-ai-hint={productImage.imageHint}
+                                                    />
+                                                </div>
+                                            )}
+                                        </CardHeader>
+                                        <CardContent className="flex-grow p-6 text-left">
+                                            <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
+                                            <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
+                                        </CardContent>
+                                        <CardFooter className="flex justify-between items-center px-6 pb-6">
+                                            <p className="text-xl font-bold text-accent">{product.price}</p>
+                                            <Button className="bg-primary hover:bg-primary/90">Add to Cart</Button>
+                                        </CardFooter>
+                                    </Card>
+                                </CarouselItem>
+                            );
+                        })}
+                    </CarouselContent>
+                </Carousel>
             </div>
         </section>
     );
