@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Leaf } from 'lucide-react';
+import { Leaf, ArrowDown } from 'lucide-react';
 
 export default function HeroSection() {
   return (
@@ -33,6 +33,11 @@ export default function HeroSection() {
             <Link href="/about">Learn More</Link>
           </Button>
         </div>
+
+        <Link href="#features" className="absolute bottom-8 z-20 animate-bounce">
+          <ArrowDown className="h-8 w-8 text-white/80 hover:text-white transition-colors" />
+          <span className="sr-only">Scroll down</span>
+        </Link>
       </div>
     </section>
   );

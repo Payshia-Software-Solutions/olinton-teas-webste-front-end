@@ -14,9 +14,11 @@ export default function Home() {
       <main className="flex-grow">
         <HeroSection />
 
-        <AnimateOnScroll>
-          <FeaturesSection />
-        </AnimateOnScroll>
+        <div id="features">
+          <AnimateOnScroll>
+            <FeaturesSection />
+          </AnimateOnScroll>
+        </div>
         
         <AnimateOnScroll>
           <ProductsSection />
