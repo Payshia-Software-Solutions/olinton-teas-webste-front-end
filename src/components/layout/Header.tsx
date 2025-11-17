@@ -17,6 +17,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import { cn } from '@/lib/utils';
 import React, { useState, useEffect } from 'react';
 
@@ -43,15 +49,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/shop', label: 'Shop', isMenu: true },
-    { href: '/tea-and-health', label: 'Tea & Health' },
-    { href: '/contact', label: 'Contact' },
-  ];
-  
   const getLinkClass = (href: string) => {
     const isActive = pathname === href;
     return cn(
@@ -182,12 +179,32 @@ export default function Header() {
                     className="object-contain"
                   />
               </Link>
-              <div className="flex flex-col gap-4">
-                <Link href="/" className={cn("text-base", pathname === '/' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Home</Link>
-                <Link href="/about" className={cn("text-base", pathname === '/about' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>About</Link>
-                <Link href="/shop" className={cn("text-base", pathname.startsWith('/shop') ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Shop</Link>
-                <Link href="/tea-and-health" className={cn("text-base", pathname === '/tea-and-health' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Tea & Health</Link>
-                <Link href="/contact" className={cn("text-base", pathname === '/contact' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Contact</Link>
+              <div className="flex flex-col gap-1">
+                <Link href="/" className={cn("text-base px-2 py-2", pathname === '/' ? 'text-primary font-bold' : 'text-foreground/80 hover:text-primary')}>Home</Link>
+                <Link href="/about" className={cn("text-base px-2 py-2", pathname === '/about' ? 'text-primary font-bold' : 'text-foreground/80 hover:text-primary')}>About</Link>
+                
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1" className="border-b-0">
+                    <AccordionTrigger className={cn("text-base px-2 py-2 hover:no-underline", pathname.startsWith('/shop') ? 'text-primary font-bold' : 'text-foreground/80 hover:text-primary')}>
+                      Shop
+                    </AccordionTrigger>
+                    <AccordionContent className="pl-4">
+                      <div className="flex flex-col gap-2">
+                        <h3 className="font-bold text-sm uppercase text-muted-foreground px-2 pt-2">Shop Tea</h3>
+                        {shopTeaLinks.map((link) => (
+                           <Link key={link.href} href={link.href} className="text-foreground/80 hover:text-primary px-2 py-1">{link.title}</Link>
+                        ))}
+                        <h3 className="font-bold text-sm uppercase text-muted-foreground px-2 pt-4">Shop by Tea</h3>
+                        {shopByTeaLinks.map((link) => (
+                          <Link key={link.href} href={link.href} className="text-foreground/80 hover:text-primary px-2 py-1">{link.title}</Link>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                <Link href="/tea-and-health" className={cn("text-base px-2 py-2", pathname === '/tea-and-health' ? 'text-primary font-bold' : 'text-foreground/80 hover:text-primary')}>Tea & Health</Link>
+                <Link href="/contact" className={cn("text-base px-2 py-2", pathname === '/contact' ? 'text-primary font-bold' : 'text-foreground/80 hover:text-primary')}>Contact</Link>
               </div>
             </SheetContent>
           </Sheet>
@@ -249,11 +266,5 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
-
-    
-    
-    
-
-    
 
     
