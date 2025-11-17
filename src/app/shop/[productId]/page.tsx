@@ -47,7 +47,7 @@ function RelatedProducts({ currentProductType, currentProductId }: { currentProd
                         {related.map(product => {
                             const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
                             return (
-                                <CarouselItem key={product.id} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4 pb-8">
+                                <CarouselItem key={product.id} className="basis-[66.66%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4 pb-8">
                                     <Link href={`/shop/${product.id}`} className="block h-full">
                                         <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
                                             <CardHeader className="p-0">
