@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import ProductsSection from '@/components/sections/ProductsSection';
+import TeaTypesSection from '@/components/sections/TeaTypesSection';
 import ReviewsSection from '@/components/sections/ReviewsSection';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 
@@ -21,6 +22,10 @@ export default function Home() {
         
         <AnimateOnScroll>
           <ProductsSection />
+        </AnimateOnScroll>
+
+        <AnimateOnScroll>
+          <TeaTypesSection />
         </AnimateOnScroll>
         
         <AnimateOnScroll>
