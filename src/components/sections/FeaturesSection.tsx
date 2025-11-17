@@ -1,3 +1,4 @@
+
 import { Trophy, Leaf, Globe } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
