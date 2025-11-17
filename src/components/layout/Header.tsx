@@ -104,8 +104,8 @@ export default function Header() {
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="bg-transparent text-primary font-semibold text-lg">Shop</NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <div className="bg-primary text-primary-foreground w-screen">
-                                <div className="container mx-auto grid grid-cols-4 gap-6 p-6">
+                            <div className="bg-primary text-primary-foreground">
+                                <div className="grid grid-cols-2 gap-6 p-6 w-[400px]">
                                     <div className="flex flex-col space-y-4">
                                         <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop Tea</h3>
                                         {shopTeaLinks.map((link) => (
@@ -115,18 +115,6 @@ export default function Header() {
                                     <div className="flex flex-col space-y-4">
                                         <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop by Tea</h3>
                                         {shopByTeaLinks.map((link) => (
-                                            <ListItem key={link.title} href={link.href} title={link.title} />
-                                        ))}
-                                    </div>
-                                    <div className="flex flex-col space-y-4">
-                                        <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Tea Format</h3>
-                                        {teaFormatLinks.map((link) => (
-                                            <ListItem key={link.title} href={link.href} title={link.title} />
-                                        ))}
-                                    </div>
-                                    <div className="flex flex-col space-y-4">
-                                        <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Tea Edits</h3>
-                                        {teaEditsLinks.map((link) => (
                                             <ListItem key={link.title} href={link.href} title={link.title} />
                                         ))}
                                     </div>
@@ -231,7 +219,10 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none text-primary-foreground">{title}</div>
+          <div className="text-sm font-medium leading-none text-primary-foreground flex items-center gap-2">
+            <span className="h-1 w-1 bg-primary-foreground rounded-full"></span>
+            <span>{title}</span>
+          </div>
           <p className="line-clamp-2 text-sm leading-snug text-primary-foreground/80">
             {children}
           </p>
@@ -242,4 +233,4 @@ const ListItem = React.forwardRef<
 })
 ListItem.displayName = "ListItem"
 
-
+    
