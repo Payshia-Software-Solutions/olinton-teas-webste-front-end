@@ -20,6 +20,9 @@ import Link from 'next/link';
 import { useCart } from '@/hooks/use-cart';
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from '@/components/ui/skeleton';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Filter } from 'lucide-react';
+
 
 type Collection = {
   id: string;
@@ -70,10 +73,10 @@ function ShopPageComponent() {
     const collectionParam = searchParams.get('collection');
 
     if (teaTypeParam) {
-      setSelectedTeaTypes([teaTypeParam]);
+      setSelectedTeaTypes(prev => [...new Set([...prev, teaTypeParam])]);
     }
     if (collectionParam) {
-      setSelectedCollections([collectionParam]);
+      setSelectedCollections(prev => [...new Set([...prev, collectionParam])]);
     }
   }, [searchParams]);
 
@@ -193,6 +196,79 @@ function ShopPageComponent() {
         </div>
     </div>
   );
+  
+  const FilterContent = () => (
+    <Accordion type="multiple" defaultValue={['availability', 'price', 'tea-type', 'collections']} className="w-full">
+      <AccordionItem value="availability">
+        <AccordionTrigger className="font-semibold">Availability</AccordionTrigger>
+        <AccordionContent>
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2">
+              <Checkbox id="in-stock" onCheckedChange={() => handleAvailabilityChange('in-stock')} />
+              <label htmlFor="in-stock" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                In Stock
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="out-of-stock" onCheckedChange={() => handleAvailabilityChange('out-of-stock')} />
+              <label htmlFor="out-of-stock" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Out of Stock
+              </label>
+            </div>
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="price">
+        <AccordionTrigger className="font-semibold">Price Range</AccordionTrigger>
+        <AccordionContent>
+          <Slider
+            defaultValue={[0, 15000]}
+            max={15000}
+            step={500}
+            onValueChange={(value) => setPriceRange(value as [number, number])}
+          />
+          <div className="flex justify-between text-sm text-muted-foreground mt-2">
+            <span>LKR {priceRange[0]}</span>
+            <span>LKR {priceRange[1]}</span>
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="tea-type">
+        <AccordionTrigger className="font-semibold">Tea Type</AccordionTrigger>
+        <AccordionContent>
+          {isLoading ? <FilterSkeleton /> : (
+            <div className="space-y-2">
+              {teaTypes.map(type => (
+                <div key={type.id} className="flex items-center space-x-2">
+                  <Checkbox id={type.name} onCheckedChange={() => handleTeaTypeChange(type.name)} checked={selectedTeaTypes.includes(type.name)} />
+                  <label htmlFor={type.name} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    {type.name}
+                  </label>
+                </div>
+              ))}
+            </div>
+          )}
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="collections">
+        <AccordionTrigger className="font-semibold">Collections</AccordionTrigger>
+        <AccordionContent>
+           {isLoading ? <FilterSkeleton /> : (
+            <div className="space-y-2">
+              {collections.map(collection => (
+                <div key={collection.id} className="flex items-center space-x-2">
+                  <Checkbox id={collection.title} onCheckedChange={() => handleCollectionChange(collection.title)} checked={selectedCollections.includes(collection.title)} />
+                  <label htmlFor={collection.title} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    {collection.title}
+                  </label>
+                </div>
+              ))}
+            </div>
+           )}
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -208,84 +284,27 @@ function ShopPageComponent() {
             </div>
 
             <div className="mt-16 grid grid-cols-1 lg:grid-cols-4 gap-12">
-              {/* Filters Sidebar */}
-              <aside className="lg:col-span-1">
+              {/* Filters Sidebar for Desktop */}
+              <aside className="lg:col-span-1 hidden lg:block">
                 <h2 className="font-headline text-2xl font-bold mb-6">Filter By</h2>
-                <Accordion type="multiple" defaultValue={['availability', 'price', 'tea-type', 'collections']} className="w-full">
-                  <AccordionItem value="availability">
-                    <AccordionTrigger className="font-semibold">Availability</AccordionTrigger>
-                    <AccordionContent>
-                      <div className="space-y-2">
-                        <div className="flex items-center space-x-2">
-                          <Checkbox id="in-stock" onCheckedChange={() => handleAvailabilityChange('in-stock')} />
-                          <label htmlFor="in-stock" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                            In Stock
-                          </label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Checkbox id="out-of-stock" onCheckedChange={() => handleAvailabilityChange('out-of-stock')} />
-                          <label htmlFor="out-of-stock" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                            Out of Stock
-                          </label>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="price">
-                    <AccordionTrigger className="font-semibold">Price Range</AccordionTrigger>
-                    <AccordionContent>
-                      <Slider
-                        defaultValue={[0, 15000]}
-                        max={15000}
-                        step={500}
-                        onValueChange={(value) => setPriceRange(value as [number, number])}
-                      />
-                      <div className="flex justify-between text-sm text-muted-foreground mt-2">
-                        <span>LKR {priceRange[0]}</span>
-                        <span>LKR {priceRange[1]}</span>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="tea-type">
-                    <AccordionTrigger className="font-semibold">Tea Type</AccordionTrigger>
-                    <AccordionContent>
-                      {isLoading ? <FilterSkeleton /> : (
-                        <div className="space-y-2">
-                          {teaTypes.map(type => (
-                            <div key={type.id} className="flex items-center space-x-2">
-                              <Checkbox id={type.name} onCheckedChange={() => handleTeaTypeChange(type.name)} checked={selectedTeaTypes.includes(type.name)} />
-                              <label htmlFor={type.name} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                                {type.name}
-                              </label>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="collections">
-                    <AccordionTrigger className="font-semibold">Collections</AccordionTrigger>
-                    <AccordionContent>
-                       {isLoading ? <FilterSkeleton /> : (
-                        <div className="space-y-2">
-                          {collections.map(collection => (
-                            <div key={collection.id} className="flex items-center space-x-2">
-                              <Checkbox id={collection.title} onCheckedChange={() => handleCollectionChange(collection.title)} checked={selectedCollections.includes(collection.title)} />
-                              <label htmlFor={collection.title} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                                {collection.title}
-                              </label>
-                            </div>
-                          ))}
-                        </div>
-                       )}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+                <FilterContent />
               </aside>
 
               {/* Products Grid */}
               <div className="lg:col-span-3">
-                 <div className="flex justify-end items-center mb-8">
+                 <div className="flex justify-between items-center mb-8">
+                    <Sheet>
+                      <SheetTrigger asChild>
+                         <Button variant="outline" className="lg:hidden">
+                            <Filter className="mr-2 h-4 w-4" />
+                            Filter
+                        </Button>
+                      </SheetTrigger>
+                      <SheetContent side="left">
+                         <h2 className="font-headline text-2xl font-bold mb-6">Filter By</h2>
+                         <FilterContent />
+                      </SheetContent>
+                    </Sheet>
                     <div className="flex items-center gap-2">
                         <span className="text-muted-foreground">Sort by:</span>
                         <Select defaultValue="featured">
@@ -303,7 +322,7 @@ function ShopPageComponent() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                <div className="grid grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 sm:gap-x-8">
                   {isProductsLoading ? (
                         [...Array(6)].map((_, i) => <ProductCardSkeleton key={i} />)
                   ) : filteredProducts.map((p, index) => {
@@ -335,13 +354,13 @@ function ShopPageComponent() {
                                   )}
                                 </div>
                             </CardHeader>
-                            <CardContent className="flex-grow p-6 text-left">
-                              <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
-                              <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
+                            <CardContent className="flex-grow p-4 sm:p-6 text-left">
+                              <CardTitle className="font-headline text-lg sm:text-2xl truncate">{product.name}</CardTitle>
+                              <CardDescription className="mt-2 line-clamp-2 text-sm sm:text-base">{product.description}</CardDescription>
                             </CardContent>
-                            <CardFooter className="flex justify-between items-center px-6 pb-6">
-                              <p className="text-xl font-bold text-accent">LKR {product.price}</p>
-                              <Button onClick={(e) => handleAddToCart(e, product)} className="bg-primary hover:bg-primary/90">Add to Cart</Button>
+                            <CardFooter className="flex justify-between items-center p-4 sm:p-6">
+                              <p className="text-base sm:text-xl font-bold text-accent">LKR {product.price}</p>
+                              <Button onClick={(e) => handleAddToCart(e, product)} className="bg-primary hover:bg-primary/90 text-xs sm:text-sm p-2 sm:p-4">Add to Cart</Button>
                             </CardFooter>
                           </Card>
                         </Link>
