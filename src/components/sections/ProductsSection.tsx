@@ -58,7 +58,7 @@ export default function ProductsSection() {
         <section id="products" className="py-20 md:py-28 bg-white overflow-hidden">
             <div className="container">
                 <div className="text-center max-w-2xl mx-auto">
-                    <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary uppercase">Our Finest Teas.</h2>
+                    <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Our Finest Teas.</h2>
                     <p className="mt-4 text-lg text-muted-foreground">
                         Discover our premium collection of Ceylon teas
                     </p>

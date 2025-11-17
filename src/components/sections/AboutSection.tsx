@@ -9,7 +9,7 @@ export default function AboutSection() {
       <div className="container">
         <div className="max-w-5xl mx-auto text-center">
           <div className="space-y-4">
-            <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary uppercase">Our Story</h2>
+            <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Our Story</h2>
             <div className="mt-8 mb-8 flex flex-col sm:flex-row justify-center items-center gap-4">
                 <div className="relative w-48 h-48">
                     <Image 
