@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -21,8 +22,8 @@ export default function Footer() {
             <h3 className="font-headline text-lg font-semibold mb-4 uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Our Plantation</Link></li>
-              <li><Link href="#contact" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Contact Us</Link></li>
-              <li><Link href="#products" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Our Teas</Link></li>
+              <li><Link href="/contact" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Contact Us</Link></li>
+              <li><Link href="/shop" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Our Teas</Link></li>
               <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Teas in Bulk Packaging</Link></li>
               <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Request for Quote</Link></li>
               <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Privacy Policy</Link></li>

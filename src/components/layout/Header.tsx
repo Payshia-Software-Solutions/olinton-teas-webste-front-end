@@ -19,14 +19,6 @@ import {
 import { cn } from '@/lib/utils';
 import React from 'react';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  // { href: '/shop', label: 'Shop' }, // Replaced by NavigationMenu
-  { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
-  { href: '#contact', label: 'Contact' },
-];
-
 const shopTeaLinks = [
     { title: "Shop All Teas", href: "/shop" },
     { title: "Advent Calender", href: "/shop/advent-calender" },
@@ -129,14 +121,7 @@ export default function Header() {
                         </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/blog" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-foreground/60 hover:text-primary text-lg")}>
-                            Blog
-                        </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <Link href="#contact" legacyBehavior passHref>
+                        <Link href="/contact" legacyBehavior passHref>
                         <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-foreground/60 hover:text-primary text-lg")}>
                             Contact
                         </NavigationMenuLink>
@@ -169,8 +154,7 @@ export default function Header() {
                 <Link href="/" className="text-lg text-foreground/80 transition-colors hover:text-primary">Home</Link>
                 <Link href="/shop" className="text-lg text-primary font-semibold transition-colors hover:text-primary">Shop</Link>
                 <Link href="/about" className="text-lg text-foreground/80 transition-colors hover:text-primary">About</Link>
-                <Link href="/blog" className="text-lg text-foreground/80 transition-colors hover:text-primary">Blog</Link>
-                <Link href="#contact" className="text-lg text-foreground/80 transition-colors hover:text-primary">Contact</Link>
+                <Link href="/contact" className="text-lg text-foreground/80 transition-colors hover:text-primary">Contact</Link>
               </div>
             </SheetContent>
           </Sheet>
@@ -232,8 +216,3 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
-
-    
-
-    
-
