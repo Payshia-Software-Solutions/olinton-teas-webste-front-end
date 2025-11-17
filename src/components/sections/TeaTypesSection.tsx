@@ -43,6 +43,9 @@ export default function TeaTypesSection() {
         <AnimateOnScroll>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">A range of Finest Ceylon tea</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Explore our curated selection of premium Ceylon teas, each with its own unique character and flavor profile. From the bold and robust to the light and delicate, find the perfect tea to elevate your moments.
+            </p>
           </div>
         </AnimateOnScroll>
         
