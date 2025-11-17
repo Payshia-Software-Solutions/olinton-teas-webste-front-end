@@ -74,8 +74,20 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-primary-foreground/70" />
-                <a href="mailto:tea@olintonexports.com" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  tea@olintonexports.com
+                <a href="mailto:sales@olinton.lk" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  sales@olinton.lk
+                </a>
+              </li>
+              <li className="flex items-center gap-4">
+                <Mail className="h-5 w-5 text-primary-foreground/70" />
+                <a href="mailto:info@olinton.lk" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  info@olinton.lk
+                </a>
+              </li>
+              <li className="flex items-center gap-4">
+                <Mail className="h-5 w-5 text-primary-foreground/70" />
+                <a href="mailto:linttea@yahoo.com" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  linttea@yahoo.com
                 </a>
               </li>
             </ul>
