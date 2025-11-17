@@ -183,11 +183,11 @@ export default function Header() {
                   />
               </Link>
               <div className="flex flex-col gap-4">
-                <Link href="/" className={cn("text-lg", pathname === '/' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Home</Link>
-                <Link href="/about" className={cn("text-lg", pathname === '/about' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>About</Link>
-                <Link href="/shop" className={cn("text-lg", pathname.startsWith('/shop') ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Shop</Link>
-                <Link href="/tea-and-health" className={cn("text-lg", pathname === '/tea-and-health' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Tea & Health</Link>
-                <Link href="/contact" className={cn("text-lg", pathname === '/contact' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Contact</Link>
+                <Link href="/" className={cn("text-base", pathname === '/' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Home</Link>
+                <Link href="/about" className={cn("text-base", pathname === '/about' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>About</Link>
+                <Link href="/shop" className={cn("text-base", pathname.startsWith('/shop') ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Shop</Link>
+                <Link href="/tea-and-health" className={cn("text-base", pathname === '/tea-and-health' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Tea & Health</Link>
+                <Link href="/contact" className={cn("text-base", pathname === '/contact' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/80 hover:text-primary')}>Contact</Link>
               </div>
             </SheetContent>
           </Sheet>
@@ -252,6 +252,8 @@ ListItem.displayName = "ListItem"
 
     
     
+    
+
     
 
     
