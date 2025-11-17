@@ -7,6 +7,7 @@ import TeaTypesSection from '@/components/sections/TeaTypesSection';
 import ReviewsSection from '@/components/sections/ReviewsSection';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import BulkPackagingSection from '@/components/sections/BulkPackagingSection';
+import FeaturesSection from '@/components/sections/FeaturesSection';
 
 export default function Home() {
   return (
@@ -31,6 +32,10 @@ export default function Home() {
           <BulkPackagingSection />
         </AnimateOnScroll>
         
+        <AnimateOnScroll>
+          <FeaturesSection />
+        </AnimateOnScroll>
+
         <AnimateOnScroll>
           <ReviewsSection />
         </AnimateOnScroll>

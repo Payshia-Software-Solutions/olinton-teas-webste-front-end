@@ -1,6 +1,5 @@
-
-import { Trophy, Leaf, Globe } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Trophy, Leaf, Globe, BadgeCheck } from 'lucide-react';
+import { Card, CardContent, CardTitle, CardDescription } from '@/components/ui/card';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 
 const features = [
@@ -25,6 +24,12 @@ export default function FeaturesSection() {
   return (
     <section className="py-20 md:py-28 bg-background">
       <div className="container">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Why O'linton Exports</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+                The Company is ISO 9001:2008, ISO 14001:2004, FSSC 22000 and BRC certified, reflecting a commitment to the highest quality standards in the industry and to sustainability.
+            </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <AnimateOnScroll key={index} delay={index * 100}>
