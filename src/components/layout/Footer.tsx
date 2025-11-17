@@ -93,8 +93,9 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-16 pt-8 border-t border-primary-foreground/20 text-center text-xs text-primary-foreground/60">
+        <div className="mt-16 pt-8 border-t border-primary-foreground/20 flex justify-between items-center text-xs text-primary-foreground/60">
           <p>&copy; {new Date().getFullYear()} O'linton Exports (Pvt) Limited. All rights reserved.</p>
+          <p>Powered by Payshia</p>
         </div>
       </div>
     </footer>
