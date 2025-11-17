@@ -247,15 +247,13 @@ export default function ProductPage() {
                                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
                             </TabsList>
                             <TabsContent value="description" className="pt-6 text-muted-foreground prose max-w-none">
-                                <h3>Product Description</h3>
+                                <h3 className="text-lg font-semibold text-primary">Product Description</h3>
                                 <p>{product.longDescription}</p>
                                 <p>Our master tea blenders carefully select only the finest tea leaves, ensuring each cup delivers the perfect balance of strength and smoothness. The distinctive character of this blend makes it ideal for both morning energizing and afternoon relaxation.</p>
-                                <h3>Brewing Instructions:</h3>
-                                <ul>
-                                    <li>Water temperature: 95-100°C</li>
-                                    <li>Steeping time: 3-5 minutes</li>
-                                    <li>1 teaspoon per cup</li>
-                                </ul>
+                                <h3 className="mt-4 text-lg font-semibold text-primary">Brewing Instructions:</h3>
+                                <p className="leading-tight">Water temperature: 95-100°C</p>
+                                <p className="leading-tight">Steeping time: 3-5 minutes</p>
+                                <p className="leading-tight">1 teaspoon per cup</p>
                             </TabsContent>
                             <TabsContent value="additional" className="pt-6 text-muted-foreground">
                                 <p>Additional information will be available here soon.</p>
@@ -272,5 +270,7 @@ export default function ProductPage() {
         </div>
     );
 }
+
+    
 
     
