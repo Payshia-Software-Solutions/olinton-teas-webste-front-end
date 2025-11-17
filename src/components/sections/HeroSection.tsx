@@ -34,7 +34,7 @@ export default function HeroSection() {
           </Button>
         </div>
 
-        <Link href="#features" className="absolute bottom-8 z-20 animate-bounce">
+        <Link href="#about" className="absolute bottom-8 z-20 animate-bounce">
           <ArrowDown className="h-8 w-8 text-white/80 hover:text-white transition-colors" />
           <span className="sr-only">Scroll down</span>
         </Link>

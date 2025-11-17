@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 export default function AboutSection() {
   return (
@@ -32,7 +33,10 @@ export default function AboutSection() {
             </p>
             <div className="pt-6">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg py-6 px-8">
-                    <Link href="/about">Learn More</Link>
+                    <Link href="/about">
+                        Learn More
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
                 </Button>
             </div>
           </div>
