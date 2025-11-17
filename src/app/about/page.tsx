@@ -2,7 +2,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
-import { Milestone } from 'lucide-react';
+import { Milestone, Quote } from 'lucide-react';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -140,6 +140,30 @@ export default function AboutPage() {
         
         <AnimateOnScroll>
             <section className="py-20 md:py-28 bg-card">
+                <div className="container text-center max-w-4xl mx-auto">
+                    <Quote className="w-16 h-16 text-accent mx-auto mb-6" />
+                    <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Founder's Message</h2>
+                    <div className="mt-8 text-lg text-muted-foreground space-y-6">
+                        <p>
+                            From the very beginning, my dream has been to make Olinton a world-renowned brand — one that proudly represents the true taste and soul of Ceylon Tea. In fulfilling the global need for a healthy beverage, we at Linton Tea (Pvt) Ltd are committed to offering only the premium and tastiest teas that bring both wellness and delight to every cup.
+                        </p>
+                        <p>
+                            Beyond tea, our journey is about people and purpose. We continuously support the families who depend on the tea industry, both directly and indirectly, and we stand firm in our dedication to protecting nature through green concepts and sustainable practices.
+                        </p>
+                        <p>
+                            I warmly invite you to be part of our ethical and authentic journey, and to share in the elegance and heritage that define every sip of Olinton Tea.
+                        </p>
+                    </div>
+                    <div className="mt-8">
+                        <p className="font-headline text-xl font-bold text-primary">Linton Premawardane</p>
+                        <p className="text-muted-foreground">Founder & Chairman, Linton Tea (Pvt) Ltd.</p>
+                    </div>
+                </div>
+            </section>
+        </AnimateOnScroll>
+        
+        <AnimateOnScroll>
+            <section className="py-20 md:py-28 bg-background">
                 <div className="container">
                 <div className="text-center max-w-3xl mx-auto">
                     <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Awards & Recognition</h2>
@@ -177,7 +201,7 @@ export default function AboutPage() {
         </AnimateOnScroll>
 
         <AnimateOnScroll>
-            <section className="py-20 md:py-28 bg-background">
+            <section className="py-20 md:py-28 bg-card">
                 <div className="container">
                     <div className="text-center max-w-3xl mx-auto">
                         <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Our Journey</h2>
