@@ -11,12 +11,16 @@ const teaTypes = [
 
 const TeaItem = ({ name, id }: { name: string, id: string }) => {
   const teaImage = PlaceHolderImages.find(p => p.id === `product-${id}`);
+  const [first, second] = name.split(' ');
   
   return (
     <div className="flex flex-col items-center gap-4 text-center">
-      <h3 className="font-headline text-2xl font-bold text-primary uppercase tracking-wider">{name}</h3>
+      <h3 className="font-headline font-bold text-primary uppercase tracking-wider flex flex-col items-center">
+        <span className="text-4xl">{first}</span>
+        <span className="text-2xl font-normal">{second}</span>
+      </h3>
       {teaImage && (
-        <div className="w-48 h-48 relative">
+        <div className="w-48 h-48 relative mt-2">
           <Image
             src={teaImage.imageUrl}
             alt={name}
