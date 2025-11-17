@@ -15,7 +15,7 @@ const navLinks = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white">
-      <div className="container flex h-16 items-center">
+      <div className="container flex h-14 items-center">
         <Link href="/" className="flex items-center gap-2 mr-auto">
           <span className="font-headline text-3xl font-bold text-primary">O'linton</span>
         </Link>
