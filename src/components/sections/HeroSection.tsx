@@ -29,7 +29,7 @@ export default function HeroSection() {
           <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg py-7 px-10">
             <Link href="#products">Browse Our Teas</Link>
           </Button>
-          <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-lg py-7 px-10">
+          <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground text-lg py-7 px-10">
             <Link href="/about">Learn More</Link>
           </Button>
         </div>
