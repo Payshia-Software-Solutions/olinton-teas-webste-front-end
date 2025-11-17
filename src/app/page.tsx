@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
+import FeaturesSection from '@/components/sections/FeaturesSection';
 import ProductsSection from '@/components/sections/ProductsSection';
 import ReviewsSection from '@/components/sections/ReviewsSection';
 import SubscriptionSection from '@/components/sections/SubscriptionSection';
@@ -12,6 +13,10 @@ export default function Home() {
       <Header />
       <main className="flex-grow">
         <HeroSection />
+
+        <AnimateOnScroll>
+          <FeaturesSection />
+        </AnimateOnScroll>
         
         <AnimateOnScroll>
           <ProductsSection />
