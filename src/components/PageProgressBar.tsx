@@ -13,68 +13,37 @@ export default function PageProgressBar() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setProgress(0);
-    setIsVisible(false);
-  }, [pathname, searchParams]);
+    // This effect runs whenever the path changes.
+    // We'll treat this as the *start* of a new page load.
+    setIsVisible(true);
+    setProgress(10); // Start with a small amount of progress
 
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    let progressTimer: NodeJS.Timeout;
+    // Simulate loading progress
+    const progressTimer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 95) {
+          clearInterval(progressTimer);
+          return 95;
+        }
+        return prev + (100 - prev) * 0.1;
+      });
+    }, 200);
 
-    const handleStart = () => {
-      setIsVisible(true);
-      setProgress(10);
-      let currentProgress = 10;
-      progressTimer = setInterval(() => {
-        currentProgress += (100 - currentProgress) * 0.1;
-        if (currentProgress > 95) currentProgress = 95;
-        setProgress(currentProgress);
-      }, 200);
-    };
-
-    const handleComplete = () => {
-      if (progressTimer) clearInterval(progressTimer);
-      setProgress(100);
-      timer = setTimeout(() => {
-        setIsVisible(false);
-        setTimeout(() => setProgress(0), 500);
-      }, 500);
-    };
-
-    // This is a simplified way to detect navigation changes in App Router
-    // A more robust solution might involve a custom Link component or context
-    const originalPushState = history.pushState;
-    history.pushState = function (...args) {
-      handleStart();
-      originalPushState.apply(history, args);
-    };
-
-    // Listen for popstate (browser back/forward buttons)
-    window.addEventListener('popstate', handleStart);
-
-    // When the component unmounts, we call complete
+    // This function will run when the component re-renders for a new page,
+    // or when it unmounts. We use it to "complete" the previous loading bar.
     return () => {
-      handleComplete();
-      clearTimeout(timer);
-      if (progressTimer) clearInterval(progressTimer);
-      history.pushState = originalPushState;
-      window.removeEventListener('popstate', handleStart);
+      clearInterval(progressTimer);
+      setProgress(100);
+      const completeTimer = setTimeout(() => {
+        setIsVisible(false);
+        // Reset progress after fade out
+        setTimeout(() => setProgress(0), 500); 
+      }, 500);
+      
+      // Cleanup timeout on unmount
+      return () => clearTimeout(completeTimer);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]); 
-  
-   useEffect(() => {
-    // This effect handles the completion of the loading bar
-    // It runs when the pathname/searchParams change, indicating navigation has finished
-    setProgress(100);
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-       setTimeout(() => setProgress(0), 500);
-    }, 500);
-
-    return () => clearTimeout(timer);
   }, [pathname, searchParams]);
-
 
   return (
     <div
