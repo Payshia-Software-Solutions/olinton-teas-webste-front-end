@@ -41,7 +41,7 @@ export default function Header() {
                     alt="O'linton Logo"
                     width={120}
                     height={40}
-                    className="object-contain md:w-[160px] md:h-[53px]"
+                    className="object-contain w-[160px] h-[65px] md:w-[180px] md:h-[80px]"
                 />
             </Link>
         </div>

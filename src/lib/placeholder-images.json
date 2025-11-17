@@ -45,13 +45,13 @@
     {
       "id": "product-earl-grey-supreme",
       "description": "A bowl of Earl Grey Supreme tea leaves with tea boxes in the background.",
-      "imageUrl": "https://images.unsplash.com/photo-1744160252920-967ab9b733ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlYXJsJTIwZ3JleXxlbnwwfHx8fDE3NjMzODE1Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1744160252920-967ab9b733ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlYXJsJTIwZ3JleXxlbnwwfHx8fDE3NjMzODE1Njl8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "earl grey"
     },
     {
       "id": "product-ceylon-green",
       "description": "Fresh Ceylon green tea leaves in a green box.",
-      "imageUrl": "https://images.unsplash.com/photo-1687719850086-02a250fc2d15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjZXlsb24lMjBncmVlbnxlbnwwfHx8fDE3NjMzODE1Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1687719850086-02a250fc2d15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjZXlsb24lMjBncmVlbnxlbnwwfHx8fDE3NjMzODE1Njl8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "ceylon green"
     },
     {
@@ -65,6 +65,18 @@
       "description": "High grown oolong tea in a red gift box.",
       "imageUrl": "https://images.unsplash.com/photo-1627894006066-b45786537103?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvb2xvbmclMjB0ZWF8ZW58MHx8fHwxNzYzMzc1Njc0fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "oolong tea"
+    },
+    {
+      "id": "bulk-packaging",
+      "description": "Sacks of tea stacked in a warehouse for bulk packaging.",
+      "imageUrl": "https://images.unsplash.com/photo-1702353918836-33e8c1f06c3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWElMjBzYWNrc3xlbnwwfHx8fDE3NjMzOTgxMDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tea sacks"
+    },
+    {
+      "id": "private-labeling",
+      "description": "Workers packaging tea for private labeling.",
+      "imageUrl": "https://images.unsplash.com/photo-1651608152231-dbee4d57e874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0ZWElMjBmYWN0b3J5fGVufDB8fHx8MTc2MzM5ODEwMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tea factory"
     }
   ]
 }
