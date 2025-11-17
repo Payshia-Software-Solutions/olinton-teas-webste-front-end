@@ -6,38 +6,33 @@ import { Award, Trophy } from 'lucide-react';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import FeaturesSection from '@/components/sections/FeaturesSection';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const awards = [
   {
     award: 'Gold Award',
     event: 'National Industry Excellence Awards 2023',
-    icon: Trophy,
-    color: 'text-yellow-500',
+    imageUrl: 'https://content-provider.payshia.com/olinton/national-industry-excellence-2023.webp',
   },
   {
     award: 'Silver Award',
     event: 'Sabaragamuwa Province Best Entrepreneur of the Year 2022',
-    icon: Trophy,
-    color: 'text-slate-400',
+    imageUrl: 'https://content-provider.payshia.com/olinton/sabaragamuwa-best-entrpreneur-2022.webp',
   },
   {
     award: 'Silver Award',
     event: 'Sabaragamuwa Province Best Entrepreneur of the Year 2024',
-    icon: Trophy,
-    color: 'text-slate-400',
+    imageUrl: 'https://content-provider.payshia.com/olinton/sabaragamuwa-bet-enterprenuer-2024.webp',
   },
   {
     award: 'Bronze Award',
     event: 'National Industry Excellence Awards 2022',
-    icon: Trophy,
-    color: 'text-orange-600',
+    imageUrl: 'https://content-provider.payshia.com/olinton/national-industry-excellence-2022.webp',
   },
   {
     award: 'Bronze Award',
     event: 'Sabaragamuwa Province Best Entrepreneur of the Year 2020',
-    icon: Trophy,
-    color: 'text-orange-600',
+    imageUrl: 'https://content-provider.payshia.com/olinton/sabaragamuwa-best-entrrepeneur-2020.webp',
   },
 ];
 
@@ -120,13 +115,22 @@ export default function AboutPage() {
                 <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {awards.map((award, index) => (
                     <AnimateOnScroll key={index} delay={index * 100}>
-                        <div className="flex items-center gap-6 p-6 border rounded-lg h-full">
-                            <award.icon className={`h-12 w-12 flex-shrink-0 ${award.color}`} />
-                            <div>
-                                <h3 className="font-headline text-xl font-bold text-primary">{award.award}</h3>
-                                <p className="text-muted-foreground">{award.event}</p>
-                            </div>
-                        </div>
+                        <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
+                            <CardHeader>
+                                <div className="aspect-video relative">
+                                    <Image
+                                        src={award.imageUrl}
+                                        alt={award.event}
+                                        fill
+                                        className="object-contain rounded-t-2xl"
+                                    />
+                                </div>
+                            </CardHeader>
+                            <CardContent className="flex-grow p-6 text-center">
+                                <CardTitle className="font-headline text-xl text-primary">{award.award}</CardTitle>
+                                <p className="text-muted-foreground mt-2">{award.event}</p>
+                            </CardContent>
+                        </Card>
                     </AnimateOnScroll>
                     ))}
                 </div>
