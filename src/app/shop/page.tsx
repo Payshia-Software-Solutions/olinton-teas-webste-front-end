@@ -270,8 +270,7 @@ export default function ShopPage() {
 
               {/* Products Grid */}
               <div className="lg:col-span-3">
-                 <div className="flex justify-between items-center mb-8">
-                    <h3 className="font-headline text-3xl font-bold text-primary">Special Offers ({isProductsLoading ? "..." : filteredProducts.length})</h3>
+                 <div className="flex justify-end items-center mb-8">
                     <div className="flex items-center gap-2">
                         <span className="text-muted-foreground">Sort by:</span>
                         <Select defaultValue="featured">
