@@ -33,6 +33,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.olinton.lk',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'content-provider.payshia.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

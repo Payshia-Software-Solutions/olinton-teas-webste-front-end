@@ -10,7 +10,7 @@ export default function AboutSection() {
             <div className="mt-8 mb-8 flex flex-col sm:flex-row justify-center items-center gap-4">
                 <div className="relative w-48 h-48">
                     <Image 
-                        src="https://www.olinton.lk/wp-content/uploads/2025/02/olinton.jpg" 
+                        src="https://content-provider.payshia.com/olinton/olinton-removebg-preview.png" 
                         alt="Olinton Logo" 
                         fill
                         className="object-contain"
@@ -18,7 +18,7 @@ export default function AboutSection() {
                 </div>
                 <div className="relative w-48 h-48">
                     <Image 
-                        src="https://www.olinton.lk/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-20-at-15.47.19-480x350.jpeg" 
+                        src="https://content-provider.payshia.com/olinton/WhatsApp-Image-2025-02-20-at-15.47.19-480x350-removebg-preview.png" 
                         alt="K&K Logo" 
                         fill
                         className="object-contain"
