@@ -7,6 +7,18 @@
       "imageHint": "tea plantation"
     },
     {
+      "id": "tea-health-hero",
+      "description": "A serene image of a cup of tea, with soft lighting and a focus on wellness.",
+      "imageUrl": "https://images.unsplash.com/photo-1576092762791-d01e1b343659?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZWFsdGh5JTIwdGVhfGVufDB8fHx8MTc2MzM5ODEwMXww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy tea"
+    },
+    {
+      "id": "tea-health-benefits",
+      "description": "An assortment of healthy tea ingredients like herbs, spices, and flowers.",
+      "imageUrl": "https://images.unsplash.com/photo-1478263593356-55a769d311d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxoZWFsdGh5JTIwdGVhfGVufDB8fHx8MTc2MzM5ODEwMXww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "tea ingredients"
+    },
+    {
       "id": "product-black-tea",
       "description": "Close-up of dried black tea leaves.",
       "imageUrl": "https://content-provider.payshia.com/olinton/Vithanakande1001_3000x-optimized.webp",
@@ -21,7 +33,7 @@
     {
       "id": "product-herbal-tea",
       "description": "A colorful mix of herbal tea ingredients including flowers and fruits.",
-      "imageUrl": "https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aGVyYmFsJTIwdGVhfGVufDB8fHx8MTc2MzM4MDY3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aGVyYmFsJTIwdGVhfGVufDB8fHx8MTc2MzM4MDY3MHww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "herbal tea"
     },
     {
@@ -33,7 +45,7 @@
     {
       "id": "review-avatar-2",
       "description": "Portrait of a person.",
-      "imageUrl": "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjMyNTYwOTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjMyNTYwOTF8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "person portrait"
     },
     {
@@ -69,13 +81,13 @@
     {
       "id": "bulk-packaging",
       "description": "Sacks of tea stacked in a warehouse for bulk packaging.",
-      "imageUrl": "https://images.unsplash.com/photo-1702353918836-33e8c1f06c3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWElMjBzYWNrc3xlbnwwfHx8fDE3NjMzOTgxMDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1702353918836-33e8c1f06c3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWElMjBzYWNrc3xlbnwwfHx8fDE3NjMzOTgxMDF8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "tea sacks"
     },
     {
       "id": "private-labeling",
       "description": "Workers packaging tea for private labeling.",
-      "imageUrl": "https://images.unsplash.com/photo-1651608152231-dbee4d57e874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0ZWElMjBmYWN0b3J5fGVufDB8fHx8MTc2MzM5ODEwMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1651608152231-dbee4d57e874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0ZWElMjBmYWN0b3J5fGVufDB8fHx8MTc2MzM5ODEwMXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "tea factory"
     }
   ]

@@ -112,6 +112,14 @@ export default function Header() {
                             </ul>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
+                    
+                    <NavigationMenuItem>
+                        <Link href="/tea-and-health" legacyBehavior passHref>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-foreground/60 hover:text-primary text-lg")}>
+                            Tea & Health
+                        </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
 
                     <NavigationMenuItem>
                         <Link href="/about" legacyBehavior passHref>
@@ -153,6 +161,7 @@ export default function Header() {
               <div className="flex flex-col gap-4">
                 <Link href="/" className="text-lg text-foreground/80 transition-colors hover:text-primary">Home</Link>
                 <Link href="/shop" className="text-lg text-primary font-semibold transition-colors hover:text-primary">Shop</Link>
+                <Link href="/tea-and-health" className="text-lg text-foreground/80 transition-colors hover:text-primary">Tea & Health</Link>
                 <Link href="/about" className="text-lg text-foreground/80 transition-colors hover:text-primary">About</Link>
                 <Link href="/contact" className="text-lg text-foreground/80 transition-colors hover:text-primary">Contact</Link>
               </div>
