@@ -94,9 +94,9 @@ export default function ProductsSection() {
                                                         </div>
                                                     )}
                                                 </CardHeader>
-                                                <CardContent className="flex-grow p-6 text-center">
-                                                    <CardTitle className="font-headline text-2xl">{product.name}</CardTitle>
-                                                    <CardDescription className="mt-2">{product.description}</CardDescription>
+                                                <CardContent className="flex-grow p-6 text-left">
+                                                    <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
+                                                    <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
                                                 </CardContent>
                                                 <CardFooter className="flex justify-between items-center px-6 pb-6">
                                                     <p className="text-xl font-bold text-accent">{product.price}</p>
