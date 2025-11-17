@@ -51,6 +51,22 @@ export default function Header() {
     { href: '/tea-and-health', label: 'Tea & Health' },
     { href: '/contact', label: 'Contact' },
   ];
+  
+  const getLinkClass = (href: string) => {
+    const isActive = pathname === href;
+    return cn(
+        "bg-transparent text-lg hover:text-primary",
+        isActive ? 'text-primary font-bold' : 'text-foreground/60'
+    );
+  };
+  
+  const getShopLinkClass = () => {
+    const isActive = pathname.startsWith('/shop');
+    return cn(
+        "bg-transparent text-lg hover:text-primary",
+        isActive ? 'text-primary font-bold' : 'text-foreground/60'
+    );
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
@@ -92,22 +108,24 @@ export default function Header() {
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <Link href="/" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-lg", pathname === '/' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/60 hover:text-primary')}>
-                            Home
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), getLinkClass('/'))}>
+                            <span className={cn("pb-1", pathname === '/' && "border-b-2 border-primary font-bold")}>Home</span>
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
 
                      <NavigationMenuItem>
                         <Link href="/about" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-lg", pathname === '/about' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/60 hover:text-primary')}>
-                            About
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), getLinkClass('/about'))}>
+                             <span className={cn("pb-1", pathname === '/about' && "border-b-2 border-primary font-bold")}>About</span>
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger className={cn("bg-transparent text-lg", pathname.startsWith('/shop') ? 'text-primary font-bold' : 'text-foreground/60 hover:text-primary')}>Shop</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className={cn(getShopLinkClass())}>
+                             <span className={cn("pb-1", pathname.startsWith('/shop') && "border-b-2 border-primary font-bold")}>Shop</span>
+                        </NavigationMenuTrigger>
                         <NavigationMenuContent className="bg-card text-card-foreground">
                             <ul className="grid grid-cols-2 gap-6 p-6 w-[400px]">
                                 <li className="flex flex-col space-y-4">
@@ -128,16 +146,16 @@ export default function Header() {
                     
                     <NavigationMenuItem>
                         <Link href="/tea-and-health" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-lg", pathname === '/tea-and-health' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/60 hover:text-primary')}>
-                            Tea & Health
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), getLinkClass('/tea-and-health'))}>
+                            <span className={cn("pb-1", pathname === '/tea-and-health' && "border-b-2 border-primary font-bold")}>Tea & Health</span>
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
                         <Link href="/contact" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-lg", pathname === '/contact' ? 'text-primary font-bold border-b-2 border-primary' : 'text-foreground/60 hover:text-primary')}>
-                            Contact
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), getLinkClass('/contact'))}>
+                            <span className={cn("pb-1", pathname === '/contact' && "border-b-2 border-primary font-bold")}>Contact</span>
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
@@ -234,4 +252,6 @@ ListItem.displayName = "ListItem"
 
     
     
+    
+
     
