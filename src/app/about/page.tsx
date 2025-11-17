@@ -2,9 +2,8 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
-import { Award, Trophy, Milestone } from 'lucide-react';
+import { Milestone } from 'lucide-react';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
-import FeaturesSection from '@/components/sections/FeaturesSection';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -139,8 +138,6 @@ export default function AboutPage() {
             </section>
         </AnimateOnScroll>
         
-        <FeaturesSection />
-
         <AnimateOnScroll>
             <section className="py-20 md:py-28 bg-card">
                 <div className="container">
