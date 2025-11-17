@@ -3,6 +3,7 @@ import { Search, User, ShoppingCart, Menu, Mail, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -32,7 +33,13 @@ export default function Header() {
       </div>
       <div className="container flex h-14 items-center">
         <Link href="/" className="flex items-center gap-2 mr-auto">
-          <span className="font-headline text-3xl font-bold text-primary">O'linton</span>
+          <Image
+            src="https://content-provider.payshia.com/olinton/navbar-logo.webp"
+            alt="O'linton Logo"
+            width={120}
+            height={40}
+            className="object-contain"
+          />
         </Link>
         
         <nav className="hidden md:flex items-center gap-8 text-lg mx-auto">
@@ -77,7 +84,13 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left">
               <Link href="/" className="mr-6 flex items-center space-x-2">
-                <span className="font-bold font-headline text-2xl text-primary">O'linton</span>
+                 <Image
+                    src="https://content-provider.payshia.com/olinton/navbar-logo.webp"
+                    alt="O'linton Logo"
+                    width={120}
+                    height={40}
+                    className="object-contain"
+                  />
               </Link>
               <div className="flex flex-col gap-4 mt-6">
                 {navLinks.map((link) => (
