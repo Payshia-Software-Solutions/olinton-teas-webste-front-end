@@ -90,7 +90,7 @@ export default function AboutPage() {
                             <Card className="shadow-lg">
                                 <CardContent className="p-6">
                                     <Image
-                                        src="https://www.olinton.lk/wp-content/uploads/2023/12/mr-linton-scaled.jpg"
+                                        src="https://content-provider.payshia.com/olinton/linton-premawardana.webp"
                                         alt="Mr. Linton Premawardane"
                                         width={500}
                                         height={600}
