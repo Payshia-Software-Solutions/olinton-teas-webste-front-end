@@ -14,18 +14,18 @@ const TeaItem = ({ name, id, description }: { name: string, id: string, descript
   const [first, second] = name.split(' ');
   
   return (
-    <div className="flex flex-col items-center gap-4 text-center border border-border/50 rounded-2xl p-8 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl bg-card">
+    <div className="group flex flex-col items-center gap-4 text-center border border-border/50 rounded-2xl p-8 h-full transition-all duration-300 hover:shadow-xl bg-card">
       <h3 className="font-headline font-bold text-primary uppercase tracking-wider flex flex-col items-center min-h-[80px]">
         <span className="text-4xl">{first}</span>
         <span className="text-2xl font-normal">{second}</span>
       </h3>
       {teaImage && (
-        <div className="w-48 h-48 relative mt-2">
+        <div className="w-48 h-48 relative mt-2 overflow-hidden rounded-full">
           <Image
             src={teaImage.imageUrl}
             alt={name}
             fill
-            className="object-cover rounded-full"
+            className="object-cover rounded-full transition-transform duration-300 group-hover:scale-110"
             data-ai-hint={teaImage.imageHint}
           />
         </div>
