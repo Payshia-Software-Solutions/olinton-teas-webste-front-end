@@ -32,16 +32,16 @@ export default function Header() {
         </div>
       </div>
       
-      <div className="container relative flex h-20 items-center justify-between">
+      <div className="container relative flex h-16 md:h-20 items-center justify-between">
         
         <div className="absolute left-4 top-0 z-10">
             <Link href="/" className="flex items-center justify-center bg-white p-2 rounded-b-xl shadow-lg">
                 <Image
                     src="https://content-provider.payshia.com/olinton/navbar-logo.webp"
                     alt="O'linton Logo"
-                    width={160}
-                    height={53}
-                    className="object-contain"
+                    width={120}
+                    height={40}
+                    className="object-contain md:w-[160px] md:h-[53px]"
                 />
             </Link>
         </div>
