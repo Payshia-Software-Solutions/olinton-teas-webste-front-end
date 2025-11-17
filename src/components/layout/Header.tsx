@@ -103,16 +103,16 @@ export default function Header() {
 
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="bg-transparent text-primary font-semibold text-lg">Shop</NavigationMenuTrigger>
-                        <NavigationMenuContent className="bg-primary text-primary-foreground border-none">
-                            <ul className="grid grid-cols-2 gap-6 p-6 w-[400px] list-none">
+                        <NavigationMenuContent className="bg-card text-card-foreground border-none">
+                            <ul className="grid grid-cols-2 gap-6 p-6 w-[400px]">
                                 <li className="flex flex-col space-y-4">
-                                    <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop Tea</h3>
+                                    <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop Tea</h3>
                                     {shopTeaLinks.map((link) => (
                                         <ListItem key={link.title} href={link.href} title={link.title} />
                                     ))}
                                 </li>
                                 <li className="flex flex-col space-y-4">
-                                    <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop by Tea</h3>
+                                    <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop by Tea</h3>
                                     {shopByTeaLinks.map((link) => (
                                         <ListItem key={link.title} href={link.href} title={link.title} />
                                     ))}
@@ -207,23 +207,23 @@ const ListItem = React.forwardRef<
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
   return (
-    <li className="list-none">
+    <li>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(
-            "block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 text-sm group",
+            "block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent/10 focus:bg-accent/10 text-sm group",
             className
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none text-primary-foreground flex items-center gap-2">
+          <div className="text-sm font-medium leading-none text-foreground flex items-center gap-2">
             <span className="transition-opacity">
                 <ChevronDown className="h-4 w-4 -rotate-90" />
             </span>
             <span>{title}</span>
           </div>
-          <p className="line-clamp-2 text-sm leading-snug text-primary-foreground/80 pl-6">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground pl-6">
             {children}
           </p>
         </a>
@@ -236,3 +236,4 @@ ListItem.displayName = "ListItem"
     
 
     
+
