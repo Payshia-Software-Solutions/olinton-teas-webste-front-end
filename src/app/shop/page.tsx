@@ -20,11 +20,14 @@ import Link from 'next/link';
 import { useCart } from '@/hooks/use-cart';
 import { useToast } from "@/hooks/use-toast"
 
-const teaTypes = ['Black Tea', 'Green Tea', 'White Tea', 'Oolong'];
-
 type Collection = {
   id: string;
   title: string;
+};
+
+type TeaType = {
+  id: string;
+  name: string;
 };
 
 export default function ShopPage() {
@@ -32,12 +35,13 @@ export default function ShopPage() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 15000]);
   const [selectedTeaTypes, setSelectedTeaTypes] = useState<string[]>([]);
   const [collections, setCollections] = useState<Collection[]>([]);
+  const [teaTypes, setTeaTypes] = useState<TeaType[]>([]);
   const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
   const { toast } = useToast();
   const { addToCart } = useCart();
 
   useEffect(() => {
-    const fetchCollections = async () => {
+    const fetchData = async () => {
       try {
         const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
         const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -45,19 +49,29 @@ export default function ShopPage() {
           console.error("Server URL is not defined in environment variables.");
           return;
         }
-        const response = await fetch(`${serverUrl}/collections/company?company_id=${companyId}`);
-        const data = await response.json();
-        if (response.ok) {
-          setCollections(data);
+        // Fetch Collections
+        const collectionsResponse = await fetch(`${serverUrl}/collections/company?company_id=${companyId}`);
+        const collectionsData = await collectionsResponse.json();
+        if (collectionsResponse.ok) {
+          setCollections(collectionsData);
         } else {
-          console.error("Failed to fetch collections:", data);
+          console.error("Failed to fetch collections:", collectionsData);
+        }
+
+        // Fetch Categories (Tea Types)
+        const categoriesResponse = await fetch(`${serverUrl}/categories/company?company_id=${companyId}`);
+        const categoriesData = await categoriesResponse.json();
+        if (categoriesResponse.ok) {
+          setTeaTypes(categoriesData);
+        } else {
+          console.error("Failed to fetch tea types:", categoriesData);
         }
       } catch (error) {
-        console.error("Error fetching collections:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchCollections();
+    fetchData();
   }, []);
 
   const handleAddToCart = (e: React.MouseEvent, productId: string) => {
@@ -154,10 +168,10 @@ export default function ShopPage() {
                     <AccordionContent>
                       <div className="space-y-2">
                         {teaTypes.map(type => (
-                           <div key={type} className="flex items-center space-x-2">
-                            <Checkbox id={type} onCheckedChange={() => handleTeaTypeChange(type)} />
-                            <label htmlFor={type} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                              {type}
+                           <div key={type.id} className="flex items-center space-x-2">
+                            <Checkbox id={type.name} onCheckedChange={() => handleTeaTypeChange(type.name)} />
+                            <label htmlFor={type.name} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                              {type.name}
                             </label>
                           </div>
                         ))}
@@ -252,3 +266,5 @@ export default function ShopPage() {
     </div>
   );
 }
+
+    

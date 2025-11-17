@@ -33,14 +33,13 @@ type Collection = {
   title: string;
 };
 
+type TeaType = {
+  id: string;
+  name: string;
+};
+
 const shopTeaLinks = [
     { title: "Shop All Teas", href: "/shop" },
-]
-
-const shopByTeaLinks = [
-    { title: "Black Tea", href: "/shop/black-tea" },
-    { title: "Green Tea", href: "/shop/green-tea" },
-    { title: "Herbal Tea", href: "/shop/herbal-tea" },
 ]
 
 export default function Header() {
@@ -49,6 +48,7 @@ export default function Header() {
   const { cartItemCount } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [collections, setCollections] = useState<Collection[]>([]);
+  const [teaTypes, setTeaTypes] = useState<TeaType[]>([]);
 
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function Header() {
     };
     window.addEventListener('scroll', handleScroll);
     
-    const fetchCollections = async () => {
+    const fetchData = async () => {
       try {
         const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
         const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -65,19 +65,31 @@ export default function Header() {
           console.error("Server URL is not defined in environment variables.");
           return;
         }
-        const response = await fetch(`${serverUrl}/collections/company?company_id=${companyId}`);
-        const data = await response.json();
-        if (response.ok) {
-          setCollections(data);
+        
+        // Fetch Collections
+        const collectionsResponse = await fetch(`${serverUrl}/collections/company?company_id=${companyId}`);
+        const collectionsData = await collectionsResponse.json();
+        if (collectionsResponse.ok) {
+          setCollections(collectionsData);
         } else {
-          console.error("Failed to fetch collections:", data);
+          console.error("Failed to fetch collections:", collectionsData);
         }
+
+        // Fetch Categories
+        const categoriesResponse = await fetch(`${serverUrl}/categories/company?company_id=${companyId}`);
+        const categoriesData = await categoriesResponse.json();
+        if (categoriesResponse.ok) {
+          setTeaTypes(categoriesData);
+        } else {
+          console.error("Failed to fetch categories:", categoriesData);
+        }
+
       } catch (error) {
-        console.error("Error fetching collections:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchCollections();
+    fetchData();
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -97,6 +109,8 @@ export default function Header() {
         isActive ? 'text-primary font-bold' : 'text-foreground/60'
     );
   }
+  
+  const formatUrl = (title: string) => title.toLowerCase().replace(/ /g, '-');
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
@@ -166,14 +180,14 @@ export default function Header() {
                                 </li>
                                 <li className="flex flex-col space-y-4">
                                     <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop by Tea</h3>
-                                    {shopByTeaLinks.map((link) => (
-                                        <ListItem key={link.title} href={link.href} title={link.title} />
+                                    {teaTypes.map((type) => (
+                                        <ListItem key={type.id} href={`/shop/${formatUrl(type.name)}`} title={type.name} />
                                     ))}
                                 </li>
                                 <li className="flex flex-col space-y-4">
                                     <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop by Collection</h3>
                                     {collections.map((collection) => (
-                                        <ListItem key={collection.id} href={`/shop/collection/${collection.title.toLowerCase().replace(/ /g, '-')}`} title={collection.title} />
+                                        <ListItem key={collection.id} href={`/shop/collection/${formatUrl(collection.title)}`} title={collection.title} />
                                     ))}
                                 </li>
                             </ul>
@@ -245,12 +259,12 @@ export default function Header() {
                            <Link key={link.href} href={link.href} className="text-foreground/80 hover:text-primary px-2 py-1">{link.title}</Link>
                         ))}
                         <h3 className="font-bold text-sm uppercase text-muted-foreground px-2 pt-4">Shop by Tea</h3>
-                        {shopByTeaLinks.map((link) => (
-                          <Link key={link.href} href={link.href} className="text-foreground/80 hover:text-primary px-2 py-1">{link.title}</Link>
+                        {teaTypes.map((type) => (
+                          <Link key={type.id} href={`/shop/${formatUrl(type.name)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{type.name}</Link>
                         ))}
                         <h3 className="font-bold text-sm uppercase text-muted-foreground px-2 pt-4">Shop by Collection</h3>
                         {collections.map((collection) => (
-                           <Link key={collection.id} href={`/shop/collection/${collection.title.toLowerCase().replace(/ /g, '-')}`} className="text-foreground/80 hover:text-primary px-2 py-1">{collection.title}</Link>
+                           <Link key={collection.id} href={`/shop/collection/${formatUrl(collection.title)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{collection.title}</Link>
                         ))}
                       </div>
                     </AccordionContent>
@@ -323,3 +337,5 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
+
+    
