@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -21,15 +21,44 @@ import { useCart } from '@/hooks/use-cart';
 import { useToast } from "@/hooks/use-toast"
 
 const teaTypes = ['Black Tea', 'Green Tea', 'White Tea', 'Oolong'];
-const collections = ['Special Offers', 'Classic Teas', 'Flavored Teas', 'Exceptional Teas'];
+
+type Collection = {
+  id: number;
+  name: string;
+};
 
 export default function ShopPage() {
   const [availability, setAvailability] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 15000]);
   const [selectedTeaTypes, setSelectedTeaTypes] = useState<string[]>([]);
+  const [collections, setCollections] = useState<Collection[]>([]);
   const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
   const { toast } = useToast();
   const { addToCart } = useCart();
+
+  useEffect(() => {
+    const fetchCollections = async () => {
+      try {
+        const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
+        const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+        if (!serverUrl) {
+          console.error("Server URL is not defined in environment variables.");
+          return;
+        }
+        const response = await fetch(`${serverUrl}/collections/company?company_id=${companyId}`);
+        const data = await response.json();
+        if (response.ok) {
+          setCollections(data);
+        } else {
+          console.error("Failed to fetch collections:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching collections:", error);
+      }
+    };
+
+    fetchCollections();
+  }, []);
 
   const handleAddToCart = (e: React.MouseEvent, productId: string) => {
     e.preventDefault();
@@ -140,10 +169,10 @@ export default function ShopPage() {
                     <AccordionContent>
                        <div className="space-y-2">
                         {collections.map(collection => (
-                           <div key={collection} className="flex items-center space-x-2">
-                            <Checkbox id={collection} onCheckedChange={() => handleCollectionChange(collection)} />
-                            <label htmlFor={collection} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                              {collection}
+                           <div key={collection.id} className="flex items-center space-x-2">
+                            <Checkbox id={collection.name} onCheckedChange={() => handleCollectionChange(collection.name)} />
+                            <label htmlFor={collection.name} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                              {collection.name}
                             </label>
                           </div>
                         ))}
