@@ -80,7 +80,7 @@ export default function ProductsSection() {
                                 return (
                                     <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/4">
                                         <div className="p-1">
-                                            <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                            <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
                                                 <CardHeader className="p-0">
                                                     {productImage && (
                                                         <div className="aspect-[4/3] relative">
@@ -88,7 +88,7 @@ export default function ProductsSection() {
                                                                 src={productImage.imageUrl}
                                                                 alt={product.name}
                                                                 fill
-                                                                className="object-cover rounded-t-lg"
+                                                                className="object-cover"
                                                                 data-ai-hint={productImage.imageHint}
                                                             />
                                                         </div>
@@ -114,5 +114,3 @@ export default function ProductsSection() {
         </section>
     );
 }
-
-    
