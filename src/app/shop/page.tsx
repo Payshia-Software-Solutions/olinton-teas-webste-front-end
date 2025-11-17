@@ -17,6 +17,8 @@ import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { useCart } from '@/hooks/use-cart';
+import { useToast } from "@/hooks/use-toast"
 
 const teaTypes = ['Black Tea', 'Green Tea', 'White Tea', 'Oolong'];
 const collections = ['Special Offers', 'Classic Teas', 'Flavored Teas', 'Exceptional Teas'];
@@ -26,6 +28,19 @@ export default function ShopPage() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 15000]);
   const [selectedTeaTypes, setSelectedTeaTypes] = useState<string[]>([]);
   const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
+  const { toast } = useToast();
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (e: React.MouseEvent, productId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(productId, 1);
+    const product = products.find(p => p.id === productId);
+    toast({
+        title: "Added to cart",
+        description: `${product?.name} has been added to your cart.`,
+    });
+  }
 
   const handleAvailabilityChange = (value: string) => {
     setAvailability(prev => 
@@ -186,7 +201,7 @@ export default function ShopPage() {
                             </CardContent>
                             <CardFooter className="flex justify-between items-center px-6 pb-6">
                               <p className="text-xl font-bold text-accent">{product.price}</p>
-                              <Button className="bg-primary hover:bg-primary/90">Add to Cart</Button>
+                              <Button onClick={(e) => handleAddToCart(e, product.id)} className="bg-primary hover:bg-primary/90">Add to Cart</Button>
                             </CardFooter>
                           </Card>
                         </Link>

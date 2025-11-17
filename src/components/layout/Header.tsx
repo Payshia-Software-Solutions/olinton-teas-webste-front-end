@@ -25,6 +25,8 @@ import {
 } from "@/components/ui/accordion"
 import { cn } from '@/lib/utils';
 import React, { useState, useEffect } from 'react';
+import { useCart } from '@/hooks/use-cart';
+import CartSheet from '@/components/CartSheet';
 
 const shopTeaLinks = [
     { title: "Shop All Teas", href: "/shop" },
@@ -40,6 +42,9 @@ const shopByTeaLinks = [
 export default function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { cartItemCount } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,7 +111,7 @@ export default function Header() {
                     <NavigationMenuItem>
                         <Link href="/" legacyBehavior passHref>
                         <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), getLinkClass('/'))}>
-                            <span className={cn("pb-1", pathname === '/' && "border-b-2 border-primary font-bold")}>Home</span>
+                            <span className={cn("pb-1", pathname === '/' && "border-b-2 border-primary")}>Home</span>
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
@@ -114,14 +119,14 @@ export default function Header() {
                      <NavigationMenuItem>
                         <Link href="/about" legacyBehavior passHref>
                         <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), getLinkClass('/about'))}>
-                             <span className={cn("pb-1", pathname === '/about' && "border-b-2 border-primary font-bold")}>About</span>
+                             <span className={cn("pb-1", pathname === '/about' && "border-b-2 border-primary")}>About</span>
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className={cn(getShopLinkClass())}>
-                             <span className={cn("pb-1", pathname.startsWith('/shop') && "border-b-2 border-primary font-bold")}>Shop</span>
+                             <span className={cn("pb-1", pathname.startsWith('/shop') && "border-b-2 border-primary")}>Shop</span>
                         </NavigationMenuTrigger>
                         <NavigationMenuContent className="bg-card text-card-foreground">
                             <ul className="grid grid-cols-2 gap-6 p-6 w-[400px]">
@@ -144,7 +149,7 @@ export default function Header() {
                     <NavigationMenuItem>
                         <Link href="/tea-and-health" legacyBehavior passHref>
                         <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), getLinkClass('/tea-and-health'))}>
-                            <span className={cn("pb-1", pathname === '/tea-and-health' && "border-b-2 border-primary font-bold")}>Tea & Health</span>
+                            <span className={cn("pb-1", pathname === '/tea-and-health' && "border-b-2 border-primary")}>Tea & Health</span>
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
@@ -152,7 +157,7 @@ export default function Header() {
                     <NavigationMenuItem>
                         <Link href="/contact" legacyBehavior passHref>
                         <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), getLinkClass('/contact'))}>
-                            <span className={cn("pb-1", pathname === '/contact' && "border-b-2 border-primary font-bold")}>Contact</span>
+                            <span className={cn("pb-1", pathname === '/contact' && "border-b-2 border-primary")}>Contact</span>
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
@@ -220,15 +225,18 @@ export default function Header() {
               <span className="sr-only">Account</span>
             </Button>
             <div className="relative">
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(true)}>
                 <ShoppingCart className="h-6 w-6" />
                 <span className="sr-only">Shopping Cart</span>
               </Button>
-              <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 justify-center p-0 rounded-full bg-accent text-accent-foreground">
-                2
-              </Badge>
+              {cartItemCount > 0 &&
+                <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 justify-center p-0 rounded-full bg-accent text-accent-foreground">
+                  {cartItemCount}
+                </Badge>
+              }
             </div>
         </div>
+        <CartSheet open={isCartOpen} onOpenChange={setIsCartOpen} />
       </div>
       <div className="border-b border-border/40"></div>
     </header>
@@ -266,5 +274,3 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
-
-    

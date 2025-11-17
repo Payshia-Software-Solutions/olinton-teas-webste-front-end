@@ -16,6 +16,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
+import { useCart } from '@/hooks/use-cart';
+import { useToast } from "@/hooks/use-toast";
 
 function RelatedProducts({ currentProductType, currentProductId }: { currentProductType: string, currentProductId: string }) {
     const plugin = useRef(
@@ -82,6 +84,8 @@ export default function ProductPage() {
     const params = useParams();
     const { productId } = params;
     const [quantity, setQuantity] = useState(1);
+    const { addToCart } = useCart();
+    const { toast } = useToast();
 
     const product = products.find(p => p.id === productId);
     const productImage = PlaceHolderImages.find(p => p.id === `product-${productId}`);
@@ -114,6 +118,15 @@ export default function ProductPage() {
     const handleQuantityChange = (amount: number) => {
         setQuantity(prev => Math.max(1, prev + amount));
     }
+    
+    const handleAddToCart = () => {
+        if (!product) return;
+        addToCart(product.id, quantity);
+        toast({
+            title: "Added to cart",
+            description: `${quantity} x ${product.name} has been added to your cart.`,
+        });
+    };
 
     return (
         <div className="flex flex-col min-h-screen bg-background">
@@ -172,7 +185,7 @@ export default function ProductPage() {
                                 </div>
                             </div>
 
-                            <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-lg py-6">Add to Cart</Button>
+                            <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-lg py-6" onClick={handleAddToCart}>Add to Cart</Button>
 
                             <Tabs defaultValue="description" className="w-full">
                                 <TabsList>

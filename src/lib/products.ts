@@ -1,5 +1,14 @@
 
-export const products = [
+export type Product = {
+    id: string;
+    name: string;
+    description: string;
+    longDescription: string;
+    price: string;
+    type: string;
+}
+
+export const products: Product[] = [
     {
         id: 'earl-grey-supreme',
         name: 'Earl Grey Supreme',

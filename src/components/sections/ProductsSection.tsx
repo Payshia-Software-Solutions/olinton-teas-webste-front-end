@@ -11,12 +11,28 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import { products } from '@/lib/products';
+import { useCart } from '@/hooks/use-cart';
+import { useToast } from "@/hooks/use-toast"
 
 
 export default function ProductsSection() {
     const plugin = React.useRef(
         Autoplay({ delay: 2000, stopOnInteraction: true })
-    )
+    );
+    const { toast } = useToast();
+    const { addToCart } = useCart();
+    
+    const handleAddToCart = (e: React.MouseEvent, productId: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart(productId, 1);
+        const product = products.find(p => p.id === productId);
+        toast({
+            title: "Added to cart",
+            description: `${product?.name} has been added to your cart.`,
+        });
+    }
+
     return (
         <section id="products" className="py-20 md:py-28 bg-white overflow-hidden">
             <div className="container">
@@ -64,7 +80,7 @@ export default function ProductsSection() {
                                             </CardContent>
                                             <CardFooter className="flex justify-between items-center px-6 pb-6">
                                                 <p className="text-xl font-bold text-accent">{product.price}</p>
-                                                <Button className="bg-primary hover:bg-primary/90">Add to Cart</Button>
+                                                <Button onClick={(e) => handleAddToCart(e, product.id)} className="bg-primary hover:bg-primary/90">Add to Cart</Button>
                                             </CardFooter>
                                         </Card>
                                     </Link>
