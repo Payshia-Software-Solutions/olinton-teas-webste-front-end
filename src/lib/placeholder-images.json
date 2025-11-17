@@ -39,8 +39,32 @@
     {
       "id": "review-avatar-3",
       "description": "Portrait of another smiling person.",
-      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYzMjg4MDYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYzMjg4MDYyfDA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "woman smiling"
+    },
+    {
+      "id": "product-earl-grey-supreme",
+      "description": "A bowl of Earl Grey Supreme tea leaves with tea boxes in the background.",
+      "imageUrl": "https://images.unsplash.com/photo-1744160252920-967ab9b733ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlYXJsJTIwZ3JleXxlbnwwfHx8fDE3NjMzODE1Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "earl grey"
+    },
+    {
+      "id": "product-ceylon-green",
+      "description": "Fresh Ceylon green tea leaves in a green box.",
+      "imageUrl": "https://images.unsplash.com/photo-1687719850086-02a250fc2d15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjZXlsb24lMjBncmVlbnxlbnwwfHx8fDE3NjMzODE1Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ceylon green"
+    },
+    {
+      "id": "product-silver-tips",
+      "description": "Silver tips white tea in a golden box.",
+      "imageUrl": "https://images.unsplash.com/photo-1669221295912-9f78d2947372?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzaWx2ZXIlMjB0aXBzfGVufDB8fHx8MTc2MzM4MTU3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "silver tips"
+    },
+    {
+      "id": "product-high-grown-oolong",
+      "description": "High grown oolong tea in a red gift box.",
+      "imageUrl": "https://images.unsplash.com/photo-1627894006066-b45786537103?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvb2xvbmclMjB0ZWF8ZW58MHx8fHwxNzYzMzc1Njc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "oolong tea"
     }
   ]
 }
