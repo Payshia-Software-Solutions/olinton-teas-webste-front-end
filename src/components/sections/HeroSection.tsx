@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Leaf, ArrowDown } from 'lucide-react';
@@ -19,10 +20,10 @@ export default function HeroSection() {
           <Leaf className="h-10 w-10 text-white/90 -mr-2 transform -rotate-45" />
           <Leaf className="h-10 w-10 text-white/90 transform rotate-45" />
         </div>
-        <h1 className="font-headline text-5xl md:text-7xl font-bold leading-tight shadow-md">
+        <h1 className="font-headline text-4xl sm:text-5xl md:text-7xl font-bold leading-tight shadow-md">
           Elevating Moments,<br /> Redefining Excellence.
         </h1>
-        <p className="mt-4 text-lg md:text-xl max-w-2xl text-white/90">
+        <p className="mt-4 text-base md:text-lg max-w-2xl text-white/90">
           Experience the finest Ceylon tea, crafted with passion and tradition.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
