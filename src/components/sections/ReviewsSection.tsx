@@ -1,30 +1,24 @@
-import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Star } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const reviews = [
   {
     id: 1,
-    name: 'Alice Johnson',
-    avatarId: 'review-avatar-1',
+    name: 'Nimali Perera',
     rating: 5,
-    comment: "Absolutely divine! The Royal Black Tea has become my daily ritual. The quality is simply unmatched.",
+    comment: "Truly the taste of home. The aroma of O'linton's black tea reminds me of the beautiful tea estates in Nuwara Eliya. Superb quality!",
   },
   {
     id: 2,
-    name: 'David Smith',
-    avatarId: 'review-avatar-2',
+    name: 'Rohan Jayasuriya',
     rating: 5,
-    comment: "I'm so impressed with the freshness of the Serene Green Tea. It's like a peaceful garden in a cup. Highly recommended!",
+    comment: "As a lifelong tea drinker in Colombo, I can say this is one of the finest Ceylon teas I have ever had. The flavour is authentic and robust.",
   },
   {
     id: 3,
-    name: 'Maria Garcia',
-    avatarId: 'review-avatar-3',
+    name: 'Anusha Fernando',
     rating: 4,
-    comment: "The Golden Herbal Infusion is my go-to for evenings. So calming and flavorful. I just wish the bag was bigger!",
+    comment: "I gifted a pack of the silver tips to my family abroad, and they were amazed. It's a wonderful representation of Sri Lankan quality. Thank you!",
   },
 ];
 
@@ -48,19 +42,12 @@ export default function ReviewsSection() {
         </div>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reviews.map((review) => {
-            const avatarImage = PlaceHolderImages.find(p => p.id === review.avatarId);
             return (
               <Card key={review.id} className="p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-0 flex flex-col h-full">
-                  <div className="flex items-center gap-4 mb-4">
-                    <Avatar>
-                       {avatarImage && <AvatarImage src={avatarImage.imageUrl} alt={review.name} data-ai-hint={avatarImage.imageHint}/>}
-                      <AvatarFallback>{review.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <p className="font-semibold text-primary">{review.name}</p>
-                      <StarRating rating={review.rating} />
-                    </div>
+                  <div className="mb-4">
+                    <p className="font-semibold text-primary">{review.name}</p>
+                    <StarRating rating={review.rating} />
                   </div>
                   <blockquote className="italic text-muted-foreground flex-grow">
                     "{review.comment}"
