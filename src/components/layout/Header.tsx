@@ -68,7 +68,7 @@ export default function Header() {
               <Mail className="h-4 w-4" />
               <span>sales@olinton.lk</span>
             </a>
-            <a href="tel:+94114822000" className="hidden md:flex items-center gap-2 hover:underline">
+            <a href="tel:+94114822000" className="flex items-center gap-2 hover:underline">
               <Phone className="h-4 w-4" />
               <span>+94 11 482 2000</span>
             </a>
@@ -103,23 +103,21 @@ export default function Header() {
 
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="bg-transparent text-primary font-semibold text-lg">Shop</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <div className="bg-primary text-primary-foreground">
-                                <ul className="grid grid-cols-2 gap-6 p-6 w-[400px] list-none">
-                                    <li className="flex flex-col space-y-4">
-                                        <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop Tea</h3>
-                                        {shopTeaLinks.map((link) => (
-                                            <ListItem key={link.title} href={link.href} title={link.title} />
-                                        ))}
-                                    </li>
-                                    <li className="flex flex-col space-y-4">
-                                        <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop by Tea</h3>
-                                        {shopByTeaLinks.map((link) => (
-                                            <ListItem key={link.title} href={link.href} title={link.title} />
-                                        ))}
-                                    </li>
-                                </ul>
-                            </div>
+                        <NavigationMenuContent className="bg-primary text-primary-foreground border-none">
+                            <ul className="grid grid-cols-2 gap-6 p-6 w-[400px] list-none">
+                                <li className="flex flex-col space-y-4">
+                                    <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop Tea</h3>
+                                    {shopTeaLinks.map((link) => (
+                                        <ListItem key={link.title} href={link.href} title={link.title} />
+                                    ))}
+                                </li>
+                                <li className="flex flex-col space-y-4">
+                                    <h3 className="font-bold text-sm uppercase text-primary-foreground/70">Shop by Tea</h3>
+                                    {shopByTeaLinks.map((link) => (
+                                        <ListItem key={link.title} href={link.href} title={link.title} />
+                                    ))}
+                                </li>
+                            </ul>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
 
