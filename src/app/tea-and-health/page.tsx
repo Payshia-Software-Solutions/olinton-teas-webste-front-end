@@ -51,8 +51,8 @@ export default function TeaAndHealthPage() {
         <AnimateOnScroll>
             <section className="py-20 md:py-28">
                 <div className="container">
-                    <div className="grid md:grid-cols-12 gap-12 items-center">
-                        <div className="md:col-span-7 space-y-6 text-lg text-muted-foreground">
+                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                        <div className="space-y-6 text-lg text-muted-foreground">
                             <h2 className="font-headline text-3xl font-bold text-primary">The Ancient Beverage for Modern Wellness</h2>
                             <p>
                                 Since ancient times, people have enjoyed the medical benefits of tea. Even today, many people are turning to tea not only as a tasty and relaxing beverage but also as an aid to fighting many serious diseases. Tea contains a lot more chemicals, including organic acids, polyphenols, volatile compounds, etc. A perfectly brewed cup of tea contains the greatest concentration of antioxidants. It helps to prevent many spreading diseases by strengthening the immune system.
@@ -61,20 +61,15 @@ export default function TeaAndHealthPage() {
                                 Research conducted by highly respected universities and institutes throughout the world has tested the effect of tea consumption on many different ailments and diseases, including cancer (particularly colon, stomach, pancreatic, bladder, esophageal, and breast cancer), rheumatoid arthritis, high cholesterol levels (tea is thought to increase the good HDL cholesterol and lower the bad LDL cholesterol), obesity, osteoporosis, cardiovascular disease, stroke, infection, tooth decay, Alzheimer’s disease, the effects of smoking, and impairment of the immune system. Results have varied widely; study after study.
                             </p>
                         </div>
-                        <div className="md:col-span-5">
+                        <div className="relative h-full min-h-[400px] md:min-h-[500px] rounded-2xl overflow-hidden shadow-lg">
                             {contentImage && (
-                                <Card className="shadow-lg rounded-2xl overflow-hidden">
-                                    <CardContent className="p-0">
-                                        <Image
-                                            src={contentImage.imageUrl}
-                                            alt="Herbal ingredients for healthy tea"
-                                            width={500}
-                                            height={600}
-                                            className="object-cover"
-                                            data-ai-hint={contentImage.imageHint}
-                                        />
-                                    </CardContent>
-                                </Card>
+                                <Image
+                                    src={contentImage.imageUrl}
+                                    alt="Herbal ingredients for healthy tea"
+                                    fill
+                                    className="object-cover"
+                                    data-ai-hint={contentImage.imageHint}
+                                />
                             )}
                         </div>
                     </div>
@@ -85,24 +80,19 @@ export default function TeaAndHealthPage() {
         <AnimateOnScroll>
             <section className="py-20 md:py-28 bg-card">
                 <div className="container">
-                    <div className="grid md:grid-cols-12 gap-12 items-center">
-                         <div className="md:col-span-5">
+                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                         <div className="relative h-full min-h-[400px] md:min-h-[500px] rounded-2xl overflow-hidden shadow-lg order-last md:order-first">
                             {historyImage && (
-                                <Card className="shadow-lg rounded-2xl overflow-hidden">
-                                    <CardContent className="p-0">
-                                        <Image
-                                            src={historyImage.imageUrl}
-                                            alt="Vintage Ceylon tea plantation"
-                                            width={500}
-                                            height={600}
-                                            className="object-cover"
-                                            data-ai-hint={historyImage.imageHint}
-                                        />
-                                    </CardContent>
-                                </Card>
+                                <Image
+                                    src={historyImage.imageUrl}
+                                    alt="Vintage Ceylon tea plantation"
+                                    fill
+                                    className="object-cover"
+                                    data-ai-hint={historyImage.imageHint}
+                                />
                             )}
                         </div>
-                        <div className="md:col-span-7 space-y-6 text-lg text-muted-foreground">
+                        <div className="space-y-6 text-lg text-muted-foreground order-first md:order-last">
                             <h2 className="font-headline text-3xl font-bold text-primary">The History of Ceylon Tea</h2>
                             <p>
                                 Ceylon tea, known for its wide range of flavors and aromatic qualities which is non-comparable, it originates from Sri Lanka, a small island off the southeastern coast of India, which was once called Ceylon. Tea was first introduced to the island by the British in the early 19th century, around 1824 for commercial purposes. Before that, the island had mainly grown coffee. However, the coffee had destroyed by a leaf disease, then the planters had chosen tea (Camellia sinensis) as an alternative.
