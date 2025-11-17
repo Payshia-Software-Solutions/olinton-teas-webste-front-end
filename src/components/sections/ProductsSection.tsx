@@ -55,7 +55,7 @@ export default function ProductsSection() {
         Autoplay({ delay: 2000, stopOnInteraction: true })
     )
     return (
-        <section id="products" className="py-20 md:py-28 bg-background overflow-hidden">
+        <section id="products" className="py-20 md:py-28 bg-white overflow-hidden">
             <div className="container">
                 <div className="text-center max-w-2xl mx-auto">
                     <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">Our Finest Teas.</h2>
