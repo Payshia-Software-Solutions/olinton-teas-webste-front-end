@@ -9,13 +9,13 @@
     {
       "id": "product-black-tea",
       "description": "Close-up of dried black tea leaves.",
-      "imageUrl": "https://images.unsplash.com/photo-1491497895121-1334fc14d8c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVhJTIwbGVhdmVzfGVufDB8fHx8MTc2MzI5MDc1OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://content-provider.payshia.com/olinton/Vithanakande1001_3000x-optimized.webp",
       "imageHint": "tea leaves"
     },
     {
       "id": "product-green-tea",
       "description": "Close-up of rolled green tea leaves.",
-      "imageUrl": "https://images.unsplash.com/photo-1606377695906-236fdfcef767?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMHRlYXxlbnwwfHx8fDE3NjMzNzU2NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://content-provider.payshia.com/olinton/Green-tea-No1-optimized.webp",
       "imageHint": "green tea"
     },
     {
@@ -57,13 +57,13 @@
     {
       "id": "product-silver-tips",
       "description": "Silver tips white tea in a golden box.",
-      "imageUrl": "https://images.unsplash.com/photo-1669221295912-9f78d2947372?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzaWx2ZXIlMjB0aXBzfGVufDB8fHx8MTc2MzM4MTU3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://content-provider.payshia.com/olinton/LowRes_MoonlightWhite_291-optimized.webp",
       "imageHint": "silver tips"
     },
     {
       "id": "product-high-grown-oolong",
       "description": "High grown oolong tea in a red gift box.",
-      "imageUrl": "https://images.unsplash.com/photo-1627894006066-b45786537103?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvb2xvbmclMjB0ZWF8ZW58MHx8fHwxNzYzMzc1Njc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1627894006066-b45786537103?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvb2xvbmclMjB0ZWF8ZW58MHx8fHwxNzYzMzc1Njc0fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "oolong tea"
     }
   ]
