@@ -117,8 +117,6 @@ export default function Header() {
     );
   }
   
-  const formatUrl = (title: string) => title.toLowerCase().replace(/ /g, '-');
-
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-md">
        <div className={cn(
@@ -195,7 +193,7 @@ export default function Header() {
                                         </div>
                                     ) : (
                                       teaTypes.map((type) => (
-                                          <ListItem key={type.id} href={`/shop/${formatUrl(type.name)}`} title={type.name} />
+                                          <ListItem key={type.id} href={`/shop?teaType=${encodeURIComponent(type.name)}`} title={type.name} />
                                       ))
                                     )}
                                 </li>
@@ -209,7 +207,7 @@ export default function Header() {
                                         </div>
                                     ) : (
                                       collections.map((collection) => (
-                                          <ListItem key={collection.id} href={`/shop/collection/${formatUrl(collection.title)}`} title={collection.title} />
+                                          <ListItem key={collection.id} href={`/shop?collection=${encodeURIComponent(collection.title)}`} title={collection.title} />
                                       ))
                                     )}
                                 </li>
@@ -290,7 +288,7 @@ export default function Header() {
                             </div>
                         ) : (
                           teaTypes.map((type) => (
-                            <Link key={type.id} href={`/shop/${formatUrl(type.name)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{type.name}</Link>
+                            <Link key={type.id} href={`/shop?teaType=${encodeURIComponent(type.name)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{type.name}</Link>
                           ))
                         )}
                         <h3 className="font-bold text-sm uppercase text-muted-foreground px-2 pt-4">Shop by Collection</h3>
@@ -302,7 +300,7 @@ export default function Header() {
                             </div>
                         ) : (
                           collections.map((collection) => (
-                             <Link key={collection.id} href={`/shop/collection/${formatUrl(collection.title)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{collection.title}</Link>
+                             <Link key={collection.id} href={`/shop?collection=${encodeURIComponent(collection.title)}`} className="text-foreground/80 hover:text-primary px-2 py-1">{collection.title}</Link>
                           ))
                         )}
                       </div>

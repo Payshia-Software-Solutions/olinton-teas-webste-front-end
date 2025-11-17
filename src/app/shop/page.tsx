@@ -9,13 +9,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { type ApiProduct, type Product as ProductType } from '@/lib/products';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { useCart } from '@/hooks/use-cart';
 import { useToast } from "@/hooks/use-toast";
@@ -51,8 +51,8 @@ const ProductCardSkeleton = () => (
     </Card>
 );
 
-
-export default function ShopPage() {
+function ShopPageComponent() {
+  const searchParams = useSearchParams();
   const [products, setProducts] = useState<ApiProduct[]>([]);
   const [availability, setAvailability] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 15000]);
@@ -64,6 +64,18 @@ export default function ShopPage() {
   const { addToCart } = useCart();
   const [isLoading, setIsLoading] = useState(true);
   const [isProductsLoading, setIsProductsLoading] = useState(true);
+
+  useEffect(() => {
+    const teaTypeParam = searchParams.get('teaType');
+    const collectionParam = searchParams.get('collection');
+
+    if (teaTypeParam) {
+      setSelectedTeaTypes([teaTypeParam]);
+    }
+    if (collectionParam) {
+      setSelectedCollections([collectionParam]);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -241,7 +253,7 @@ export default function ShopPage() {
                         <div className="space-y-2">
                           {teaTypes.map(type => (
                             <div key={type.id} className="flex items-center space-x-2">
-                              <Checkbox id={type.name} onCheckedChange={() => handleTeaTypeChange(type.name)} />
+                              <Checkbox id={type.name} onCheckedChange={() => handleTeaTypeChange(type.name)} checked={selectedTeaTypes.includes(type.name)} />
                               <label htmlFor={type.name} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                                 {type.name}
                               </label>
@@ -258,7 +270,7 @@ export default function ShopPage() {
                         <div className="space-y-2">
                           {collections.map(collection => (
                             <div key={collection.id} className="flex items-center space-x-2">
-                              <Checkbox id={collection.title} onCheckedChange={() => handleCollectionChange(collection.title)} />
+                              <Checkbox id={collection.title} onCheckedChange={() => handleCollectionChange(collection.title)} checked={selectedCollections.includes(collection.title)} />
                               <label htmlFor={collection.title} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                                 {collection.title}
                               </label>
@@ -350,4 +362,12 @@ export default function ShopPage() {
       <Footer />
     </div>
   );
+}
+
+export default function ShopPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ShopPageComponent />
+    </Suspense>
+  )
 }
