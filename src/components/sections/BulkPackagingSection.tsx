@@ -15,7 +15,7 @@ export default function BulkPackagingSection() {
                 <div className="grid lg:grid-cols-2 gap-8 items-stretch">
                     
                     {/* Bulk Packaging Card */}
-                    <div className="grid md:grid-cols-2 overflow-hidden rounded-lg shadow-lg">
+                    <div className="grid md:grid-cols-2 overflow-hidden rounded-lg">
                         <div className="p-8 flex flex-col justify-center">
                             <h3 className="text-xl font-bold text-muted-foreground tracking-widest">BULK PACKAGING</h3>
                             <h2 className="text-4xl font-extrabold text-black/15 leading-tight mt-2">EXPERTLY BLENDED BULK TEA FOR EXPORT</h2>
@@ -35,7 +35,7 @@ export default function BulkPackagingSection() {
                     </div>
 
                     {/* Private Labeling Card */}
-                    <div className="grid md:grid-cols-2 overflow-hidden rounded-lg shadow-lg">
+                    <div className="grid md:grid-cols-2 overflow-hidden rounded-lg">
                          <div className="p-8 flex flex-col justify-center">
                             <h3 className="text-xl font-bold text-muted-foreground tracking-widest">PRIVATE LABELING</h3>
                             <h2 className="text-4xl font-extrabold text-black/15 leading-tight mt-2">MULTIPLE PACKAGING OPTIONS</h2>
