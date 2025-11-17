@@ -1,4 +1,6 @@
 
+'use client';
+
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
@@ -7,8 +9,18 @@ import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
+
+const teaTypes = ['All', 'Black Tea', 'Green Tea', 'White Tea', 'Oolong'];
 
 export default function ShopPage() {
+  const [activeFilter, setActiveFilter] = useState('All');
+
+  const filteredProducts = activeFilter === 'All' 
+    ? products 
+    : products.filter(p => p.type === activeFilter);
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
@@ -21,8 +33,27 @@ export default function ShopPage() {
                     Explore our curated selection of premium Ceylon teas, each with its own unique character and flavor profile. From the bold and robust to the light and delicate, find the perfect tea to elevate your moments.
                 </p>
             </div>
+            
+            <div className="flex justify-center flex-wrap gap-2 mt-12 mb-8">
+              {teaTypes.map(type => (
+                <Button 
+                  key={type}
+                  variant={activeFilter === type ? 'default' : 'outline'}
+                  onClick={() => setActiveFilter(type)}
+                  className={cn(
+                    "rounded-full transition-colors duration-300",
+                    activeFilter === type
+                      ? "bg-primary text-primary-foreground"
+                      : "text-primary border-primary/50 hover:bg-primary/10"
+                  )}
+                >
+                  {type}
+                </Button>
+              ))}
+            </div>
+
             <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {products.map((product, index) => {
+              {filteredProducts.map((product, index) => {
                 const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
                 return (
                   <AnimateOnScroll key={product.id} delay={index * 100}>
