@@ -95,7 +95,9 @@ export default function Footer() {
         </div>
         <div className="mt-16 pt-8 border-t border-primary-foreground/20 flex justify-between items-center text-xs text-primary-foreground/60">
           <p>&copy; {new Date().getFullYear()} O'linton Exports (Pvt) Limited. All rights reserved.</p>
-          <p>Powered by Payshia</p>
+          <a href="https://www.paysha.com" target="_blank" rel="noopener noreferrer" className="hover:underline">
+            Powered by Payshia Software Solutions
+          </a>
         </div>
       </div>
     </footer>
