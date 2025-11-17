@@ -26,7 +26,7 @@ function RelatedProducts({ currentProductType, currentProductId }: { currentProd
     if (related.length === 0) return null;
 
     return (
-        <section className="py-20 md:py-28 bg-secondary/20">
+        <section className="py-12 md:py-16 bg-secondary/20">
             <div className="container">
                 <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary text-center mb-12">Related Products</h2>
                 <Carousel
