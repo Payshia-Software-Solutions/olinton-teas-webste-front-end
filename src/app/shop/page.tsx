@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Header from '@/components/layout/Header';
@@ -68,9 +69,10 @@ export default function ShopPage() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
-        if (!serverUrl) {
-          console.error("Server URL is not defined in environment variables.");
+        const companyId = process.env.NEXT_PUBLIC_COMPANY_ID;
+        if (!serverUrl || !companyId) {
+          console.error("Server URL or Company ID is not defined in environment variables.");
+          setIsLoading(false);
           return;
         }
         
@@ -104,9 +106,10 @@ export default function ShopPage() {
     const fetchProducts = async () => {
         setIsProductsLoading(true);
         try {
-            const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
-            if (!serverUrl) {
-              console.error("Server URL is not defined in environment variables.");
+            const companyId = process.env.NEXT_PUBLIC_COMPANY_ID;
+            if (!serverUrl || !companyId) {
+              console.error("Server URL or Company ID is not defined in environment variables.");
+              setIsProductsLoading(false);
               return;
             }
             const res = await fetch(`${serverUrl}/products/with-variants/by-company?company_id=${companyId}`);
@@ -293,10 +296,14 @@ export default function ShopPage() {
                         [...Array(6)].map((_, i) => <ProductCardSkeleton key={i} />)
                   ) : filteredProducts.map((p, index) => {
                     const product = p.product;
-                    const imageUrl = p.product_images.length > 0 ? `${imageServerUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
+                    const frontImage = p.product_images.find(img => img.image_type === 'front img');
+                    const secondImage = p.product_images.find(img => img.image_type === '2nd image');
+                    const imageUrl = frontImage ? `${imageServerUrl}${frontImage.img_url}` : '/placeholder.jpg';
+                    const hoverImageUrl = secondImage ? `${imageServerUrl}${secondImage.img_url}` : imageUrl;
+                    
                     return (
                       <AnimateOnScroll key={product.id} delay={index * 100}>
-                        <Link href={`/shop/${product.id}`} className="block h-full">
+                        <Link href={`/shop/${product.id}`} className="block h-full group">
                           <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
                             <CardHeader className="p-0">
                                 <div className="aspect-[4/3] relative">
@@ -304,8 +311,16 @@ export default function ShopPage() {
                                     src={imageUrl}
                                     alt={product.name}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover transition-opacity duration-300 group-hover:opacity-0"
                                   />
+                                  {secondImage && (
+                                    <Image
+                                        src={hoverImageUrl}
+                                        alt={product.name}
+                                        fill
+                                        className="object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                                    />
+                                  )}
                                 </div>
                             </CardHeader>
                             <CardContent className="flex-grow p-6 text-left">

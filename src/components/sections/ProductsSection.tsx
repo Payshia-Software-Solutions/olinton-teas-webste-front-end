@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import * as React from 'react';
@@ -46,9 +47,10 @@ export default function ProductsSection() {
         const fetchProducts = async () => {
             setIsLoading(true);
             try {
-                const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
-                if (!serverUrl) {
-                    console.error("Server URL is not defined in environment variables.");
+                const companyId = process.env.NEXT_PUBLIC_COMPANY_ID;
+                if (!serverUrl || !companyId) {
+                    console.error("Server URL or Company ID is not defined in environment variables.");
+                    setIsLoading(false);
                     return;
                 }
                 const res = await fetch(`${serverUrl}/products/with-variants/by-company?company_id=${companyId}`);
@@ -107,10 +109,14 @@ export default function ProductsSection() {
                              ))
                         ) : products.map((p) => {
                             const product = p.product;
-                            const imageUrl = p.product_images.length > 0 ? `${imageServerUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
+                            const frontImage = p.product_images.find(img => img.image_type === 'front img');
+                            const secondImage = p.product_images.find(img => img.image_type === '2nd image');
+                            const imageUrl = frontImage ? `${imageServerUrl}${frontImage.img_url}` : '/placeholder.jpg';
+                            const hoverImageUrl = secondImage ? `${imageServerUrl}${secondImage.img_url}` : imageUrl;
+                            
                             return (
                                 <CarouselItem key={product.id} className="basis-2/3 sm:basis-1/2 md:basis-[calc(100%/2.5)] lg:basis-[calc(100%/3.5)] xl:basis-[calc(100%/4.5)] pl-4 pb-8">
-                                    <Link href={`/shop/${product.id}`} className="block h-full">
+                                    <Link href={`/shop/${product.id}`} className="block h-full group">
                                         <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
                                             <CardHeader className="p-0">
                                                 <div className="aspect-[4/3] relative">
@@ -118,8 +124,16 @@ export default function ProductsSection() {
                                                         src={imageUrl}
                                                         alt={product.name}
                                                         fill
-                                                        className="object-cover"
+                                                        className="object-cover transition-opacity duration-300 group-hover:opacity-0"
                                                     />
+                                                    {secondImage && (
+                                                        <Image
+                                                            src={hoverImageUrl}
+                                                            alt={product.name}
+                                                            fill
+                                                            className="object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                                                        />
+                                                    )}
                                                 </div>
                                             </CardHeader>
                                             <CardContent className="flex-grow p-6 text-left">
