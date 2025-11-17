@@ -28,6 +28,11 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '@/hooks/use-cart';
 import CartSheet from '@/components/CartSheet';
 
+type Collection = {
+  id: string;
+  title: string;
+};
+
 const shopTeaLinks = [
     { title: "Shop All Teas", href: "/shop" },
     { title: "Advent Calender", href: "/shop/advent-calender" },
@@ -44,6 +49,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { cartItemCount } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [collections, setCollections] = useState<Collection[]>([]);
 
 
   useEffect(() => {
@@ -51,6 +57,29 @@ export default function Header() {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
+    
+    const fetchCollections = async () => {
+      try {
+        const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
+        const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+        if (!serverUrl) {
+          console.error("Server URL is not defined in environment variables.");
+          return;
+        }
+        const response = await fetch(`${serverUrl}/collections/company?company_id=${companyId}`);
+        const data = await response.json();
+        if (response.ok) {
+          setCollections(data);
+        } else {
+          console.error("Failed to fetch collections:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching collections:", error);
+      }
+    };
+
+    fetchCollections();
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -129,7 +158,7 @@ export default function Header() {
                              <span className={cn("pb-1", pathname.startsWith('/shop') && "border-b-2 border-primary")}>Shop</span>
                         </NavigationMenuTrigger>
                         <NavigationMenuContent className="bg-card text-card-foreground">
-                            <ul className="grid grid-cols-2 gap-6 p-6 w-[400px]">
+                            <ul className="grid grid-cols-3 gap-6 p-6 w-[600px]">
                                 <li className="flex flex-col space-y-4">
                                     <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop Tea</h3>
                                     {shopTeaLinks.map((link) => (
@@ -140,6 +169,12 @@ export default function Header() {
                                     <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop by Tea</h3>
                                     {shopByTeaLinks.map((link) => (
                                         <ListItem key={link.title} href={link.href} title={link.title} />
+                                    ))}
+                                </li>
+                                <li className="flex flex-col space-y-4">
+                                    <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop by Collection</h3>
+                                    {collections.map((collection) => (
+                                        <ListItem key={collection.id} href={`/shop/collection/${collection.title.toLowerCase().replace(/ /g, '-')}`} title={collection.title} />
                                     ))}
                                 </li>
                             </ul>
@@ -214,6 +249,10 @@ export default function Header() {
                         {shopByTeaLinks.map((link) => (
                           <Link key={link.href} href={link.href} className="text-foreground/80 hover:text-primary px-2 py-1">{link.title}</Link>
                         ))}
+                        <h3 className="font-bold text-sm uppercase text-muted-foreground px-2 pt-4">Shop by Collection</h3>
+                        {collections.map((collection) => (
+                           <Link key={collection.id} href={`/shop/collection/${collection.title.toLowerCase().replace(/ /g, '-')}`} className="text-foreground/80 hover:text-primary px-2 py-1">{collection.title}</Link>
+                        ))}
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -285,5 +324,3 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
-
-    

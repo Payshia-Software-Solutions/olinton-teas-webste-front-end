@@ -23,8 +23,8 @@ import { useToast } from "@/hooks/use-toast"
 const teaTypes = ['Black Tea', 'Green Tea', 'White Tea', 'Oolong'];
 
 type Collection = {
-  id: number;
-  name: string;
+  id: string;
+  title: string;
 };
 
 export default function ShopPage() {
@@ -170,9 +170,9 @@ export default function ShopPage() {
                        <div className="space-y-2">
                         {collections.map(collection => (
                            <div key={collection.id} className="flex items-center space-x-2">
-                            <Checkbox id={collection.name} onCheckedChange={() => handleCollectionChange(collection.name)} />
-                            <label htmlFor={collection.name} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                              {collection.name}
+                            <Checkbox id={collection.title} onCheckedChange={() => handleCollectionChange(collection.title)} />
+                            <label htmlFor={collection.title} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                              {collection.title}
                             </label>
                           </div>
                         ))}
