@@ -2,7 +2,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
-import { Award, Trophy } from 'lucide-react';
+import { Award, Trophy, Milestone } from 'lucide-react';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import FeaturesSection from '@/components/sections/FeaturesSection';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -35,6 +35,44 @@ const awards = [
     imageUrl: 'https://content-provider.payshia.com/olinton/sabaragamuwa-best-entrrepeneur-2020.webp',
   },
 ];
+
+const timelineEvents = [
+    {
+        year: '2003',
+        title: 'Humble Beginnings',
+        description: 'Started as a small tea shop founded by Mr. Linton Premawardane, introducing the very first brand, K&K, to bring quality Ceylon tea to local communities.',
+    },
+    {
+        year: '2006',
+        title: 'Local Expansion',
+        description: 'Steadily grew into a recognized local business, earning trust for its pure taste and commitment to authenticity.',
+    },
+    {
+        year: '2019',
+        title: 'Official Registration',
+        description: 'Registered as Linton Tea (Pvt) Ltd, marking a major milestone in the company’s transformation into a professional, family-driven enterprise.',
+    },
+    {
+        year: '2020',
+        title: 'Bronze Award Winner',
+        description: 'Honored with the Bronze Award at the Sabaragamuwa Province Best Entrepreneur of the Year 2020, recognizing excellence in regional entrepreneurship.',
+    },
+    {
+        year: '2022',
+        title: 'National Recognition',
+        description: 'Achieved two prestigious awards: Bronze Award – National Industry Excellence Awards 2022 and Silver Award – Sabaragamuwa Province Best Entrepreneur of the Year 2022.',
+    },
+    {
+        year: '2023',
+        title: 'Gold Achievement',
+        description: 'Proudly received the Gold Award at the National Industry Excellence Awards 2023, celebrating dedication to quality and innovation.',
+    },
+    {
+        year: '2024',
+        title: 'Continued Excellence',
+        description: 'Recognized again with the Silver Award in the Sabaragamuwa Province Best Entrepreneur of the Year 2024, reflecting consistent progress and leadership in Sri Lanka’s tea industry.',
+    },
+]
 
 
 export default function AboutPage() {
@@ -137,6 +175,50 @@ export default function AboutPage() {
                  <p className="text-center text-lg text-muted-foreground mt-16 max-w-3xl mx-auto">
                     Today, Linton tea company stands as a symbol of resilience, prosperity and bright future for communities nationwide.
                 </p>
+                </div>
+            </section>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll>
+            <section className="py-20 md:py-28 bg-background">
+                <div className="container">
+                    <div className="text-center max-w-3xl mx-auto">
+                        <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Our Journey</h2>
+                        <p className="mt-4 text-lg text-muted-foreground">
+                           From humble beginnings to a celebrated name in Ceylon tea, follow the journey of Linton Tea.
+                        </p>
+                    </div>
+
+                    <div className="relative mt-20 max-w-5xl mx-auto">
+                        <div className="absolute left-1/2 top-0 h-full w-0.5 bg-border -translate-x-1/2"></div>
+                        {timelineEvents.map((event, index) => (
+                            <div key={index} className="relative mb-16">
+                                <div className="flex items-center">
+                                    <div className={`flex-1 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
+                                       {/* Spacer for alignment */}
+                                    </div>
+                                    <div className="absolute left-1/2 -translate-x-1/2 bg-background z-10 p-1">
+                                        <div className="h-6 w-6 rounded-full bg-primary ring-8 ring-background flex items-center justify-center">
+                                            <Milestone className="h-4 w-4 text-primary-foreground"/>
+                                        </div>
+                                    </div>
+                                     <div className={`flex-1 ${index % 2 === 1 ? 'pr-8 text-right' : 'pl-8'}`}>
+                                         {/* Spacer for alignment */}
+                                     </div>
+                                </div>
+
+                                <div className={`mt-4 flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                                    <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+                                         <AnimateOnScroll className={index % 2 === 0 ? 'text-right' : 'text-left'}>
+                                            <p className="font-headline text-3xl font-bold text-accent">{event.year}</p>
+                                            <h3 className="font-headline text-2xl font-semibold text-primary mt-2">{event.title}</h3>
+                                            <p className="mt-2 text-muted-foreground">{event.description}</p>
+                                         </AnimateOnScroll>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
         </AnimateOnScroll>
