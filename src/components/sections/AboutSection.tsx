@@ -11,7 +11,7 @@ export default function AboutSection() {
               Linton Tea began in 2003 as a single shop, founded by Mr. Linton Premawardane, and has grown into a full-scale manufacturing company. Driven by a commitment to quality and customer satisfaction, the company collects fresh teas from various high-altitude factories in Sri Lanka to create its unique, fresh blends. Now a registered company in Sri Lanka (since 2019), Linton Tea markets its products under two brands: Olinton and K&K. The company has been recognized with several prestigious awards, including the Gold award in the National Industry Excellence Awards 2023, and contributes to economic development by providing employment and supporting local customers and distributors.
             </p>
           </div>
-          <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-12">
+          <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
               <div className="relative w-48 h-24">
                   <Image 
                       src="https://www.olinton.lk/wp-content/uploads/2025/02/olinton.jpg" 
