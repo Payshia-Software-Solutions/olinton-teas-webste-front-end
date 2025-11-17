@@ -6,6 +6,7 @@ import ProductsSection from '@/components/sections/ProductsSection';
 import TeaTypesSection from '@/components/sections/TeaTypesSection';
 import ReviewsSection from '@/components/sections/ReviewsSection';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
+import FeaturesSection from '@/components/sections/FeaturesSection';
 
 export default function Home() {
   return (
@@ -20,6 +21,10 @@ export default function Home() {
           </AnimateOnScroll>
         </div>
         
+        <AnimateOnScroll>
+            <FeaturesSection />
+        </AnimateOnScroll>
+
         <AnimateOnScroll>
           <ProductsSection />
         </AnimateOnScroll>
