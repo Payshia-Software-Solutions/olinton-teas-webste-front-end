@@ -34,7 +34,7 @@ export default function Header() {
       
       <div className="container relative flex h-20 items-center justify-between">
         
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 z-10">
+        <div className="absolute left-4 top-0 z-10">
             <Link href="/" className="flex items-center justify-center bg-white p-2 rounded-b-xl shadow-lg">
                 <Image
                     src="https://content-provider.payshia.com/olinton/navbar-logo.webp"
@@ -46,20 +46,8 @@ export default function Header() {
             </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-8 text-lg w-full justify-start">
-          {navLinks.slice(0, 2).map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`transition-colors hover:text-primary ${link.label === 'Teas' ? 'text-primary font-semibold' : 'text-foreground/60'}`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        
         <nav className="hidden md:flex items-center gap-8 text-lg w-full justify-end">
-          {navLinks.slice(2).map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
