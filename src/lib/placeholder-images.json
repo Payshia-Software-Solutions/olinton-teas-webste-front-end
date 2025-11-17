@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-plantation",
+      "description": "A lush, green tea plantation under a bright sky.",
+      "imageUrl": "https://images.unsplash.com/photo-1553689405-1051840967f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVhJTIwcGxhbnRhdGlvbnxlbnwwfHx8fDE3NjMzNzk2OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tea plantation"
+    },
+    {
+      "id": "product-black-tea",
+      "description": "Close-up of dried black tea leaves.",
+      "imageUrl": "https://images.unsplash.com/photo-1491497895121-1334fc14d8c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVhJTIwbGVhdmVzfGVufDB8fHx8MTc2MzI5MDc1OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tea leaves"
+    },
+    {
+      "id": "product-green-tea",
+      "description": "Close-up of rolled green tea leaves.",
+      "imageUrl": "https://images.unsplash.com/photo-1606377695906-236fdfcef767?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMHRlYXxlbnwwfHx8fDE3NjMzNzU2NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "green tea"
+    },
+    {
+      "id": "product-herbal-tea",
+      "description": "A colorful mix of herbal tea ingredients including flowers and fruits.",
+      "imageUrl": "https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aGVyYmFsJTIwdGVhfGVufDB8fHx8MTc2MzM4MDY3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "herbal tea"
+    },
+    {
+      "id": "review-avatar-1",
+      "description": "Portrait of a smiling person.",
+      "imageUrl": "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc2MzMxODY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "review-avatar-2",
+      "description": "Portrait of a person.",
+      "imageUrl": "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjMyNTYwOTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "review-avatar-3",
+      "description": "Portrait of another smiling person.",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYzMjg4MDYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    }
+  ]
 }
