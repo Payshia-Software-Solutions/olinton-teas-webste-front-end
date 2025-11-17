@@ -166,10 +166,21 @@ export default function Header() {
         </div>
 
 
-        <div className="flex items-center gap-4 ml-auto md:hidden">
+        <div className="flex items-center gap-2 ml-auto">
+          <div className="relative md:hidden">
+              <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(true)}>
+                <ShoppingCart className="h-6 w-6" />
+                <span className="sr-only">Shopping Cart</span>
+              </Button>
+              {cartItemCount > 0 &&
+                <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 justify-center p-0 rounded-full bg-accent text-accent-foreground">
+                  {cartItemCount}
+                </Badge>
+              }
+            </div>
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="md:hidden">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle Menu</span>
               </Button>
@@ -274,3 +285,5 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
+
+    
