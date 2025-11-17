@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { products } from '@/lib/products';
@@ -14,9 +14,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Minus } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
 
 function RelatedProducts({ currentProductType, currentProductId }: { currentProductType: string, currentProductId: string }) {
-    const related = products.filter(p => p.type === currentProductType && p.id !== currentProductId).slice(0, 3);
+    const plugin = useRef(
+        Autoplay({ delay: 2000, stopOnInteraction: true })
+    )
+    const related = products.filter(p => p.type === currentProductType && p.id !== currentProductId);
 
     if (related.length === 0) return null;
 
@@ -24,37 +29,50 @@ function RelatedProducts({ currentProductType, currentProductId }: { currentProd
         <section className="py-20 md:py-28 bg-card">
             <div className="container">
                 <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary text-center mb-12">Related Products</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {related.map(product => {
-                        const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
-                        return (
-                            <Link key={product.id} href={`/shop/${product.id}`} className="block">
-                                <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
-                                    <CardHeader className="p-0">
-                                        {productImage && (
-                                            <div className="aspect-[4/3] relative">
-                                                <Image
-                                                    src={productImage.imageUrl}
-                                                    alt={product.name}
-                                                    fill
-                                                    className="object-cover"
-                                                    data-ai-hint={productImage.imageHint}
-                                                />
-                                            </div>
-                                        )}
-                                    </CardHeader>
-                                    <CardContent className="flex-grow p-6 text-left">
-                                        <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
-                                        <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
-                                    </CardContent>
-                                    <CardFooter className="px-6 pb-6">
-                                        <p className="text-xl font-bold text-accent">{product.price}</p>
-                                    </CardFooter>
-                                </Card>
-                            </Link>
-                        );
-                    })}
-                </div>
+                <Carousel
+                    plugins={[plugin.current]}
+                    className="w-full"
+                    onMouseEnter={plugin.current.stop}
+                    onMouseLeave={plugin.current.reset}
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                >
+                    <CarouselContent className="-ml-4">
+                        {related.map(product => {
+                            const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
+                            return (
+                                <CarouselItem key={product.id} className="basis-2/3 sm:basis-1/2 md:basis-[calc(100%/2.5)] lg:basis-[calc(100%/3.5)] xl:basis-[calc(100%/4.5)] pl-4 pb-8">
+                                    <Link href={`/shop/${product.id}`} className="block h-full">
+                                        <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
+                                            <CardHeader className="p-0">
+                                                {productImage && (
+                                                    <div className="aspect-[4/3] relative">
+                                                        <Image
+                                                            src={productImage.imageUrl}
+                                                            alt={product.name}
+                                                            fill
+                                                            className="object-cover"
+                                                            data-ai-hint={productImage.imageHint}
+                                                        />
+                                                    </div>
+                                                )}
+                                            </CardHeader>
+                                            <CardContent className="flex-grow p-6 text-left">
+                                                <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
+                                                <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
+                                            </CardContent>
+                                            <CardFooter className="px-6 pb-6">
+                                                <p className="text-xl font-bold text-accent">{product.price}</p>
+                                            </CardFooter>
+                                        </Card>
+                                    </Link>
+                                </CarouselItem>
+                            );
+                        })}
+                    </CarouselContent>
+                </Carousel>
             </div>
         </section>
     )
@@ -100,8 +118,8 @@ export default function ProductPage() {
     return (
         <div className="flex flex-col min-h-screen bg-background">
             <Header />
-            <main className="flex-grow py-16 md:py-24">
-                <div className="container">
+            <main className="flex-grow bg-white">
+                <div className="container py-16 md:py-24">
                     <div className="grid md:grid-cols-2 gap-12">
                         {/* Image Gallery */}
                         <div>
