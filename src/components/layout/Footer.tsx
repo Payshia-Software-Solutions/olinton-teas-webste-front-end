@@ -1,51 +1,88 @@
 import Link from 'next/link';
-import { Leaf, MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 export default function Footer() {
   return (
     <footer id="contact" className="bg-primary text-primary-foreground">
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Leaf className="h-8 w-8" />
-              <span className="font-headline text-3xl font-bold">Ceylon Delights</span>
-            </Link>
-            <p className="text-primary-foreground/80">
-              Bringing the authentic taste of Sri Lankan tea gardens to your cup.
+      <div className="container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* About Section */}
+          <div>
+            <h3 className="font-headline text-lg font-semibold mb-4 uppercase tracking-wider">About O'linton</h3>
+            <p className="text-primary-foreground/70 text-sm">
+              O'linton Exports (Pvt.) Ltd is a subsidiary of O'linton Group, which commenced operations in 1974, and is a well-established tea exporter with an excellent track record for trading in expertly blended and original garden teas for shipment in bulk form to blenders and packers worldwide.
             </p>
           </div>
+
+          {/* Quick Links */}
           <div>
-            <h3 className="font-headline text-xl font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-2 text-primary-foreground/80">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 mt-1 flex-shrink-0" />
-                <span>123 Tea Leaf Lane, Kandy, Sri Lanka</span>
+            <h3 className="font-headline text-lg font-semibold mb-4 uppercase tracking-wider">Quick Links</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Our Plantation</Link></li>
+              <li><Link href="#contact" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Contact Us</Link></li>
+              <li><Link href="#products" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Our Teas</Link></li>
+              <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Teas in Bulk Packaging</Link></li>
+              <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Request for Quote</Link></li>
+              <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Privacy Policy</Link></li>
+              <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Terms and Conditions</Link></li>
+              <li><Link href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Sitemap</Link></li>
+            </ul>
+          </div>
+
+          {/* Newsletter Sign-up */}
+          <div>
+            <h3 className="font-headline text-lg font-semibold mb-4 uppercase tracking-wider">Newsletter Sign-up</h3>
+            <p className="text-primary-foreground/70 text-sm mb-4">
+              To sign up to receive our emails, fill in the following fields and hit submit. Thanks, and welcome!
+            </p>
+            <form className="flex flex-col gap-4">
+              <div>
+                <label htmlFor="email-signup" className="text-primary-foreground/70 text-sm">Email *</label>
+                <Input
+                  id="email-signup"
+                  type="email"
+                  name="email"
+                  required
+                  className="mt-1 flex-grow bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 placeholder:text-primary-foreground/60 focus:bg-primary-foreground/20 h-10 px-3 py-2 text-sm"
+                  placeholder="Your email"
+                />
+                <p className="text-xs text-primary-foreground/60 mt-2">* = required field</p>
+              </div>
+              <Button type="submit" className="bg-accent text-accent-foreground hover:bg-accent/90 w-full sm:w-auto">
+                Submit
+              </Button>
+            </form>
+          </div>
+
+          {/* Contacts */}
+          <div>
+            <h3 className="font-headline text-lg font-semibold mb-4 uppercase tracking-wider">Contacts</h3>
+            <ul className="space-y-4 text-sm">
+              <li className="flex items-start gap-4">
+                <MapPin className="h-5 w-5 mt-1 flex-shrink-0 text-primary-foreground/70" />
+                <span className="text-primary-foreground/70">O'linton Exports (Pvt) Limited <br />111 Negombo Road,<br />Peliyagoda,<br />Sri Lanka.</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5" />
-                <span>+94 81 234 5678</span>
+              <li className="flex items-center gap-4">
+                <Phone className="h-5 w-5 text-primary-foreground/70" />
+                <span className="text-primary-foreground/70">General line: +94 11 482 2000</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5" />
-                <a href="mailto:contact@ceylondelights.com" className="hover:underline">
-                  contact@ceylondelights.com
+               <li className="flex items-center gap-4">
+                <Phone className="h-5 w-5 text-primary-foreground/70" />
+                <span className="text-primary-foreground/70">+94 11 482 2001</span>
+              </li>
+              <li className="flex items-center gap-4">
+                <Mail className="h-5 w-5 text-primary-foreground/70" />
+                <a href="mailto:tea@olintonexports.com" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  tea@olintonexports.com
                 </a>
               </li>
             </ul>
           </div>
-          <div>
-            <h3 className="font-headline text-xl font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-primary-foreground/80">
-              <li><Link href="#products" className="hover:underline">Products</Link></li>
-              <li><Link href="#reviews" className="hover:underline">Reviews</Link></li>
-              <li><a href="#" className="hover:underline">Our Story</a></li>
-              <li><a href="#" className="hover:underline">FAQs</a></li>
-            </ul>
-          </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center text-sm text-primary-foreground/60">
-          <p>&copy; {new Date().getFullYear()} Ceylon Delights. All rights reserved.</p>
+        <div className="mt-16 pt-8 border-t border-primary-foreground/20 text-center text-xs text-primary-foreground/60">
+          <p>&copy; {new Date().getFullYear()} O'linton Exports (Pvt) Limited. All rights reserved.</p>
         </div>
       </div>
     </footer>
