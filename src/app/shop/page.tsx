@@ -6,8 +6,7 @@ import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { products } from '@/lib/products';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { type ApiProduct, type Product as ProductType } from '@/lib/products';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
@@ -31,7 +30,28 @@ type TeaType = {
   name: string;
 };
 
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+
+const ProductCardSkeleton = () => (
+    <Card className="flex flex-col h-full overflow-hidden shadow-lg rounded-2xl">
+        <CardHeader className="p-0">
+            <Skeleton className="aspect-[4/3] w-full" />
+        </CardHeader>
+        <CardContent className="flex-grow p-6 text-left">
+            <Skeleton className="h-6 w-3/4 mb-2" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full mt-1" />
+        </CardContent>
+        <CardFooter className="flex justify-between items-center px-6 pb-6">
+            <Skeleton className="h-6 w-20" />
+            <Skeleton className="h-10 w-28" />
+        </CardFooter>
+    </Card>
+);
+
+
 export default function ShopPage() {
+  const [products, setProducts] = useState<ApiProduct[]>([]);
   const [availability, setAvailability] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 15000]);
   const [selectedTeaTypes, setSelectedTeaTypes] = useState<string[]>([]);
@@ -41,13 +61,13 @@ export default function ShopPage() {
   const { toast } = useToast();
   const { addToCart } = useCart();
   const [isLoading, setIsLoading] = useState(true);
+  const [isProductsLoading, setIsProductsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
         const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
-        const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
         if (!serverUrl) {
           console.error("Server URL is not defined in environment variables.");
           return;
@@ -79,14 +99,39 @@ export default function ShopPage() {
     fetchData();
   }, []);
 
-  const handleAddToCart = (e: React.MouseEvent, productId: string) => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+        setIsProductsLoading(true);
+        try {
+            const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
+            if (!serverUrl) {
+              console.error("Server URL is not defined in environment variables.");
+              return;
+            }
+            const res = await fetch(`${serverUrl}/products/with-variants/by-company?company_id=${companyId}`);
+            const data = await res.json();
+            if (data && Array.isArray(data.products)) {
+                setProducts(data.products);
+            } else {
+                console.error("Failed to fetch products:", data);
+            }
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            setIsProductsLoading(false);
+        }
+    };
+    fetchProducts();
+  }, []);
+
+
+  const handleAddToCart = (e: React.MouseEvent, product: ProductType) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(productId, 1);
-    const product = products.find(p => p.id === productId);
+    addToCart(product, 1);
     toast({
         title: "Added to cart",
-        description: `${product?.name} has been added to your cart.`,
+        description: `${product.name} has been added to your cart.`,
     });
   }
 
@@ -108,10 +153,10 @@ export default function ShopPage() {
     );
   };
 
-  const filteredProducts = products.filter(product => {
-    const price = parseFloat(product.price.replace(/[^0-9.-]+/g,""));
+  const filteredProducts = products.filter(p => {
+    const price = parseFloat(p.product.price.replace(/[^0-9.-]+/g,""));
     const meetsPrice = price >= priceRange[0] && price <= priceRange[1];
-    const meetsTeaType = selectedTeaTypes.length === 0 || selectedTeaTypes.includes(product.type);
+    const meetsTeaType = selectedTeaTypes.length === 0 || selectedTeaTypes.includes(p.product.category);
     // Add logic for collections and availability if product data supports it
     return meetsPrice && meetsTeaType;
   });
@@ -225,7 +270,7 @@ export default function ShopPage() {
               {/* Products Grid */}
               <div className="lg:col-span-3">
                  <div className="flex justify-between items-center mb-8">
-                    <h3 className="font-headline text-3xl font-bold text-primary">Special Offers ({filteredProducts.length})</h3>
+                    <h3 className="font-headline text-3xl font-bold text-primary">Special Offers ({isProductsLoading ? "..." : filteredProducts.length})</h3>
                     <div className="flex items-center gap-2">
                         <span className="text-muted-foreground">Sort by:</span>
                         <Select defaultValue="featured">
@@ -244,33 +289,32 @@ export default function ShopPage() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-                  {filteredProducts.map((product, index) => {
-                    const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
+                  {isProductsLoading ? (
+                        [...Array(6)].map((_, i) => <ProductCardSkeleton key={i} />)
+                  ) : filteredProducts.map((p, index) => {
+                    const product = p.product;
+                    const imageUrl = p.product_images.length > 0 ? `${serverUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
                     return (
                       <AnimateOnScroll key={product.id} delay={index * 100}>
                         <Link href={`/shop/${product.id}`} className="block h-full">
                           <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
                             <CardHeader className="p-0">
-                              {productImage && (
                                 <div className="aspect-[4/3] relative">
                                   <Image
-                                    src={productImage.imageUrl}
+                                    src={imageUrl}
                                     alt={product.name}
                                     fill
                                     className="object-cover"
-                                    data-ai-hint={productImage.imageHint}
                                   />
-                                  {product.id === 'earl-grey-supreme' && <Badge variant="destructive" className="absolute top-2 right-2 bg-red-500 text-white">30% OFF</Badge>}
                                 </div>
-                              )}
                             </CardHeader>
                             <CardContent className="flex-grow p-6 text-left">
                               <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
                               <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
                             </CardContent>
                             <CardFooter className="flex justify-between items-center px-6 pb-6">
-                              <p className="text-xl font-bold text-accent">{product.price}</p>
-                              <Button onClick={(e) => handleAddToCart(e, product.id)} className="bg-primary hover:bg-primary/90">Add to Cart</Button>
+                              <p className="text-xl font-bold text-accent">LKR {product.price}</p>
+                              <Button onClick={(e) => handleAddToCart(e, product)} className="bg-primary hover:bg-primary/90">Add to Cart</Button>
                             </CardFooter>
                           </Card>
                         </Link>
@@ -278,7 +322,7 @@ export default function ShopPage() {
                     );
                   })}
                 </div>
-                {filteredProducts.length === 0 && (
+                {!isProductsLoading && filteredProducts.length === 0 && (
                   <div className="text-center col-span-full py-16">
                     <p className="text-muted-foreground text-lg">No products found matching your criteria.</p>
                   </div>

@@ -1,19 +1,36 @@
 
 "use client"
 
-import *
-as React from 'react';
+import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
-import { products } from '@/lib/products';
+import { type ApiProduct, type Product } from '@/lib/products';
 import { useCart } from '@/hooks/use-cart';
 import { useToast } from "@/hooks/use-toast"
+import { Skeleton } from '../ui/skeleton';
 
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+
+const ProductCardSkeleton = () => (
+    <Card className="flex flex-col h-full overflow-hidden shadow-lg rounded-2xl">
+        <CardHeader className="p-0">
+            <Skeleton className="aspect-[4/3] w-full" />
+        </CardHeader>
+        <CardContent className="flex-grow p-6 text-left">
+            <Skeleton className="h-6 w-3/4 mb-2" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full mt-1" />
+        </CardContent>
+        <CardFooter className="flex justify-between items-center px-6 pb-6">
+            <Skeleton className="h-6 w-20" />
+            <Skeleton className="h-10 w-28" />
+        </CardFooter>
+    </Card>
+);
 
 export default function ProductsSection() {
     const plugin = React.useRef(
@@ -21,15 +38,41 @@ export default function ProductsSection() {
     );
     const { toast } = useToast();
     const { addToCart } = useCart();
+    const [products, setProducts] = React.useState<ApiProduct[]>([]);
+    const [isLoading, setIsLoading] = React.useState(true);
     
-    const handleAddToCart = (e: React.MouseEvent, productId: string) => {
+    React.useEffect(() => {
+        const fetchProducts = async () => {
+            setIsLoading(true);
+            try {
+                const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
+                if (!serverUrl) {
+                    console.error("Server URL is not defined in environment variables.");
+                    return;
+                }
+                const res = await fetch(`${serverUrl}/products/with-variants/by-company?company_id=${companyId}`);
+                const data = await res.json();
+                if (data && Array.isArray(data.products)) {
+                    setProducts(data.products);
+                } else {
+                    console.error("Failed to fetch products:", data);
+                }
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchProducts();
+    }, []);
+
+    const handleAddToCart = (e: React.MouseEvent, product: Product) => {
         e.preventDefault();
         e.stopPropagation();
-        addToCart(productId, 1);
-        const product = products.find(p => p.id === productId);
+        addToCart(product, 1);
         toast({
             title: "Added to cart",
-            description: `${product?.name} has been added to your cart.`,
+            description: `${product.name} has been added to your cart.`,
         });
     }
 
@@ -55,32 +98,36 @@ export default function ProductsSection() {
                     }}
                 >
                     <CarouselContent className="-ml-4">
-                        {products.map((product) => {
-                            const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
+                        {isLoading ? (
+                             [...Array(5)].map((_, i) => (
+                                <CarouselItem key={i} className="basis-2/3 sm:basis-1/2 md:basis-[calc(100%/2.5)] lg:basis-[calc(100%/3.5)] xl:basis-[calc(100%/4.5)] pl-4 pb-8">
+                                    <ProductCardSkeleton />
+                                </CarouselItem>
+                             ))
+                        ) : products.map((p) => {
+                            const product = p.product;
+                            const imageUrl = p.product_images.length > 0 ? `${serverUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
                             return (
                                 <CarouselItem key={product.id} className="basis-2/3 sm:basis-1/2 md:basis-[calc(100%/2.5)] lg:basis-[calc(100%/3.5)] xl:basis-[calc(100%/4.5)] pl-4 pb-8">
                                     <Link href={`/shop/${product.id}`} className="block h-full">
                                         <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
                                             <CardHeader className="p-0">
-                                                {productImage && (
-                                                    <div className="aspect-[4/3] relative">
-                                                        <Image
-                                                            src={productImage.imageUrl}
-                                                            alt={product.name}
-                                                            fill
-                                                            className="object-cover"
-                                                            data-ai-hint={productImage.imageHint}
-                                                        />
-                                                    </div>
-                                                )}
+                                                <div className="aspect-[4/3] relative">
+                                                    <Image
+                                                        src={imageUrl}
+                                                        alt={product.name}
+                                                        fill
+                                                        className="object-cover"
+                                                    />
+                                                </div>
                                             </CardHeader>
                                             <CardContent className="flex-grow p-6 text-left">
                                                 <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
                                                 <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
                                             </CardContent>
                                             <CardFooter className="flex justify-between items-center px-6 pb-6">
-                                                <p className="text-xl font-bold text-accent">{product.price}</p>
-                                                <Button onClick={(e) => handleAddToCart(e, product.id)} className="bg-primary hover:bg-primary/90">Add to Cart</Button>
+                                                <p className="text-xl font-bold text-accent">LKR {product.price}</p>
+                                                <Button onClick={(e) => handleAddToCart(e, product)} className="bg-primary hover:bg-primary/90">Add to Cart</Button>
                                             </CardFooter>
                                         </Card>
                                     </Link>

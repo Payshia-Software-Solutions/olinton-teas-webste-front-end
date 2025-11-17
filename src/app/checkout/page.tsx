@@ -17,10 +17,8 @@ import { Input } from "@/components/ui/input"
 import { useToast } from "@/hooks/use-toast"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
-import { AnimateOnScroll } from "@/components/AnimateOnScroll"
 import { useCart } from "@/hooks/use-cart"
 import Image from "next/image"
-import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -45,6 +43,8 @@ const formSchema = z.object({
   paymentMethod: z.enum(['payhere', 'cod']).default('payhere'),
   discountCode: z.string().optional(),
 })
+
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function CheckoutPage() {
   const { toast } = useToast()
@@ -174,11 +174,11 @@ export default function CheckoutPage() {
                   <h2 className="font-semibold text-lg mb-4">Order Summary</h2>
                   <div className="space-y-4">
                     {cart.map(item => {
-                        const productImage = PlaceHolderImages.find(p => p.id === `product-${item.product.id}`);
+                        const imageUrl = item.product.product_image_url ? `${serverUrl}${item.product.product_image_url}` : '/placeholder.jpg'
                         return (
                             <div key={item.product.id} className="flex items-center gap-4">
                                 <div className="relative h-16 w-16 rounded-md overflow-hidden border">
-                                    <Image src={productImage?.imageUrl || ''} alt={item.product.name} fill className="object-cover" />
+                                    <Image src={imageUrl} alt={item.product.name} fill className="object-cover" />
                                     <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full h-6 w-6 flex items-center justify-center">{item.quantity}</span>
                                 </div>
                                 <div className="flex-grow">
@@ -195,7 +195,7 @@ export default function CheckoutPage() {
                       <FormField control={form.control} name="discountCode" render={({ field }) => (
                         <FormItem className="flex-grow"><FormControl><Input placeholder="Discount code or gift card" {...field} /></FormControl></FormItem>
                       )} />
-                      <Button type="submit" variant="secondary" disabled={!form.watch('discountCode')}>Apply</Button>
+                      <Button type="button" variant="secondary" disabled={!form.watch('discountCode')}>Apply</Button>
                   </div>
                    <Separator className="my-6" />
                    <div className="space-y-2">

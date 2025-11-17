@@ -1,11 +1,10 @@
 
 'use client';
 
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef, useMemo, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
-import { products } from '@/lib/products';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { type ApiProduct } from '@/lib/products';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -18,14 +17,16 @@ import Autoplay from "embla-carousel-autoplay"
 import { useCart } from '@/hooks/use-cart';
 import { useToast } from "@/hooks/use-toast";
 import { cn } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const weights = ["250g", "500g", "1kg"];
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
-function RelatedProducts({ currentProductType, currentProductId }: { currentProductType: string, currentProductId: string }) {
+function RelatedProducts({ currentProductType, currentProductId, allProducts }: { currentProductType: string, currentProductId: string, allProducts: ApiProduct[] }) {
     const plugin = useRef(
         Autoplay({ delay: 3000, stopOnInteraction: true })
     )
-    const related = products.filter(p => p.type === currentProductType && p.id !== currentProductId);
+    const related = allProducts.filter(p => p.product.category === currentProductType && p.product.id !== currentProductId);
 
     if (related.length === 0) return null;
 
@@ -44,31 +45,29 @@ function RelatedProducts({ currentProductType, currentProductId }: { currentProd
                     }}
                 >
                     <CarouselContent className="-ml-4">
-                        {related.map(product => {
-                            const productImage = PlaceHolderImages.find(p => p.id === `product-${product.id}`);
+                        {related.map(p => {
+                            const product = p.product;
+                            const imageUrl = p.product_images.length > 0 ? `${serverUrl}${p.product_images[0].img_url}` : '/placeholder.jpg';
                             return (
                                 <CarouselItem key={product.id} className="basis-[66.66%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-4 pb-8">
                                     <Link href={`/shop/${product.id}`} className="block h-full">
                                         <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-2xl">
                                             <CardHeader className="p-0">
-                                                {productImage && (
-                                                    <div className="aspect-[4/3] relative">
-                                                        <Image
-                                                            src={productImage.imageUrl}
-                                                            alt={product.name}
-                                                            fill
-                                                            className="object-cover"
-                                                            data-ai-hint={productImage.imageHint}
-                                                        />
-                                                    </div>
-                                                )}
+                                                <div className="aspect-[4/3] relative">
+                                                    <Image
+                                                        src={imageUrl}
+                                                        alt={product.name}
+                                                        fill
+                                                        className="object-cover"
+                                                    />
+                                                </div>
                                             </CardHeader>
                                             <CardContent className="flex-grow p-6 text-left">
                                                 <CardTitle className="font-headline text-2xl truncate">{product.name}</CardTitle>
                                                 <CardDescription className="mt-2 line-clamp-2">{product.description}</CardDescription>
                                             </CardContent>
                                             <CardFooter className="px-6 pb-6">
-                                                <p className="text-xl font-bold text-accent">{product.price}</p>
+                                                <p className="text-xl font-bold text-accent">LKR {product.price}</p>
                                             </CardFooter>
                                         </Card>
                                     </Link>
@@ -87,21 +86,102 @@ function RelatedProducts({ currentProductType, currentProductId }: { currentProd
 export default function ProductPage() {
     const params = useParams();
     const { productId } = params;
+    const [product, setProduct] = useState<ApiProduct | null>(null);
+    const [allProducts, setAllProducts] = useState<ApiProduct[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [quantity, setQuantity] = useState(1);
     const [selectedWeight, setSelectedWeight] = useState('1kg');
     const { addToCart } = useCart();
     const { toast } = useToast();
 
-    const product = products.find(p => p.id === productId);
+    useEffect(() => {
+        const fetchProducts = async () => {
+            if (!productId) return;
+            setIsLoading(true);
+            try {
+                const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
+                if (!serverUrl) {
+                  console.error("Server URL is not defined in environment variables.");
+                  return;
+                }
+                const res = await fetch(`${serverUrl}/products/with-variants/by-company?company_id=${companyId}`);
+                const data = await res.json();
+                if (data && Array.isArray(data.products)) {
+                    setAllProducts(data.products);
+                    const foundProduct = data.products.find((p: ApiProduct) => p.product.id === productId);
+                    setProduct(foundProduct || null);
+                } else {
+                    console.error("Failed to fetch products:", data);
+                }
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchProducts();
+    }, [productId]);
 
-    const galleryImages = useMemo(() => [
-        PlaceHolderImages.find(p => p.id === `product-${productId}`),
-        PlaceHolderImages.find(p => p.id === 'product-green-tea'),
-        PlaceHolderImages.find(p => p.id === 'history-ceylon-tea'),
-        PlaceHolderImages.find(p => p.id === 'product-silver-tips'),
-    ].filter(Boolean), [productId]);
 
-    const [mainImage, setMainImage] = useState(galleryImages[0]?.imageUrl);
+    const galleryImages = useMemo(() => {
+        if (!product) return [];
+        return product.product_images.map(img => `${serverUrl}${img.img_url}`);
+    }, [product]);
+
+    const [mainImage, setMainImage] = useState<string | undefined>(undefined);
+
+    useEffect(() => {
+        if (galleryImages.length > 0 && !mainImage) {
+            setMainImage(galleryImages[0]);
+        }
+    }, [galleryImages, mainImage]);
+
+    if (isLoading) {
+        return (
+             <div className="flex flex-col min-h-screen bg-background">
+                <Header />
+                <main className="flex-grow bg-white">
+                    <div className="container py-16 md:py-24">
+                        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+                            <div className="flex flex-col gap-4">
+                                <Skeleton className="aspect-square w-full rounded-lg" />
+                                <div className="grid grid-cols-4 gap-4">
+                                    <Skeleton className="aspect-square w-full rounded-md" />
+                                    <Skeleton className="aspect-square w-full rounded-md" />
+                                    <Skeleton className="aspect-square w-full rounded-md" />
+                                    <Skeleton className="aspect-square w-full rounded-md" />
+                                </div>
+                            </div>
+                            <div className="space-y-6">
+                                <Skeleton className="h-12 w-3/4" />
+                                <Skeleton className="h-5 w-full" />
+                                <Skeleton className="h-5 w-5/6" />
+                                <Skeleton className="h-6 w-32" />
+                                <Skeleton className="h-8 w-48" />
+                                <div className="space-y-2">
+                                    <Skeleton className="h-5 w-16" />
+                                    <div className="flex gap-2">
+                                        <Skeleton className="h-10 w-20" />
+                                        <Skeleton className="h-10 w-20" />
+                                        <Skeleton className="h-10 w-20" />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Skeleton className="h-5 w-16" />
+                                    <Skeleton className="h-12 w-32" />
+                                </div>
+                                <div className="flex flex-col gap-3">
+                                    <Skeleton className="h-12 w-full" />
+                                    <Skeleton className="h-12 w-full" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     if (!product) {
         return (
@@ -115,20 +195,18 @@ export default function ProductPage() {
         );
     }
     
-    if(!mainImage && galleryImages.length > 0) {
-        setMainImage(galleryImages[0]!.imageUrl);
-    }
+    const p = product.product;
 
     const handleQuantityChange = (amount: number) => {
         setQuantity(prev => Math.max(1, prev + amount));
     }
     
     const handleAddToCart = () => {
-        if (!product) return;
-        addToCart(product.id, quantity);
+        if (!p) return;
+        addToCart(p, quantity);
         toast({
             title: "Added to cart",
-            description: `${quantity} x ${product.name} (${selectedWeight}) has been added to your cart.`,
+            description: `${quantity} x ${p.name} (${selectedWeight}) has been added to your cart.`,
         });
     };
 
@@ -144,7 +222,7 @@ export default function ProductPage() {
                                 {mainImage && (
                                     <Image
                                         src={mainImage}
-                                        alt={product.name}
+                                        alt={p.name}
                                         fill
                                         className="object-cover"
                                     />
@@ -156,13 +234,13 @@ export default function ProductPage() {
                                         key={index}
                                         className={cn(
                                             "aspect-square relative rounded-md overflow-hidden border-2 cursor-pointer transition-all",
-                                            mainImage === img.imageUrl ? "border-primary" : "border-transparent hover:border-primary/50"
+                                            mainImage === img ? "border-primary" : "border-transparent hover:border-primary/50"
                                         )}
-                                        onClick={() => setMainImage(img.imageUrl)}
+                                        onClick={() => setMainImage(img)}
                                     >
                                         <Image
-                                            src={img.imageUrl}
-                                            alt={`${product.name} thumbnail ${index + 1}`}
+                                            src={img}
+                                            alt={`${p.name} thumbnail ${index + 1}`}
                                             fill
                                             className="object-cover"
                                         />
@@ -173,8 +251,8 @@ export default function ProductPage() {
 
                         {/* Product Details */}
                         <div className="space-y-6">
-                            <h1 className="font-headline text-4xl md:text-5xl font-bold text-primary">{product.name} - {selectedWeight}</h1>
-                            <p className="text-lg text-muted-foreground">{product.description}</p>
+                            <h1 className="font-headline text-4xl md:text-5xl font-bold text-primary">{p.name} - {selectedWeight}</h1>
+                            <p className="text-lg text-muted-foreground">{p.description}</p>
                             
                             <div className="flex items-center gap-4">
                                 <div className="flex items-center text-accent">
@@ -184,7 +262,7 @@ export default function ProductPage() {
                                 <span className="text-muted-foreground text-sm">(4.5) 124 reviews</span>
                             </div>
 
-                            <p className="text-3xl font-bold text-gray-800">{product.price.replace('LKR', 'Rs.')}</p>
+                            <p className="text-3xl font-bold text-gray-800">LKR {p.price}</p>
                             
                             <div className="space-y-2">
                                 <label className="text-sm font-medium">Weight</label>
@@ -248,7 +326,7 @@ export default function ProductPage() {
                             </TabsList>
                             <TabsContent value="description" className="pt-6 text-muted-foreground prose max-w-none">
                                 <h3 className="text-lg font-semibold text-primary">Product Description</h3>
-                                <p>{product.longDescription}</p>
+                                <p>{p.description}</p>
                                 <p>Our master tea blenders carefully select only the finest tea leaves, ensuring each cup delivers the perfect balance of strength and smoothness. The distinctive character of this blend makes it ideal for both morning energizing and afternoon relaxation.</p>
                                 <h3 className="mt-4 text-lg font-semibold text-primary">Brewing Instructions:</h3>
                                 <p className="leading-tight">Water temperature: 95-100°C</p>
@@ -265,7 +343,7 @@ export default function ProductPage() {
                     </div>
                 </div>
             </main>
-            <RelatedProducts currentProductType={product.type} currentProductId={product.id} />
+            <RelatedProducts currentProductType={p.category} currentProductId={p.id} allProducts={allProducts} />
             <Footer />
         </div>
     );

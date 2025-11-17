@@ -1,60 +1,72 @@
 
+export type ProductImage = {
+  id: string;
+  product_id: string;
+  product_variant_id: string;
+  company_id: string;
+  image_type: string;
+  img_url: string;
+  created_at: string;
+  created_by: string;
+};
+
+export type ProductVariant = {
+  id: string;
+  sku: string;
+  product_id: string;
+  price: string;
+  cost_price: string;
+  min_price: string;
+  wholesale_price: string;
+  color: string;
+  size: string;
+  created_at: string;
+  updated_at: string;
+  color_id: string | null;
+  size_id: string | null;
+  barcode: string;
+  company_id: string;
+};
+
 export type Product = {
     id: string;
     name: string;
     description: string;
-    longDescription: string;
+    category: string;
     price: string;
-    type: string;
-}
+    slug: string;
+    product_image_url: string;
+    longDescription?: string; // Kept for compatibility with other components that might use it
+};
 
-export const products: Product[] = [
-    {
-        id: 'earl-grey-supreme',
-        name: 'Earl Grey Supreme',
-        description: 'Classic bergamot blend with cornflower petals',
-        longDescription: 'A more sophisticated Earl Grey, our supreme version uses a blend of exquisite black teas and an extra touch of citrusy bergamot oil, complemented by beautiful blue cornflower petals.',
-        price: 'LKR 8,750',
-        type: 'Black Tea',
-    },
-    {
-        id: 'ceylon-green',
-        name: 'Ceylon Green',
-        description: 'Fresh mountain green tea with delicate notes',
-        longDescription: 'Sourced from the lush highlands of Ceylon, this green tea is light and refreshing. It has a delicate, slightly grassy flavor profile with a smooth, clean finish that is both invigorating and calming.',
-        price: 'LKR 8,050',
-        type: 'Green Tea',
-    },
-    {
-        id: 'silver-tips',
-        name: 'Silver Tips',
-        description: 'Rare white tea with subtle floral aroma',
-        longDescription: 'Also known as "White Tea," Silver Tips are the unopened buds of the tea plant. This rare and exquisite tea offers a subtle, nuanced flavor with sweet, floral notes and a silky smooth texture.',
-        price: 'LKR 14,000',
-        type: 'White Tea',
-    },
-    {
-        id: 'high-grown-oolong',
-        name: 'High Grown Oolong',
-        description: 'Semi-fermented tea with complex flavor profile',
-        longDescription: 'Our high-grown Oolong is a semi-fermented tea that strikes a perfect balance between green and black teas. It boasts a complex flavor profile with notes of honey, orchids, and a hint of roasted nuts.',
-        price: 'LKR 10,500',
-        type: 'Oolong',
-    },
-    {
-        id: 'black-tea',
-        name: 'Royal Black Tea',
-        description: 'A robust and full-bodied classic, perfect for a morning boost. Notes of citrus and honey.',
-        longDescription: 'A quintessential classic, our Royal Black Tea is robust, full-bodied, and rich in flavor. It offers a malty depth with subtle notes of citrus and honey, making it the perfect companion for your morning ritual.',
-        price: 'LKR 4,550',
-        type: 'Black Tea',
-    },
-    {
-        id: 'green-tea',
-        name: 'Serene Green Tea',
-        description: 'Delicate and refreshing with a light, grassy flavor and a smooth, clean finish.',
-        longDescription: 'Experience tranquility with our Serene Green Tea. This delicate and refreshing brew features a light, grassy flavor profile and a smooth, clean finish that soothes the senses and uplifts the spirit.',
-        price: 'LKR 5,250',
-        type: 'Green Tea',
-    },
-];
+export type ApiProduct = {
+  product: Product & {
+    tamil_name: string;
+    display_name: string;
+    cost_price: string;
+    min_price: string;
+    wholesale_price: string;
+    stock_unit: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+    lead_time_days: string;
+    reorder_level_qty: string;
+    sinhala_name: string;
+    print_name: string;
+    item_type: string;
+    base_location: string;
+    recipe_type: string;
+    barcode: string;
+    available_locations: string;
+    category_id: string;
+    brand_id: string;
+    supplier: string;
+    company_id: string;
+  };
+  product_images: ProductImage[];
+  variants: {
+    variant: ProductVariant;
+    images: ProductImage[];
+  }[];
+};

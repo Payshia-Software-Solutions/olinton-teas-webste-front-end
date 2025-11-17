@@ -13,7 +13,6 @@ import {
   SheetFooter,
 } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
 
@@ -21,6 +20,8 @@ interface CartSheetProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
 }
+
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
   const { cart, updateQuantity, removeFromCart, cartTotal, cartItemCount } = useCart();
@@ -48,14 +49,12 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
             <ScrollArea className="flex-grow -mx-6">
                 <div className="px-6">
                     {cart.map((item) => {
-                    const productImage = PlaceHolderImages.find(
-                        (p) => p.id === `product-${item.product.id}`
-                    );
+                    const imageUrl = item.product.product_image_url ? `${serverUrl}${item.product.product_image_url}` : '/placeholder.jpg'
                     return (
                         <div key={item.product.id} className="flex items-center gap-4 py-4">
                         <div className="relative h-20 w-20 rounded-md overflow-hidden">
                             <Image
-                            src={productImage?.imageUrl || ''}
+                            src={imageUrl}
                             alt={item.product.name}
                             fill
                             className="object-cover"
@@ -69,7 +68,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
                             >
                             {item.product.name}
                             </Link>
-                            <p className="text-muted-foreground text-sm">{item.product.price}</p>
+                            <p className="text-muted-foreground text-sm">LKR {item.product.price}</p>
                             <div className="flex items-center gap-2 mt-2">
                             <Button
                                 variant="outline"
