@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
@@ -5,9 +6,7 @@ import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 const teaTypes = [
   { name: 'Black Tea', id: 'black-tea' },
   { name: 'Green Tea', id: 'green-tea' },
-  { name: 'Oolong Tea', id: 'high-grown-oolong' },
   { name: 'White Tea', id: 'silver-tips' },
-  { name: 'Infusion Tea', id: 'herbal-tea' },
 ];
 
 const TeaItem = ({ name, id, isTop }: { name: string, id: string, isTop: boolean }) => {
@@ -58,7 +57,7 @@ export default function TeaTypesSection() {
           </div>
         </AnimateOnScroll>
         
-        <div className="mt-12 hidden md:grid md:grid-cols-5 gap-6 items-center justify-items-center">
+        <div className="mt-12 hidden md:grid md:grid-cols-3 gap-6 items-center justify-items-center">
           <AnimateOnScroll delay={0}>
             <TeaItem name="Black Tea" id="black-tea" isTop={false} />
           </AnimateOnScroll>
@@ -66,18 +65,12 @@ export default function TeaTypesSection() {
             <TeaItem name="Green Tea" id="green-tea" isTop={true} />
           </AnimateOnScroll>
           <AnimateOnScroll delay={200}>
-            <TeaItem name="Oolong Tea" id="high-grown-oolong" isTop={false} />
-          </AnimateOnScroll>
-          <AnimateOnScroll delay={300}>
-            <TeaItem name="White Tea" id="silver-tips" isTop={true} />
-          </AnimateOnScroll>
-          <AnimateOnScroll delay={400}>
-            <TeaItem name="Infusion Tea" id="herbal-tea" isTop={false} />
+            <TeaItem name="White Tea" id="silver-tips" isTop={false} />
           </AnimateOnScroll>
         </div>
         
         {/* Mobile View */}
-        <div className="mt-12 grid grid-cols-2 gap-6 md:hidden">
+        <div className="mt-12 grid grid-cols-1 gap-8 md:hidden">
           {teaTypes.map((tea) => {
             const teaImage = PlaceHolderImages.find(p => p.id === `product-${tea.id}`);
             return (
