@@ -62,10 +62,6 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-4">
                 <MapPin className="h-5 w-5 mt-1 flex-shrink-0 text-primary-foreground/70" />
-                <span className="text-primary-foreground/70">O'linton Exports (Pvt) Limited <br />111 Negombo Road,<br />Peliyagoda,<br />Sri Lanka.</span>
-              </li>
-              <li className="flex items-start gap-4">
-                <MapPin className="h-5 w-5 mt-1 flex-shrink-0 text-primary-foreground/70" />
                 <span className="text-primary-foreground/70">Industrial Estate, Bodhimaluwa,<br />Parakaduwa, 70550,<br />Sabaragamuwa,<br />Sri Lanka.</span>
               </li>
               <li className="flex items-center gap-4">
