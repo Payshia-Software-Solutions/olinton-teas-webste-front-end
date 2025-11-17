@@ -19,8 +19,8 @@ export default function BulkPackagingSection() {
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-start">
                     
                     {/* Bulk Packaging Column */}
-                    <div className="grid md:grid-cols-2 gap-8 items-center">
-                        <div className="space-y-4 text-left">
+                    <div className="flex flex-col md:flex-row gap-8 items-center">
+                        <div className="md:w-1/2 space-y-4 text-left">
                              <h3 className="text-2xl font-bold text-muted-foreground tracking-widest">BULK PACKAGING</h3>
                             <h2 className="text-5xl font-extrabold text-black/15 leading-tight">EXPERTLY BLENDED BULK TEA FOR EXPORT</h2>
                             <p className="text-muted-foreground pt-4">
@@ -28,22 +28,24 @@ export default function BulkPackagingSection() {
                             </p>
                             <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">Read More</Button>
                         </div>
-                        <div className="relative aspect-square">
-                            {bulkImage && (
-                                <Image
-                                    src="https://content-provider.payshia.com/olinton/bulk-packaging.webp"
-                                    alt="Bulk tea packaging"
-                                    fill
-                                    className="object-cover rounded-lg"
-                                    data-ai-hint={bulkImage.imageHint}
-                                />
-                            )}
+                        <div className="md:w-1/2 w-full">
+                            <div className="relative aspect-square">
+                                {bulkImage && (
+                                    <Image
+                                        src="https://content-provider.payshia.com/olinton/bulk-packaging.webp"
+                                        alt="Bulk tea packaging"
+                                        fill
+                                        className="object-cover rounded-lg"
+                                        data-ai-hint={bulkImage.imageHint}
+                                    />
+                                )}
+                            </div>
                         </div>
                     </div>
 
                     {/* Private Labeling Column */}
-                    <div className="grid md:grid-cols-2 gap-8 items-center">
-                         <div className="space-y-4 text-left">
+                    <div className="flex flex-col md:flex-row gap-8 items-center">
+                         <div className="md:w-1/2 space-y-4 text-left">
                             <h3 className="text-2xl font-bold text-muted-foreground tracking-widest">PRIVATE LABELING</h3>
                             <h2 className="text-5xl font-extrabold text-black/15 leading-tight">MULTIPLE PACKAGING OPTIONS</h2>
                             <p className="text-muted-foreground pt-4">
@@ -51,16 +53,18 @@ export default function BulkPackagingSection() {
                             </p>
                             <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">Read More</Button>
                         </div>
-                        <div className="relative aspect-square">
-                            {privateLabelImage && (
-                                <Image
-                                    src="https://content-provider.payshia.com/olinton/private-labellng.webp"
-                                    alt="Private labeling process"
-                                    fill
-                                    className="object-cover rounded-lg"
-                                    data-ai-hint={privateLabelImage.imageHint}
-                                />
-                            )}
+                        <div className="md:w-1/2 w-full">
+                            <div className="relative aspect-square">
+                                {privateLabelImage && (
+                                    <Image
+                                        src="https://content-provider.payshia.com/olinton/private-labellng.webp"
+                                        alt="Private labeling process"
+                                        fill
+                                        className="object-cover rounded-lg"
+                                        data-ai-hint={privateLabelImage.imageHint}
+                                    />
+                                )}
+                            </div>
                         </div>
                     </div>
 
