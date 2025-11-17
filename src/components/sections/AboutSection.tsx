@@ -20,7 +20,7 @@ export default function AboutSection() {
                       className="object-contain"
                   />
               </div>
-              <div className="relative w-48 h-32">
+              <div className="relative w-48 h-24">
                   <Image 
                       src="https://www.olinton.lk/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-20-at-15.47.19-480x350.jpeg" 
                       alt="K&K Logo" 
