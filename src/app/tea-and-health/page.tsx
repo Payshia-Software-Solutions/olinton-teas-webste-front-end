@@ -20,6 +20,7 @@ const healthBenefits = [
 export default function TeaAndHealthPage() {
     const heroImage = PlaceHolderImages.find(p => p.id === 'tea-health-hero');
     const contentImage = PlaceHolderImages.find(p => p.id === 'tea-health-benefits');
+    const historyImage = PlaceHolderImages.find(p => p.id === 'history-ceylon-tea');
 
     return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -84,6 +85,43 @@ export default function TeaAndHealthPage() {
         <AnimateOnScroll>
             <section className="py-20 md:py-28 bg-card">
                 <div className="container">
+                    <div className="grid md:grid-cols-12 gap-12 items-center">
+                         <div className="md:col-span-5">
+                            {historyImage && (
+                                <Card className="shadow-lg rounded-2xl overflow-hidden">
+                                    <CardContent className="p-0">
+                                        <Image
+                                            src={historyImage.imageUrl}
+                                            alt="Vintage Ceylon tea plantation"
+                                            width={500}
+                                            height={600}
+                                            className="object-cover"
+                                            data-ai-hint={historyImage.imageHint}
+                                        />
+                                    </CardContent>
+                                </Card>
+                            )}
+                        </div>
+                        <div className="md:col-span-7 space-y-6 text-lg text-muted-foreground">
+                            <h2 className="font-headline text-3xl font-bold text-primary">The History of Ceylon Tea</h2>
+                            <p>
+                                Ceylon tea, known for its wide range of flavors and aromatic qualities which is non-comparable, it originates from Sri Lanka, a small island off the southeastern coast of India, which was once called Ceylon. Tea was first introduced to the island by the British in the early 19th century, around 1824 for commercial purposes. Before that, the island had mainly grown coffee. However, the coffee had destroyed by a leaf disease, then the planters had chosen tea (Camellia sinensis) as an alternative.
+                            </p>
+                            <p>
+                                James Taylor, a Scots planter, is credited with starting the tea industry in Ceylon. In 1867, he established the first successful tea plantation in Loolecondera estate, field No.7 (as he called it) in the central highlands of Sri Lanka. He had taught himself the method of manufacture by trial and error. The high altitude and cool climate of the region proved perfect for tea cultivation, and soon Ceylon tea was popular among lot of tea lovers all over the world.
+                            </p>
+                            <p>
+                                By the late 1800s, the industry had grown significantly, with the investments of British and local entrepreneurs. The development of railways and other methods of transportations allowed to handover fresh tea leaves to the world, further boosting the industry. By the 20th century, Ceylon tea played a majestic role in the world. Today, Ceylon tea is still produced in Sri Lanka and is enjoyed globally. The country remains one of the top producers of tea, The legacy of Ceylon tea is not just in its taste but also in its role in shaping Sri Lanka’s economy and history.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </AnimateOnScroll>
+        
+        <AnimateOnScroll>
+            <section className="py-20 md:py-28 bg-background">
+                <div className="container">
                     <div className="text-center max-w-3xl mx-auto">
                         <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Key Health Benefits</h2>
                         <p className="mt-4 text-lg text-muted-foreground">
@@ -94,7 +132,7 @@ export default function TeaAndHealthPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             {healthBenefits.map((benefit, index) => (
                                 <AnimateOnScroll key={index} delay={index * 100}>
-                                    <div className="flex items-center gap-4 p-4 bg-background rounded-lg shadow-sm">
+                                    <div className="flex items-center gap-4 p-4 bg-card rounded-lg shadow-sm">
                                         <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
                                         <span className="text-muted-foreground">{benefit}</span>
                                     </div>
