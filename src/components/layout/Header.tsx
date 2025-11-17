@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Search, User, ShoppingCart, Menu, Mail, Phone, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -30,26 +31,17 @@ const shopByTeaLinks = [
     { title: "Herbal Tea", href: "/shop/herbal-tea" },
 ]
 
-const teaFormatLinks = [
-    { title: "Loose Leaf", href: "/shop/loose-leaf" },
-    { title: "Tea Bags", href: "/shop/tea-bags" },
-    { title: "Luxury Leaf Tea Bags", href: "/shop/luxury-leaf-tea-bags" },
-    { title: "Canisters", href: "/shop/canisters" },
-]
-
-const teaEditsLinks = [
-    { title: "Special Offers", href: "/shop/special-offers" },
-    { title: "Classic Teas", href: "/shop/classic-teas" },
-    { title: "Flavored Teas", href: "/shop/flavored-teas" },
-    { title: "Exceptional Teas", href: "/shop/exceptional-teas" },
-    { title: "Exclusive Teas", href: "/shop/exclusive-teas" },
-    { title: "Factory Series", href: "/shop/factory-series" },
-    { title: "Artisanal Teas", href: "/shop/artisanal-teas" },
-    { title: "Organic Teas", href: "/shop/organic-teas" },
-    { title: "Gift", href: "/shop/gift" },
-]
-
 export default function Header() {
+  const pathname = usePathname();
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/shop', label: 'Shop', isMenu: true },
+    { href: '/tea-and-health', label: 'Tea & Health' },
+    { href: '/contact', label: 'Contact' },
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm">
       <div className="bg-primary text-primary-foreground">
@@ -87,15 +79,23 @@ export default function Header() {
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <Link href="/" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-foreground/60 hover:text-primary text-lg")}>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-lg", pathname === '/' ? 'text-primary font-semibold underline underline-offset-4' : 'text-foreground/60 hover:text-primary')}>
                             Home
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
 
+                     <NavigationMenuItem>
+                        <Link href="/about" legacyBehavior passHref>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-lg", pathname === '/about' ? 'text-primary font-semibold underline underline-offset-4' : 'text-foreground/60 hover:text-primary')}>
+                            About
+                        </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger className="bg-transparent text-primary font-semibold text-lg">Shop</NavigationMenuTrigger>
-                        <NavigationMenuContent className="bg-card text-card-foreground border-none">
+                        <NavigationMenuTrigger className={cn("bg-transparent text-lg", pathname.startsWith('/shop') ? 'text-primary font-semibold' : 'text-foreground/60 hover:text-primary')}>Shop</NavigationMenuTrigger>
+                        <NavigationMenuContent className="bg-card text-card-foreground">
                             <ul className="grid grid-cols-2 gap-6 p-6 w-[400px]">
                                 <li className="flex flex-col space-y-4">
                                     <h3 className="font-bold text-sm uppercase text-muted-foreground">Shop Tea</h3>
@@ -115,22 +115,15 @@ export default function Header() {
                     
                     <NavigationMenuItem>
                         <Link href="/tea-and-health" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-foreground/60 hover:text-primary text-lg")}>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-lg", pathname === '/tea-and-health' ? 'text-primary font-semibold underline underline-offset-4' : 'text-foreground/60 hover:text-primary')}>
                             Tea & Health
                         </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
 
                     <NavigationMenuItem>
-                        <Link href="/about" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-foreground/60 hover:text-primary text-lg")}>
-                            About
-                        </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
                         <Link href="/contact" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-foreground/60 hover:text-primary text-lg")}>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-lg", pathname === '/contact' ? 'text-primary font-semibold underline underline-offset-4' : 'text-foreground/60 hover:text-primary')}>
                             Contact
                         </NavigationMenuLink>
                         </Link>
@@ -159,11 +152,11 @@ export default function Header() {
                   />
               </Link>
               <div className="flex flex-col gap-4">
-                <Link href="/" className="text-lg text-foreground/80 transition-colors hover:text-primary">Home</Link>
-                <Link href="/shop" className="text-lg text-primary font-semibold transition-colors hover:text-primary">Shop</Link>
-                <Link href="/tea-and-health" className="text-lg text-foreground/80 transition-colors hover:text-primary">Tea & Health</Link>
-                <Link href="/about" className="text-lg text-foreground/80 transition-colors hover:text-primary">About</Link>
-                <Link href="/contact" className="text-lg text-foreground/80 transition-colors hover:text-primary">Contact</Link>
+                <Link href="/" className={cn("text-lg", pathname === '/' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary')}>Home</Link>
+                <Link href="/about" className={cn("text-lg", pathname === '/about' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary')}>About</Link>
+                <Link href="/shop" className={cn("text-lg", pathname.startsWith('/shop') ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary')}>Shop</Link>
+                <Link href="/tea-and-health" className={cn("text-lg", pathname === '/tea-and-health' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary')}>Tea & Health</Link>
+                <Link href="/contact" className={cn("text-lg", pathname === '/contact' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary')}>Contact</Link>
               </div>
             </SheetContent>
           </Sheet>
@@ -211,7 +204,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none text-foreground flex items-center gap-2">
-            <span className="transition-opacity">
+            <span className="transition-opacity opacity-100">
                 <ChevronDown className="h-4 w-4 -rotate-90" />
             </span>
             <span>{title}</span>
@@ -225,3 +218,5 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
+
+    
