@@ -7,6 +7,7 @@ import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Metadata } from 'next';
+import FeaturesSection from '@/components/sections/FeaturesSection';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -249,8 +250,14 @@ export default function AboutPage() {
             </section>
         </AnimateOnScroll>
 
+        <AnimateOnScroll>
+            <FeaturesSection />
+        </AnimateOnScroll>
+
       </main>
       <Footer />
     </div>
   );
 }
+
+    
