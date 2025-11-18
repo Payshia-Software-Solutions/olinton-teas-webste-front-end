@@ -11,7 +11,7 @@ import FeaturesSection from '@/components/sections/FeaturesSection';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Home | Olinton - Elegance in every sip',
 };
 
 
