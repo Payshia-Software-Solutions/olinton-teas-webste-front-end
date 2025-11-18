@@ -7,6 +7,7 @@ import { CartProvider } from '@/hooks/use-cart';
 import PageProgressBar from '@/components/PageProgressBar';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import MetaPixel from '@/components/MetaPixel';
+import Snowfall from '@/components/Snowfall';
 
 export const metadata: Metadata = {
   title: {
@@ -49,6 +50,7 @@ export default function RootLayout({
         <MetaPixel />
       </head>
       <body className="font-body antialiased">
+        <Snowfall />
         <PageProgressBar />
         <CartProvider>
           {children}
