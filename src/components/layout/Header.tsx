@@ -121,7 +121,7 @@ export default function Header() {
   }
   
   return (
-    <header className="sticky top-0 z-50 w-full bg-background shadow-md">
+    <header className="sticky top-0 z-50 w-full bg-card shadow-md">
        <div className={cn(
         "bg-primary text-primary-foreground transition-all duration-300 ease-in-out",
         isScrolled ? 'h-0 overflow-hidden' : 'h-10'
@@ -144,7 +144,7 @@ export default function Header() {
       <div className="container relative flex h-16 md:h-20 items-center justify-between">
         
         <div className="absolute left-4 top-0 z-10">
-            <Link href="/" className="flex items-center justify-center bg-background p-2 rounded-b-xl shadow-lg">
+            <Link href="/" className="flex items-center justify-center bg-card p-2 rounded-b-xl shadow-lg">
                 <Image
                     src="https://content-provider.payshia.com/olinton/new-olinton-logo.webp"
                     alt="O'linton Logo"
@@ -401,3 +401,4 @@ ListItem.displayName = "ListItem"
     
 
     
+
