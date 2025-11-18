@@ -119,7 +119,7 @@ export default function ProductDetailsClient({ product, allProducts }: { product
     return (
         <div className="flex flex-col min-h-screen bg-background">
             <Header />
-            <main className="flex-grow bg-white">
+            <main className="flex-grow bg-white dark:bg-background">
                 <div className="container py-16 md:py-24">
                     <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
                         {/* Image Gallery */}
@@ -168,7 +168,7 @@ export default function ProductDetailsClient({ product, allProducts }: { product
                                 <span className="text-muted-foreground text-sm">(4.5) 124 reviews</span>
                             </div>
 
-                            <p className="text-3xl font-bold text-gray-800">LKR {p.price}</p>
+                            <p className="text-3xl font-bold text-gray-800 dark:text-gray-200">LKR {p.price}</p>
                             
                             <div className="space-y-2">
                                 <label className="text-sm font-medium">Weight</label>
@@ -230,7 +230,7 @@ export default function ProductDetailsClient({ product, allProducts }: { product
                                 <TabsTrigger value="additional">Additional Information</TabsTrigger>
                                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
                             </TabsList>
-                            <TabsContent value="description" className="pt-6 text-muted-foreground prose max-w-none">
+                            <TabsContent value="description" className="pt-6 text-muted-foreground prose dark:prose-invert max-w-none">
                                 <h3 className="text-lg font-semibold text-primary">Product Description</h3>
                                 <p>{p.description}</p>
                                 <p>Our master tea blenders carefully select only the finest tea leaves, ensuring each cup delivers the perfect balance of strength and smoothness. The distinctive character of this blend makes it ideal for both morning energizing and afternoon relaxation.</p>

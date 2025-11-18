@@ -21,6 +21,28 @@ export default {
         headline: ['Roboto', 'sans-serif'],
         code: ['monospace'],
       },
+      typography: (theme: (arg0: string) => any) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-invert-body': theme('colors.muted.foreground'),
+            '--tw-prose-invert-headings': theme('colors.primary.DEFAULT'),
+            '--tw-prose-invert-lead': theme('colors.muted.foreground'),
+            '--tw-prose-invert-links': theme('colors.primary.DEFAULT'),
+            '--tw-prose-invert-bold': theme('colors.foreground'),
+            '--tw-prose-invert-counters': theme('colors.muted.foreground'),
+            '--tw-prose-invert-bullets': theme('colors.border'),
+            '--tw-prose-invert-hr': theme('colors.border'),
+            '--tw-prose-invert-quotes': theme('colors.primary.DEFAULT'),
+            '--tw-prose-invert-quote-borders': theme('colors.border'),
+            '--tw-prose-invert-captions': theme('colors.muted.foreground'),
+            '--tw-prose-invert-code': theme('colors.foreground'),
+            '--tw-prose-invert-pre-code': theme('colors.card.foreground'),
+            '--tw-prose-invert-pre-bg': theme('colors.card.DEFAULT'),
+            '--tw-prose-invert-th-borders': theme('colors.border'),
+            '--tw-prose-invert-td-borders': theme('colors.border'),
+          },
+        },
+      }),
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -102,5 +124,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 } satisfies Config;
