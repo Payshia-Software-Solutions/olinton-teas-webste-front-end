@@ -20,11 +20,7 @@ import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import { AnimateOnScroll } from "@/components/AnimateOnScroll"
 import { MapPin, Phone, Mail } from "lucide-react"
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Contact',
-};
+import { useEffect } from "react";
 
 
 const formSchema = z.object({
@@ -41,6 +37,10 @@ const formSchema = z.object({
 
 export default function ContactPage() {
   const { toast } = useToast()
+
+  useEffect(() => {
+    document.title = 'Contact | Olinton - Elegance in every sip';
+  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
