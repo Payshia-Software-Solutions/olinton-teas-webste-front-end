@@ -18,6 +18,47 @@ import { useCart } from '@/hooks/use-cart';
 import { useToast } from "@/hooks/use-toast";
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
+import type { Metadata } from 'next';
+
+type Props = {
+  params: { productId: string };
+};
+
+async function getProduct(productId: string): Promise<ApiProduct | null> {
+    if (!productId) return null;
+    try {
+        const companyId = process.env.NEXT_PUBLIC_COMPANY_ID || 15;
+        const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+        if (!serverUrl) {
+            console.error("Server URL is not defined in environment variables.");
+            return null;
+        }
+        const res = await fetch(`${serverUrl}/products/with-variants/by-company?company_id=${companyId}`);
+        const data = await res.json();
+        if (data && Array.isArray(data.products)) {
+            const foundProduct = data.products.find((p: ApiProduct) => p.product.id === productId);
+            return foundProduct || null;
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching product:", error);
+        return null;
+    }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const product = await getProduct(params.productId);
+  
+  if (!product) {
+    return {
+      title: 'Product not found',
+    }
+  }
+ 
+  return {
+    title: product.product.name,
+  }
+}
 
 const weights = ["250g", "500g", "1kg"];
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;

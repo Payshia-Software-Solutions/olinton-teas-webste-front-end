@@ -9,7 +9,10 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 import MetaPixel from '@/components/MetaPixel';
 
 export const metadata: Metadata = {
-  title: 'OLINTON Elegance in every sip',
+  title: {
+    default: 'Olinton | Elegance in every sip',
+    template: '%s | Olinton - Elegance in every sip',
+  },
   description: "Experience the finest Ceylon tea, crafted with passion and tradition. Explore our collection of premium black, green, and white teas, sourced directly from the lush plantations of Sri Lanka.",
   openGraph: {
     title: 'OLINTON Elegance in every sip',

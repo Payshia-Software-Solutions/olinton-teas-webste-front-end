@@ -6,6 +6,12 @@ import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Tea & Health',
+};
+
 
 const healthBenefits = [
     "Strengthens immune system",

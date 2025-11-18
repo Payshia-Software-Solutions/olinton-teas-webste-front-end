@@ -8,6 +8,12 @@ import ReviewsSection from '@/components/sections/ReviewsSection';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import BulkPackagingSection from '@/components/sections/BulkPackagingSection';
 import FeaturesSection from '@/components/sections/FeaturesSection';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home',
+};
+
 
 export default function Home() {
   return (

@@ -6,6 +6,11 @@ import { Milestone, Quote } from 'lucide-react';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About',
+};
 
 const awards = [
   {

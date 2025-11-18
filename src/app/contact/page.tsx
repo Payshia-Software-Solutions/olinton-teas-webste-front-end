@@ -20,6 +20,12 @@ import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import { AnimateOnScroll } from "@/components/AnimateOnScroll"
 import { MapPin, Phone, Mail } from "lucide-react"
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact',
+};
+
 
 const formSchema = z.object({
   name: z.string().min(2, {
