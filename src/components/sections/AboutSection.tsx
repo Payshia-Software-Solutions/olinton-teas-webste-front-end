@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -13,7 +14,7 @@ export default function AboutSection() {
             <div className="mt-8 mb-8 flex flex-col sm:flex-row justify-center items-center gap-4">
                 <div className="relative w-48 h-48">
                     <Image 
-                        src="https://content-provider.payshia.com/olinton/olinton-removebg-preview.png" 
+                        src="https://content-provider.payshia.com/olinton/new-olinton-logo.webp" 
                         alt="Olinton Logo" 
                         fill
                         className="object-contain"
@@ -45,3 +46,5 @@ export default function AboutSection() {
     </section>
   );
 }
+
+    
