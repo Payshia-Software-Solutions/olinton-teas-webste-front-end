@@ -8,11 +8,12 @@ import PageProgressBar from '@/components/PageProgressBar';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import MetaPixel from '@/components/MetaPixel';
 import Snowfall from '@/components/Snowfall';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Home | Olinton - Elegance in every sip',
     template: '%s | Olinton - Elegance in every sip',
+    default: 'Home | Olinton - Elegance in every sip',
   },
   description: "Experience the finest Ceylon tea, crafted with passion and tradition. Explore our collection of premium black, green, and white teas, sourced directly from the lush plantations of Sri Lanka.",
   openGraph: {
@@ -41,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -50,13 +51,20 @@ export default function RootLayout({
         <MetaPixel />
       </head>
       <body className="font-body antialiased">
-        <Snowfall />
-        <PageProgressBar />
-        <CartProvider>
-          {children}
-        </CartProvider>
-        <Toaster />
-        <WhatsAppButton />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Snowfall />
+          <PageProgressBar />
+          <CartProvider>
+            {children}
+          </CartProvider>
+          <Toaster />
+          <WhatsAppButton />
+        </ThemeProvider>
       </body>
     </html>
   );

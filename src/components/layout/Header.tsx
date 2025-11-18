@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Search, User, ShoppingCart, Menu, Mail, Phone, ChevronDown } from 'lucide-react';
+import { Search, User, ShoppingCart, Menu, Mail, Phone, ChevronDown, Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
@@ -28,6 +28,8 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '@/hooks/use-cart';
 import CartSheet from '@/components/CartSheet';
 import { Skeleton } from '../ui/skeleton';
+import { useTheme } from 'next-themes';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 
 type Collection = {
   id: string;
@@ -51,6 +53,7 @@ export default function Header() {
   const [collections, setCollections] = useState<Collection[]>([]);
   const [teaTypes, setTeaTypes] = useState<TeaType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { setTheme } = useTheme();
 
 
   useEffect(() => {
@@ -118,7 +121,7 @@ export default function Header() {
   }
   
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-md">
+    <header className="sticky top-0 z-50 w-full bg-background shadow-md">
        <div className={cn(
         "bg-primary text-primary-foreground transition-all duration-300 ease-in-out",
         isScrolled ? 'h-0 overflow-hidden' : 'h-10'
@@ -141,7 +144,7 @@ export default function Header() {
       <div className="container relative flex h-16 md:h-20 items-center justify-between">
         
         <div className="absolute left-4 top-0 z-10">
-            <Link href="/" className="flex items-center justify-center bg-white p-2 rounded-b-xl shadow-lg">
+            <Link href="/" className="flex items-center justify-center bg-background p-2 rounded-b-xl shadow-lg">
                 <Image
                     src="https://content-provider.payshia.com/olinton/new-olinton-logo.webp"
                     alt="O'linton Logo"
@@ -324,6 +327,26 @@ export default function Header() {
               <User className="h-6 w-6" />
               <span className="sr-only">Account</span>
             </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <div className="relative">
               <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(true)}>
                 <ShoppingCart className="h-6 w-6" />
