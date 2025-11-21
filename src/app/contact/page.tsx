@@ -136,24 +136,21 @@ export default function ContactPage() {
                             <Phone className="h-8 w-8 mt-1 flex-shrink-0 text-primary" />
                             <div>
                                 <h3 className="font-semibold text-lg">Phone</h3>
-                                <p className="text-muted-foreground">General line: +94 11 482 2000</p>
-                                <p className="text-muted-foreground">+94 11 482 2001</p>
+                                <p className="text-muted-foreground">+94 77 357 4540</p>
+                                <p className="text-muted-foreground">+94 70 246 1877</p>
+                                <p className="text-muted-foreground">+94 77 504 1464</p>
                             </div>
                         </div>
                          <div className="flex items-start gap-4">
                             <Mail className="h-8 w-8 mt-1 flex-shrink-0 text-primary" />
                             <div>
                                 <h3 className="font-semibold text-lg">Email</h3>
-                                 <a href="mailto:sales@olinton.lk" className="text-muted-foreground hover:text-primary transition-colors">
-                                    sales@olinton.lk
-                                </a>
-                                <br />
-                                 <a href="mailto:info@olinton.lk" className="text-muted-foreground hover:text-primary transition-colors">
-                                    info@olinton.lk
-                                </a>
-                                <br />
                                  <a href="mailto:linttea@yahoo.com" className="text-muted-foreground hover:text-primary transition-colors">
                                   linttea@yahoo.com
+                                </a>
+                                <br />
+                                 <a href="mailto:linttea9@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                                  linttea9@gmail.com
                                 </a>
                             </div>
                         </div>

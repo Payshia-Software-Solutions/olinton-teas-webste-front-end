@@ -67,28 +67,26 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-4">
                 <Phone className="h-5 w-5 text-muted-foreground" />
-                <span className="text-muted-foreground">General line: +94 11 482 2000</span>
+                <span className="text-muted-foreground">+94 77 357 4540</span>
               </li>
                <li className="flex items-center gap-4">
                 <Phone className="h-5 w-5 text-muted-foreground" />
-                <span className="text-muted-foreground">+94 11 482 2001</span>
+                <span className="text-muted-foreground">+94 70 246 1877</span>
               </li>
-              <li className="flex items-center gap-4">
-                <Mail className="h-5 w-5 text-muted-foreground" />
-                <a href="mailto:sales@olinton.lk" className="text-muted-foreground hover:text-primary transition-colors">
-                  sales@olinton.lk
-                </a>
-              </li>
-              <li className="flex items-center gap-4">
-                <Mail className="h-5 w-5 text-muted-foreground" />
-                <a href="mailto:info@olinton.lk" className="text-muted-foreground hover:text-primary transition-colors">
-                  info@olinton.lk
-                </a>
+               <li className="flex items-center gap-4">
+                <Phone className="h-5 w-5 text-muted-foreground" />
+                <span className="text-muted-foreground">+94 77 504 1464</span>
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-muted-foreground" />
                 <a href="mailto:linttea@yahoo.com" className="text-muted-foreground hover:text-primary transition-colors">
                   linttea@yahoo.com
+                </a>
+              </li>
+              <li className="flex items-center gap-4">
+                <Mail className="h-5 w-5 text-muted-foreground" />
+                <a href="mailto:linttea9@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  linttea9@gmail.com
                 </a>
               </li>
             </ul>
