@@ -13,7 +13,7 @@ export default function Footer() {
           <div>
             <h3 className="font-headline text-lg font-semibold mb-4 uppercase tracking-wider">About O'linton</h3>
             <p className="text-muted-foreground text-sm">
-              O'linton Exports (Pvt.) Ltd is a subsidiary of O'linton Group, which commenced operations in 1974, and is a well-established tea exporter with an excellent track record for trading in expertly blended and original garden teas for shipment in bulk form to blenders and packers worldwide.
+              Linton Tea (Pvt) Ltd, established in 2003, is a celebrated tea company from Sri Lanka. We are proud to present our finest tea brands, O'linton and K&K, offering expertly blended and original garden teas to the world.
             </p>
           </div>
 
@@ -93,7 +93,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-16 pt-8 border-t border-border/20 flex justify-between items-center text-xs text-muted-foreground/80">
-          <p>&copy; {new Date().getFullYear()} O'linton Exports (Pvt) Limited. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Linton Tea (Pvt) Limited. All rights reserved.</p>
           <a href="https://www.paysha.com" target="_blank" rel="noopener noreferrer" className="hover:underline">
             Powered by Payshia Software Solutions
           </a>
@@ -102,3 +102,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+    

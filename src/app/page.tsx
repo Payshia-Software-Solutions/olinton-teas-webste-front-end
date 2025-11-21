@@ -11,7 +11,7 @@ import FeaturesSection from '@/components/sections/FeaturesSection';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home | Olinton - Elegance in every sip',
+  title: "Home | O'linton - Elegance in every sip",
 };
 
 
@@ -46,3 +46,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

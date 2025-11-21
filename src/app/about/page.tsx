@@ -115,13 +115,13 @@ export default function AboutPage() {
                     <div className="grid md:grid-cols-12 gap-12 items-center">
                         <div className="md:col-span-7 space-y-6 text-lg text-muted-foreground">
                             <p>
-                                Linton Tea began its journey amid many challenges in 2003 with just one shop. Despite obstacles, under the guidance of founder Mr. Linton Premawardane, the company’s dedication to quality and customer satisfaction drove its growth. Mr. Linton Premawardane is a physical science bachelor holder from the University of Sri Jayawardanapura, Sri Lanka, while his wife is a Divisional Secretary of Sri Lanka; his two sons are currently studying for their bachelor degrees in medicine and surgery. The passion for this field had motivated him to enter the world of elixirs.
+                                Linton Tea (Pvt) Ltd began its journey amid many challenges in 2003 with just one shop. Despite obstacles, under the guidance of founder Mr. Linton Premawardane, the company’s dedication to quality and customer satisfaction drove its growth. Mr. Linton Premawardane is a physical science bachelor holder from the University of Sri Jayawardanapura, Sri Lanka, while his wife is a Divisional Secretary of Sri Lanka; his two sons are currently studying for their bachelor degrees in medicine and surgery. The passion for this field had motivated him to enter the world of elixirs.
                             </p>
                             <p>
                                 To make a non-comparable blend, Linton tea factory collects fresh teas from a wide range of factories in this precious island, some of them are from 4000 feet above the sea level. That is the secret lies in the uniqueness and the freshness in a sip of Linton tea. Under the guidance of professional and well experienced tea tasters Linton tea remains the same indulgence of taste with better improvements.
                             </p>
                             <p>
-                                In 2019, Linton Tea factory has registered as a systematic company in Democratic Socialist Republic of Sri Lanka. Now, Linton tea is in the market in two brands: Olinton and K&K. Expanding from a small shop to a full-scale manufacturing operation, providing vital employment opportunities through these twenty years. By supporting local customers and distributors focusing on sustainable practices, the company not only thrived but also contributed to the economic development of the country.
+                                In 2019, Linton Tea (Pvt) Ltd has registered as a systematic company in Democratic Socialist Republic of Sri Lanka. Now, Linton tea is in the market in two brands: O'linton and K&K. Expanding from a small shop to a full-scale manufacturing operation, providing vital employment opportunities through these twenty years. By supporting local customers and distributors focusing on sustainable practices, the company not only thrived but also contributed to the economic development of the country.
                             </p>
                         </div>
                         <div className="md:col-span-5">
@@ -151,13 +151,13 @@ export default function AboutPage() {
                     <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Founder's Message</h2>
                     <div className="mt-8 text-lg text-muted-foreground space-y-6">
                         <p>
-                            From the very beginning, my dream has been to make Olinton a world-renowned brand — one that proudly represents the true taste and soul of Ceylon Tea. In fulfilling the global need for a healthy beverage, we at Linton Tea (Pvt) Ltd are committed to offering only the premium and tastiest teas that bring both wellness and delight to every cup.
+                            From the very beginning, my dream has been to make O'linton a world-renowned brand — one that proudly represents the true taste and soul of Ceylon Tea. In fulfilling the global need for a healthy beverage, we at Linton Tea (Pvt) Ltd are committed to offering only the premium and tastiest teas that bring both wellness and delight to every cup.
                         </p>
                         <p>
                             Beyond tea, our journey is about people and purpose. We continuously support the families who depend on the tea industry, both directly and indirectly, and we stand firm in our dedication to protecting nature through green concepts and sustainable practices.
                         </p>
                         <p>
-                            I warmly invite you to be part of our ethical and authentic journey, and to share in the elegance and heritage that define every sip of Olinton Tea.
+                            I warmly invite you to be part of our ethical and authentic journey, and to share in the elegance and heritage that define every sip of O'linton Tea.
                         </p>
                     </div>
                     <div className="mt-8">
@@ -259,5 +259,7 @@ export default function AboutPage() {
     </div>
   );
 }
+
+    
 
     

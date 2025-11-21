@@ -34,7 +34,7 @@ import { Metadata } from 'next';
 // that wraps a client component for the form.
 // For now, we'll set it on the client.
 if (typeof document !== 'undefined') {
-  document.title = 'Checkout | Olinton - Elegance in every sip';
+  document.title = "Checkout | O'linton - Elegance in every sip";
 }
 
 
@@ -271,3 +271,5 @@ export default function CheckoutPage() {
     </div>
   );
 }
+
+    

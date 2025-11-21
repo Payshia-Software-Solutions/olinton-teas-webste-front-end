@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import Header from '@/components/layout/Header';
@@ -69,7 +68,7 @@ function ShopPageComponent() {
   const [isProductsLoading, setIsProductsLoading] = useState(true);
 
   useEffect(() => {
-    document.title = 'Shop | Olinton - Elegance in every sip';
+    document.title = "Shop | O'linton - Elegance in every sip";
   }, []);
 
   useEffect(() => {
@@ -394,3 +393,5 @@ export default function ShopPage() {
     </Suspense>
   )
 }
+
+    

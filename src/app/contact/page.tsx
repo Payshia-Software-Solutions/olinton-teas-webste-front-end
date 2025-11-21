@@ -39,7 +39,7 @@ export default function ContactPage() {
   const { toast } = useToast()
 
   useEffect(() => {
-    document.title = 'Contact | Olinton - Elegance in every sip';
+    document.title = "Contact | O'linton - Elegance in every sip";
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -165,3 +165,5 @@ export default function ContactPage() {
     </div>
   );
 }
+
+    
