@@ -12,25 +12,25 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | O'linton - Elegance in every sip",
-    default: "Home | O'linton - Elegance in every sip",
+    template: "%s | Olinton - Elegance in every sip",
+    default: "Home | Olinton - Elegance in every sip",
   },
-  description: "Experience the finest Ceylon tea from Linton Tea (Pvt) Ltd, crafted with passion and tradition under our brands O'linton and K&K. Explore our collection of premium black, green, and white teas, sourced directly from the lush plantations of Sri Lanka.",
+  description: "Experience the finest Ceylon tea from Linton Tea (Pvt) Ltd, crafted with passion and tradition under our brands Olinton and K&K. Explore our collection of premium black, green, and white teas, sourced directly from the lush plantations of Sri Lanka.",
   openGraph: {
-    title: "O'LINTON Elegance in every sip",
+    title: "OLINTON Elegance in every sip",
     description: "Experience the finest Ceylon tea, crafted with passion and tradition.",
     images: [
       {
         url: 'https://content-provider.payshia.com/olinton/new-olinton-logo.webp',
         width: 1200,
         height: 630,
-        alt: "O'linton Tea Logo",
+        alt: "Olinton Tea Logo",
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "O'LINTON Elegance in every sip",
+    title: "OLINTON Elegance in every sip",
     description: "Experience the finest Ceylon tea, crafted with passion and tradition.",
     images: ['https://content-provider.payshia.com/olinton/new-olinton-logo.webp'],
   },

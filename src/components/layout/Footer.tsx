@@ -11,9 +11,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* About Section */}
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-4 uppercase tracking-wider">About O'linton</h3>
+            <h3 className="font-headline text-lg font-semibold mb-4 uppercase tracking-wider">About Olinton</h3>
             <p className="text-muted-foreground text-sm">
-              Linton Tea (Pvt) Ltd, established in 2003, is a celebrated tea company from Sri Lanka. We are proud to present our finest tea brands, O'linton and K&K, offering expertly blended and original garden teas to the world.
+              Linton Tea (Pvt) Ltd, established in 2003, is a celebrated tea company from Sri Lanka. We are proud to present our finest tea brands, Olinton and K&K, offering expertly blended and original garden teas to the world.
             </p>
           </div>
 

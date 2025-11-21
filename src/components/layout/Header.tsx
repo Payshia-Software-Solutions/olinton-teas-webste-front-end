@@ -147,7 +147,7 @@ export default function Header() {
             <Link href="/" className="flex items-center justify-center bg-card p-2 rounded-b-xl shadow-lg">
                 <Image
                     src="https://content-provider.payshia.com/olinton/new-olinton-logo.webp"
-                    alt="O'linton Logo"
+                    alt="Olinton Logo"
                     width={180}
                     height={80}
                     className="object-contain w-[160px] h-[65px] md:w-[180px] md:h-[80px]"
@@ -261,7 +261,7 @@ export default function Header() {
               <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
                  <Image
                     src="https://content-provider.payshia.com/olinton/new-olinton-logo.webp"
-                    alt="O'linton Logo"
+                    alt="Olinton Logo"
                     width={120}
                     height={40}
                     className="object-contain"

@@ -26,7 +26,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { AlertTriangle, CreditCard } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Metadata } from 'next';
+import { useEffect } from "react";
 
 // This is a client component, so we can't use static metadata.
 // We can set the title using useEffect, but it's not ideal for SEO.
@@ -34,7 +34,7 @@ import { Metadata } from 'next';
 // that wraps a client component for the form.
 // For now, we'll set it on the client.
 if (typeof document !== 'undefined') {
-  document.title = "Checkout | O'linton - Elegance in every sip";
+  document.title = "Checkout | Olinton - Elegance in every sip";
 }
 
 
@@ -84,6 +84,10 @@ export default function CheckoutPage() {
       discountCode: "",
     },
   })
+    
+  useEffect(() => {
+    document.title = "Checkout | Olinton - Elegance in every sip";
+  }, []);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)

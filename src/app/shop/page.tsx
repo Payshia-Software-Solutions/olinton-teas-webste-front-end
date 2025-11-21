@@ -68,7 +68,7 @@ function ShopPageComponent() {
   const [isProductsLoading, setIsProductsLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "Shop | O'linton - Elegance in every sip";
+    document.title = "Shop | Olinton - Elegance in every sip";
   }, []);
 
   useEffect(() => {
