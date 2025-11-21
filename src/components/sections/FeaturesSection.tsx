@@ -27,7 +27,7 @@ export default function FeaturesSection() {
         <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="font-headline text-4xl md:text-5xl font-black text-primary uppercase">Why Linton Tea</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-                The Company is ISO 9001:2008, ISO 14001:2004, FSSC 22000 and BRC certified, reflecting a commitment to the highest quality standards in the industry and to sustainability.
+                The Company is ISO 22000, HACCP and GMP certified, reflecting a commitment to the highest quality standards in the industry and to sustainability.
             </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -51,5 +51,3 @@ export default function FeaturesSection() {
     </section>
   );
 }
-
-    
