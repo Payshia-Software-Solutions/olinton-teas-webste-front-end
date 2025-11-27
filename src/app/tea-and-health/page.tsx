@@ -46,7 +46,7 @@ export default function TeaAndHealthPage() {
             <div className="absolute inset-0 bg-black/50" />
             <div className="relative z-10 flex h-full items-center justify-center text-center">
                 <AnimateOnScroll>
-                    <h1 className="font-headline text-5xl md:text-7xl font-bold text-white shadow-lg">
+                    <h1 className="font-headline text-5xl md:text-7xl font-bold text-white">
                         Tea & Health
                     </h1>
                 </AnimateOnScroll>
